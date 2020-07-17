@@ -1,19 +1,22 @@
 import platform
-
+import sys
+import constants
 
 def osCheck():
     plt = platform.system()
+
     if plt == "Windows":
-        print("Your system is Windows")
+        print('Windows OS detected')
         # do x y z
     elif plt == "Linux":
-        print("Your system is Linux")
+        print('Linux OS detected')
         # do x y z
     elif plt == "Darwin":
-        print("Your system is MacOS")
+        print('Mac OS detected')
         # do x y z
     else:
         print("Unidentified system")
+        return constants.SYS_ERROR
 
 
 def arg_parser():
@@ -23,7 +26,8 @@ def arg_parser():
 def main():
     # OS Check
     print("Verifying OS...")
-    osCheck()
+    if osCheck() == constants.SYS_ERROR:
+        sys.exit()
     # Cmd line parse
     arg_parser()
 
