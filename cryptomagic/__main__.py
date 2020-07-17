@@ -1,15 +1,13 @@
-from sys import platform as _platform
+import platform
 
 
 def osCheck():
-    if _platform == "linux":
+    if platform.system() == "linux":
         print('Linux OS detected')
-    elif _platform == "darwin":
+    elif platform.system() == "darwin":
         print('Mac OS detected')
-    elif _platform == "Windows":
+    elif platform.system() == "Windows":
         print('Windows OS detected')
-    else:
-        return False
 
 
 def arg_parser():
@@ -19,8 +17,7 @@ def arg_parser():
 def main():
     # OS Check
     print("Verifying OS...")
-    if not osCheck():
-        exit(1)
+    osCheck()
     # Cmd line parse
     arg_parser()
 
