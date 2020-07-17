@@ -19,8 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3e1f1c2f-08f1-4cf0-8422-6a945af2044b" name="Default Changelist" comment="arg_parser function basic.">
-      <change afterPath="$PROJECT_DIR$/cryptomagic/constants.py" afterDir="false" />
+    <list default="true" id="3e1f1c2f-08f1-4cf0-8422-6a945af2044b" name="Default Changelist" comment="Added constants.py">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cryptomagic/__main__.py" beforeDir="false" afterPath="$PROJECT_DIR$/cryptomagic/__main__.py" afterDir="false" />
     </list>
@@ -179,7 +178,14 @@
       <option name="project" value="LOCAL" />
       <updated>1594955247954</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Added constants.py">
+      <created>1594955995847</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1594955995847</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -210,7 +216,8 @@
     <MESSAGE value="OS detection complete" />
     <MESSAGE value="OS detection working on windows OS" />
     <MESSAGE value="arg_parser function basic." />
-    <option name="LAST_COMMIT_MESSAGE" value="arg_parser function basic." />
+    <MESSAGE value="Added constants.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added constants.py" />
   </component>
   <component name="WindowStateProjectService">
     <state x="195" y="202" key="#Inspections" timestamp="1594955968106">
@@ -221,10 +228,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="922" y="168" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1594802284234" />
-    <state x="451" y="183" key="Vcs.Push.Dialog.v2" timestamp="1594955249413">
+    <state x="451" y="183" key="Vcs.Push.Dialog.v2" timestamp="1594955999073">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1594700572582" />
-    <state x="451" y="183" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1594955249413" />
+    <state x="451" y="183" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1594955999073" />
   </component>
 </project>
