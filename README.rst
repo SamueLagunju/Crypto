@@ -75,4 +75,6 @@ that its contents are not readable – until they are decrypted by the utility.
     39635E87648059642F812F<CR>
     Then the decrypted file is:
     This encryption scheme is pretty weird. <CR>
+
     Isn't it?!? <CR>
+
