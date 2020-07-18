@@ -20,11 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3e1f1c2f-08f1-4cf0-8422-6a945af2044b" name="Default Changelist" comment="Simple Arg Parsing works with help description">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.rst" beforeDir="false" afterPath="$PROJECT_DIR$/README.rst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cryptomagic/__main__.py" beforeDir="false" afterPath="$PROJECT_DIR$/crypto/__main__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cryptomagic/constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/crypto/constants.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/crypto/__main__.py" beforeDir="false" afterPath="$PROJECT_DIR$/crypto/__main__.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
