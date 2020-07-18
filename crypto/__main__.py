@@ -34,7 +34,28 @@ def arg_parser(args=sys.argv[1:]):
     return options
 
 
+def seans_encryption(plain_text):
+    print('Encrypting...Low Mode...')
+    cipher_text = ""
+    # Transversing the string using range function
+    for pt_char_index in range(len(plain_text)):
+        ascii_plain_text = ord(plain_text[pt_char_index])
+        # If the character is a <tab> (ASCII value 9) it is just TT
+        if ascii_plain_text == 9:
+            cipher_text += 'TT'
+        # Apply encryption scheme
+        else:
+            # Taking the ASCII code for the input character and subtracting a value of 16 from it
+            cipher_char = ascii_plain_text - 16
+            if cipher_char < 32: # If the resulting outChar value is less than 32, another step must be taken:
+                cipher_char = (cipher_char -32) + 144
+            # Transforming result to 2 digit hexadecimal value
+            cipher_text += format(cipher_char, 'X')
 
+    print(cipher_text)
+
+def seans_decryption(plain_text):
+    pass
 
 def main():
     # Cmd line parse
@@ -45,7 +66,10 @@ def main():
         sys.exit()
 
     if options.encrypt_file:
-        print(f'Encryption File: {options.encrypt_file}')
+        print(f'Encryption File: {options.encrypt_file}\n')
+        while True:
+            plainText = input("Enter Text:")
+            seans_encryption(plainText)
     if options.decrypt_file:
         print(f'Decryption File: {options.decrypt_file}')
 
