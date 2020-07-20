@@ -8,16 +8,15 @@ not readable until they are decrypted by the utility.
 
 # Specification 
 1. The utility is called **crypto** and is written in Python 
-    *   The utility has 2 command-line switches 
-            *  `–e/-encrypt`
-            *  `–d/-decrypt` 
-    *   If none of these switches is specified, then `–encrypt` is assumed 
-    *   The utility also takes the name of an **ASCII input file** to 
-        encrypt/decrypt as an argument.
+    *   The utility has 2 command-line switches
+        *   `–e ` or `-encrypt`
+        *   `–d` or `-decrypt` 
+    *   If none of these switches is specified, `–encrypt` is assumed 
+    *   The utility also takes the name of an **ASCII input file** to encrypt/decrypt as an argument.
     *   For example: 
-           * `cryptoMagic –e/-encrypt myFile.txt` will encrypt the contents of the myFile.txt file 
-           * `cryptoMagic myFile.txt` will encrypt the contents of the myFile.txt file 
-           * `cryptoMagic –d/-decrypt myFile.crp` will decrypt the contents of the myFile.crp file
+        * `cryptoMagic –e/-encrypt myFile.txt` will encrypt the contents of the myFile.txt file 
+        * `cryptoMagic myFile.txt` will encrypt the contents of the myFile.txt file 
+        * `cryptoMagic –d/-decrypt myFile.crp` will decrypt the contents of the myFile.crp file
 
 2.  When the utility is asked to –encrypt an ASCII file, it will take the 
     input filename and produce the encrypted file with the same base filename
