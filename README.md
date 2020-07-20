@@ -9,7 +9,8 @@ not readable until they are decrypted by the utility.
 # Specification 
 1. The utility is called **crypto** and is written in Python 
     *   The utility has 2 command-line switches 
-            *  `–e/-encrypt` and `–d/-decrypt` 
+            *  `–e/-encrypt`
+            *  `–d/-decrypt` 
     *   If none of these switches is specified, then `–encrypt` is assumed 
     *   The utility also takes the name of an **ASCII input file** to 
         encrypt/decrypt as an argument.
