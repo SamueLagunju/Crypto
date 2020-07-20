@@ -80,8 +80,7 @@ that?
             pair of characters into a **<tab\>** character (ASCII value
             9) in the output file.
 
-`` ` b. If the pair of characters is not the sequence TT, then translate the first character of the pair by multiplying its face value by ``\`
-16. Remember that hex values of A through F take on the face values
+ b. If the pair of characters is not the sequence TT, then translate the first character of the pair by multiplying its face value by 16. Remember that hex values of A through F take on the face values
 of 10 through 15. Then add the face value of the second character in
 the pair. Let’s call the resulting value “outChar”. For example: -
 Reading the pair of characters “38” from the encrypted file will

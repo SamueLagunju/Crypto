@@ -51,7 +51,7 @@ def seans_encryption(plain_text):
 
             # If the resulting outChar value is less than 32, another step must be taken:
             if cipher_char < 32:
-                cipher_char = (cipher_char -32) + 144
+                cipher_char = (cipher_char - 32) + 144
             # Transforming result to 2 digit hexadecimal value
             cipher_text += format(cipher_char, 'X')
 
@@ -76,9 +76,7 @@ def seans_decryption(cipher_text):
 
             plain_text += chr(plain_char)
 
-
     return plain_text
-
 
 
 def main():
@@ -106,7 +104,6 @@ def main():
         print('Encrypted Text: {}'.format(user_text))
         user_text = seans_decryption(user_text)
         print('Decrypted Text: {}'.format(user_text))
-
 
 
 if __name__ == "__main__":
