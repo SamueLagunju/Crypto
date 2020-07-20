@@ -9,24 +9,24 @@ not readable until they are decrypted by the utility.
 # Specification 
 1. The utility is called **crypto** and is written in Python 
     *   The utility has 2 command-line switches
-        *   `–e ` or `-encrypt`
-        *   `–d` or `-decrypt` 
-    *   If none of these switches is specified, `–encrypt` is assumed 
+        *   `–e ` or `--encrypt`
+        *   `–d` or `--decrypt` 
+    *   If none of these switches is specified, `–-encrypt` is assumed 
     *   The utility also takes the name of an **ASCII input file** to encrypt/decrypt as an argument.
     *   For example: 
-        * `cryptoMagic –e/-encrypt myFile.txt` will encrypt the contents of the myFile.txt file 
+        * `cryptoMagic –e/--encrypt myFile.txt` will encrypt the contents of the myFile.txt file 
         * `cryptoMagic myFile.txt` will encrypt the contents of the myFile.txt file 
-        * `cryptoMagic –d/-decrypt myFile.crp` will decrypt the contents of the myFile.crp file
+        * `cryptoMagic –d/--decrypt myFile.crp` will decrypt the contents of the myFile.crp file
 
 2.  When the utility is asked to –encrypt an ASCII file, it will take the 
     input filename and produce the encrypted file with the same base filename
     and an .crp file extension
-    *   `cryptoMagic –encrypt myFile.txt` will produce an encrypted file called myFile.crp
+    *   `cryptoMagic –-encrypt myFile.txt` will produce an encrypted file called myFile.crp
 
 3.  When the utility is asked to –decrypt an encrypted file, it will take 
     the input filename and produce the decrypted file with the same base filename 
     and an .txt file extension
-    *   `cryptoMagic –decrypt myFile.crp` will produce a decrypted file called myFile.txt
+    *   `cryptoMagic –-decrypt myFile.crp` will produce a decrypted file called myFile.txt
 
 4.  It should be noted that the input file can have any file extension. When asked to encrypt, 
     it will replace the existing file extension (if any) with .CRP. 
