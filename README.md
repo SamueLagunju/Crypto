@@ -45,54 +45,49 @@ not readable until they are decrypted by the utility.
     
 ## Encryption scheme ##
 The encryption scheme is applied to each character in the line:
-    *   If the character is a **\<tab\>** (ASCII value 9) 
-        it will simply transform it into the output character sequence **TT**.
-    *   The **carriage return** characters are **not encrypted** – they are left as is in the resultant output file. 
-    *   NOTE: The term “carriage return” in this document does not apply to any specific ASCII code. 
-        It applies to the typical end-of-line character that exists in TEXT files within the Linux OS. 
-        - [ ] Need to investigate what constitutes a carriage return 
+*   If the character is a **\<tab\>** (ASCII value 9) it will simply transform it into the output character sequence **TT**.
+*   The **carriage return** characters are **not encrypted** – they are left as is in the resultant output file. 
+*   NOTE: The term “carriage return” in this document does not apply to any specific ASCII code.
+    It applies to the typical end-of-line character that exists in TEXT files within the Linux OS.
+    - [ ]   Need to investigate what constitutes a carriage return 
             (i.e. end-of-line character in a TEXT file) in the Linux OS
-    *   If is not a tab or a carriage return character, then apply
-        the encryption scheme in steps below
-        *   Take the ASCII code for the input character and subtract a value of 16 from it.
-        *   If the resulting outChar value is less than 32, then another
-            step must be taken: `outChar = (outChar – 32) + 144`
-        *   Crypto will write the ASCII value of the new encrypted
-            character (i.e. outChar) to the destination file as a 2
-            digit hexadecimal value. 
-            *   For example 
-                *   Hello There how are you?<CR\><br>
-                    My name is Sean Clarke.<tab\>I like software!\<CR\>
-            *   The encrypted file is:
-                *   38555C5C5F80445855625580585F678051625580695F652F<CR\><br>
-                    3D69805E515D55805963804355515E80335C51625B558ETT39805C595B5580635F56646751625581<CR\>
+*   If is not a tab or a carriage return character, then apply the encryption scheme in steps below
+*   Take the ASCII code for the input character and subtract a value of 16 from it.
+*   If the resulting outChar value is less than 32, then another step is taken: `outChar = (outChar – 32) + 144`
+*   Crypto will write the ASCII value of the new encrypted character
+    (i.e. outChar) to the destination file as a 2 digit hexadecimal value. 
+    *   For example 
+        *   Hello There how are you?<CR\><br>
+            My name is Sean Clarke.<tab\>I like software!\<CR\>
+    *   The encrypted file is:
+        *   38555C5C5F80445855625580585F678051625580695F652F<CR\><br>
+            3D69805E515D55805963804355515E80335C51625B558ETT39805C595B5580635F56646751625581<CR\>
                     
 ## Decryption scheme ##
 The decryption scheme is applied to each pair of characters in the input line:
-    *   If the pair of characters is the sequence **TT** it simply transforms into a **<tab\>** character 
-        (ASCII value 9) in the output file.
-    *   If the pair of characters is not the sequence **TT**, it translates it from hex to decimal 
-        *   For example:
-            *   The pair of characters “38” from the encrypted file will translate into an outChar value of 56 decimal.
-            *   The pair of characters “5C” from the encrypted file will translate into an outChar value of 92 decimal. 
-    *   16 is addedto outChar. 
-    *   If the resulting outChar value is greater than 127, 
-        then another step must be taken: `outChar = (outChar - 144) + 32` 
-    *   The outChar value now contains the decrypted ASCII code for the character that you have just decoded.
-        This decrypted character value (i.e. outChar) will be written to the destination file as a character. 
-    *   The **carriage return** characters are **not decrypted**. They are left as is in the resultant file. 
-        *   For example – if the input (encrypted) file is:
-            *   4458596380555E5362696064595F5E80635358555D55805963806062556464698067555962548E<CR\><br>
-                39635E87648059642F812F<CR\> 
-        *   Then the decrypted file is: 
-            *   This encryption scheme is pretty weird. <CR\><br>
-                Isn't it?!? <CR\> 
+*   If the pair of characters is the sequence **TT** 
+    it simply transforms into a **<tab\>** character (ASCII value 9) in the output file.
+*   If the pair of characters is not the sequence **TT**, it translates it from hex to decimal 
+    *  For example:
+        *   The pair of characters “38” from the encrypted file will translate into an outChar value of 56 decimal.
+        *   The pair of characters “5C” from the encrypted file will translate into an outChar value of 92 decimal. 
+*   16 is addedto outChar. 
+*   If the resulting outChar value is greater than 127, 
+    then another step is taken: `outChar = (outChar - 144) + 32` 
+*   The outChar value now contains the decrypted ASCII code for the character that you have just decoded. 
+    This decrypted character value (i.e. outChar) will be written to the destination file as a character. 
+*   The **carriage return** characters are **not decrypted**. They are left as is in the resultant file. 
+    *   For example – if the input (encrypted) file is:
+        *   4458596380555E5362696064595F5E80635358555D55805963806062556464698067555962548E<CR\><br>
+            39635E87648059642F812F<CR\> 
+    *   Then the decrypted file is: 
+        *   This encryption scheme is pretty weird. <CR\><br>
+            Isn't it?!? <CR\> 
 
 # License
 This project is licensed under the MIT License - see the
 [LICENSE.md](LICENSE.md) file for details
 
 # Acknowledgments
-
--   Sean Clarke
+*   Sean Clarke
 
