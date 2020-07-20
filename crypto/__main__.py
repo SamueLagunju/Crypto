@@ -1,3 +1,10 @@
+#
+# FILE:         __main__.py
+# PROJECT:      crypto
+# PROGRAMMER:   Samuel Lagunju
+# DESCRIPTION:  The functions in this file are used to …
+#
+
 import platform
 import os
 import sys
@@ -5,6 +12,10 @@ import constants
 import argparse
 
 
+#   FUNCTION:
+#   DESCRIPTION:
+#   PARAMETERS:
+#   RETURNS:
 def osCheck():
     plt = platform.system()
 
@@ -22,6 +33,10 @@ def osCheck():
         return constants.SYS_ERROR
 
 
+#   FUNCTION:
+#   DESCRIPTION:
+#   PARAMETERS:
+#   RETURNS:
 def arg_parser(args=sys.argv[1:]):
     print('Parsing Command line Argument...')
 
@@ -34,6 +49,10 @@ def arg_parser(args=sys.argv[1:]):
     return options
 
 
+#   FUNCTION:
+#   DESCRIPTION:
+#   PARAMETERS:
+#   RETURNS:
 def seans_encryption(plain_text):
     cipher_text = ""
     # Transversing the string using range function
@@ -59,6 +78,10 @@ def seans_encryption(plain_text):
     return cipher_text
 
 
+#   FUNCTION:
+#   DESCRIPTION:
+#   PARAMETERS:
+#   RETURNS:
 def seans_decryption(cipher_text):
     plain_text = ""
     # Transversing the string using range
@@ -85,6 +108,10 @@ def seans_decryption(cipher_text):
     return plain_text
 
 
+#   FUNCTION:
+#   DESCRIPTION:
+#   PARAMETERS:
+#   RETURNS:
 def validate_file(f):
     if not os.path.exists(f):
         # Argparse uses the ArgumentTypeError to give a rejection message like:
@@ -93,6 +120,10 @@ def validate_file(f):
     return f
 
 
+#   FUNCTION:
+#   DESCRIPTION:
+#   PARAMETERS:
+#   RETURNS:
 def main():
     # Cmd line parse
     options = arg_parser(sys.argv[1:])
@@ -120,7 +151,6 @@ def main():
                 for cnt, line in enumerate(file_pointer):
                     result = seans_decryption(line)
                     print("Decrypted Line {}: {}".format(cnt, result))
-
 
 
 if __name__ == "__main__":
