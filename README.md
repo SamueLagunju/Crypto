@@ -55,12 +55,12 @@ The encryption scheme is applied to each character in the line:
     (i.e. outChar) to the destination file as a 2 digit hexadecimal value. 
     *   For example 
         *   ```
-            Hello There how are you?<CR\><br>
+            Hello There how are you?<CR\>
             My name is Sean Clarke.<tab\>I like software!\<CR\>
             ```
     *   The encrypted file is:
         *   ```
-            38555C5C5F80445855625580585F678051625580695F652F<CR\><br>
+            38555C5C5F80445855625580585F678051625580695F652F<CR\>
             3D69805E515D55805963804355515E80335C51625B558ETT39805C595B5580635F56646751625581<CR\>
             ```
                     
@@ -79,11 +79,15 @@ The decryption scheme is applied to each pair of characters in the input line:
     This decrypted character value (i.e. outChar) will be written to the destination file as a character. 
 *   The **carriage return** characters are **not decrypted**. They are left as is in the resultant file. 
     *   For example – if the input (encrypted) file is:
-        *   4458596380555E5362696064595F5E80635358555D55805963806062556464698067555962548E<CR\><br>
+        *   ```
+            4458596380555E5362696064595F5E80635358555D55805963806062556464698067555962548E<CR\>
             39635E87648059642F812F<CR\> 
+            ```
     *   Then the decrypted file is: 
-        *   This encryption scheme is pretty weird. <CR\><br>
+        *   ```
+            This encryption scheme is pretty weird. <CR\>
             Isn't it?!? <CR\> 
+            ```
 
 # License
 This project is licensed under the MIT License - see the
