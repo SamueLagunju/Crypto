@@ -48,6 +48,7 @@ def seans_encryption(plain_text):
         else:
             # Taking the ASCII code for the input character and subtracting a value of 16 from it
             cipher_char = ascii_plain_text - 16
+
             # If the resulting outChar value is less than 32, another step must be taken:
             if cipher_char < 32:
                 cipher_char = (cipher_char -32) + 144
@@ -80,7 +81,6 @@ def seans_decryption(cipher_text):
 
 
 
-
 def main():
     # Cmd line parse
     options = arg_parser(sys.argv[1:])
@@ -106,6 +106,7 @@ def main():
         print('Encrypted Text: {}'.format(user_text))
         user_text = seans_decryption(user_text)
         print('Decrypted Text: {}'.format(user_text))
+
 
 
 if __name__ == "__main__":

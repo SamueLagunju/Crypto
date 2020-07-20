@@ -1,28 +1,27 @@
-# Crypto
 
-An encrypting / decrypting utility for Linux/Windows. This utility will take any ASCII file and encrypt it in such a way
+# Crypto
+# Description
+
+An encrypting / decrypting utility for Linux. This utility will take any ASCII file or folder and encrypt it in such a way
 that its contents are not readable – until they are decrypted by the utility.
 
-# Objectives
 
-- Practice creating a software project in Linux in the required development directory structure
-- Practice creating a makefile for a Linux software project
-- Reinforce Programming techniques - File I/O using ASCII files, Command-Line Processing
-
-# Requirements
-
-1. The utility needs to be called **cryptoMagic** and needs to be written in python
-    a. The utility has 2 command-line switches – they are –encrypt/-e and –decrypt/-d
+# Specification
+1. The utility is called **cryptoMagic** and is written in Python
+    a. The utility has 2 command-line switches – they are –encrypt and –decrypt
     b. If none of these switches is specified, then –encrypt is assumed
     c. The utility also takes the name of an **ASCII input file** to encrypt/decrypt as an argument.
     d. For example:
-       cryptoMagic –encrypt myFile.txt will encrypt the contents of the myFile.txt file
-       cryptoMagic myFile.txt  will encrypt the contents of the myFile.txt file
+       cryptoMagic –encrypt myFile.txt  will encrypt the contents of the myFile.txt file
+       cryptoMagic myFile.txt  will encrypt the contents of the myFile.txt file
        cryptoMagic –decrypt myFile.crp  will decrypt the contents of the myFile.crp file
+
 2. When the utility is asked to –encrypt an ASCII file, it will take the input filename and produce the encrypted file with the same
     base filename and an .crp file extension
        a. For example:
           cryptoMagic –encrypt myFile.txt  will produce an encrypted file called myFile.crp
+
+
 3. When the utility is asked to –decrypt an encrypted file, it will take the input filename and produce the decrypted file with the
     same base filename and an .txt file extension
        a. For example:
@@ -41,6 +40,7 @@ extension to replace – you only need to append the .TXT (if decrypting) and .C
     than 120 characters. While processing the input ASCII file you need to process one line at a time. Continue to process the input file
     until you reach the end of the file.
        a. Please note that it is not guaranteed that each line actually ends in a carriage return ... how will you handle that?
+
 6. The encryption scheme is applied to each character in the line:
     a. If the character is a **<tab>** (ASCII value 9) then simply transform it into the output character sequence **TT**.
     b. The **carriage return** characters are **not** to be **encrypted** – they are left as is in the resultant output file (the **<CR>** in the
@@ -102,4 +102,3 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 # Acknowledgments
 
 * Sean Clarke
-
