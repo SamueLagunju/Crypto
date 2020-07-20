@@ -1,4 +1,8 @@
 # Crypto 
+## Version
+[![Version](https://badge.fury.io/gh/tterb%2FHyde.svg)](https://badge.fury.io/gh/tterb%2FHyde)
+![GitHub Release](https://img.shields.io/badge/Release-v0.5-blue)
+
 # Description
 
 An encrypting / decrypting utility for Linux. This utility will take any
