@@ -20,6 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3e1f1c2f-08f1-4cf0-8422-6a945af2044b" name="Default Changelist" comment="Simple Arg Parsing works with help description">
+
       <change beforePath="$PROJECT_DIR$/crypto/__main__.py" beforeDir="false" afterPath="$PROJECT_DIR$/crypto/__main__.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -47,6 +48,7 @@
       <recent name="C:\Users\slagu\Downloads\T\CryptoMagic\docs\source" />
     </key>
   </component>
+
   <component name="RunManager">
     <configuration name="__main__" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="CryptoMagic" />
@@ -71,6 +73,9 @@
     </configuration>
     <recent_temporary>
       <list>
+
+        <item itemvalue="Python.__main__ (1)" />
+
         <item itemvalue="Python.__main__" />
       </list>
     </recent_temporary>
@@ -226,7 +231,21 @@
       <option name="project" value="LOCAL" />
       <updated>1594960729764</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Sean's encryption scheme works!">
+      <created>1595033325187</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1595033325187</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Sean's decryption scheme start">
+      <created>1595033666064</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1595033666064</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -260,61 +279,70 @@
     <MESSAGE value="Added constants.py" />
     <MESSAGE value="Simple Arg Parsing works" />
     <MESSAGE value="Simple Arg Parsing works with help description" />
-    <option name="LAST_COMMIT_MESSAGE" value="Simple Arg Parsing works with help description" />
   </component>
   <component name="WindowStateProjectService">
     <state x="195" y="202" key="#Inspections" timestamp="1594955968106">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="195" y="202" key="#Inspections/0.0.1920.1040@0.0.1920.1040" timestamp="1594955968106" />
-    <state width="1114" height="347" key="GridCell.Tab.0.bottom" timestamp="1595002759463">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1394" height="347" key="GridCell.Tab.0.bottom" timestamp="1595209541749">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1114" height="347" key="GridCell.Tab.0.bottom/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1595002759463" />
-    <state width="1114" height="347" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1594960014380" />
-    <state width="1114" height="347" key="GridCell.Tab.0.center" timestamp="1595002759463">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1394" height="347" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1595209541749" />
+    <state width="1394" height="347" key="GridCell.Tab.0.center" timestamp="1595209541749">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1114" height="347" key="GridCell.Tab.0.center/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1595002759463" />
-    <state width="1114" height="347" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1594960014380" />
-    <state width="1114" height="347" key="GridCell.Tab.0.left" timestamp="1595002759463">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1394" height="347" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1595209541749" />
+    <state width="1394" height="347" key="GridCell.Tab.0.left" timestamp="1595209541749">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1114" height="347" key="GridCell.Tab.0.left/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1595002759463" />
-    <state width="1114" height="347" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1594960014380" />
-    <state width="1114" height="347" key="GridCell.Tab.0.right" timestamp="1595002759463">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1394" height="347" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1595209541749" />
+    <state width="1394" height="347" key="GridCell.Tab.0.right" timestamp="1595209541749">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1114" height="347" key="GridCell.Tab.0.right/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1595002759463" />
-    <state width="1114" height="347" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1594960014380" />
-    <state width="1114" height="347" key="GridCell.Tab.1.bottom" timestamp="1595002759463">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1394" height="347" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1595209541749" />
+    <state width="1394" height="347" key="GridCell.Tab.1.bottom" timestamp="1595209541749">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1114" height="347" key="GridCell.Tab.1.bottom/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1595002759463" />
-    <state width="1114" height="347" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1594960014380" />
-    <state width="1114" height="347" key="GridCell.Tab.1.center" timestamp="1595002759463">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1394" height="347" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1595209541749" />
+    <state width="1394" height="347" key="GridCell.Tab.1.center" timestamp="1595209541749">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1114" height="347" key="GridCell.Tab.1.center/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1595002759463" />
-    <state width="1114" height="347" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1594960014380" />
-    <state width="1114" height="347" key="GridCell.Tab.1.left" timestamp="1595002759463">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1394" height="347" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1595209541749" />
+    <state width="1394" height="347" key="GridCell.Tab.1.left" timestamp="1595209541749">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1114" height="347" key="GridCell.Tab.1.left/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1595002759463" />
-    <state width="1114" height="347" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1594960014380" />
-    <state width="1114" height="347" key="GridCell.Tab.1.right" timestamp="1595002759463">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1394" height="347" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1595209541749" />
+    <state width="1394" height="347" key="GridCell.Tab.1.right" timestamp="1595209541749">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1114" height="347" key="GridCell.Tab.1.right/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1595002759463" />
-    <state width="1114" height="347" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1594960014380" />
+    <state width="1394" height="347" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1595209541749" />
+
     <state x="922" y="168" key="SettingsEditor" timestamp="1594802284234">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="922" y="168" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1594802284234" />
-    <state x="451" y="183" key="Vcs.Push.Dialog.v2" timestamp="1594960730605">
+    <state x="201" y="268" width="540" height="524" key="StructurePopup" timestamp="1595207806772">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state x="201" y="268" width="540" height="524" key="StructurePopup/0.0.1920.1040@0.0.1920.1040" timestamp="1595207806772" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1595033667055">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
     <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1594700572582" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1595033667055" />
     <state x="451" y="183" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1594960730605" />
+    <state x="323" y="296" key="refactoring.ChangeSignatureDialog" timestamp="1595202366759">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="323" y="296" key="refactoring.ChangeSignatureDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1595202366759" />
   </component>
 </project>
