@@ -54,11 +54,15 @@ The encryption scheme is applied to each character in the line:
 *   Crypto will write the ASCII value of the new encrypted character
     (i.e. outChar) to the destination file as a 2 digit hexadecimal value. 
     *   For example 
-        *   Hello There how are you?<CR\><br>
+        *   ```
+            Hello There how are you?<CR\><br>
             My name is Sean Clarke.<tab\>I like software!\<CR\>
+            ```
     *   The encrypted file is:
-        *   38555C5C5F80445855625580585F678051625580695F652F<CR\><br>
+        *   ```
+            38555C5C5F80445855625580585F678051625580695F652F<CR\><br>
             3D69805E515D55805963804355515E80335C51625B558ETT39805C595B5580635F56646751625581<CR\>
+            ```
                     
 ## Decryption scheme ##
 The decryption scheme is applied to each pair of characters in the input line:
