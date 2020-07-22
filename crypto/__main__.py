@@ -146,7 +146,12 @@ def main():
                 file_pointer = open(input_file, "w")
                 file_pointer.write(file_buffer)
                 file_pointer.close()
-                os.rename(input_file, 'Woi.crp')
+
+                # input_file is the file getting renamed,
+                # file_name is the part of file name before extension and ext is current extension
+                file_name, ext = os.path.splitext(input_file)
+                os.rename(input_file, file_name + '.crp')
+
     if options.decrypt_file:
         print('Decrypting...Low Mode...')
         for file_index in options.decrypt_file:
@@ -160,7 +165,11 @@ def main():
                 file_pointer = open(input_file, "w")
                 file_pointer.write(file_buffer)
                 file_pointer.close()
-                os.rename(input_file, 'Woi.txt')
+
+                # input_file is the file getting renamed,
+                # file_name is the part of file name before extension and ext is current extension
+                file_name, ext = os.path.splitext(input_file)
+                os.rename(input_file, file_name + '.txt')
 
 
 if __name__ == "__main__":

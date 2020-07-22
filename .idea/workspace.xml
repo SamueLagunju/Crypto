@@ -20,12 +20,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3e1f1c2f-08f1-4cf0-8422-6a945af2044b" name="Default Changelist" comment="File Cleanup">
-      <change afterPath="$PROJECT_DIR$/data/Text2.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Woi.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/crypto/__main__.py" beforeDir="false" afterPath="$PROJECT_DIR$/crypto/__main__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/Text.crp" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/data/Text.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/Text.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/Text2.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -278,7 +277,14 @@
       <option name="project" value="LOCAL" />
       <updated>1595230756361</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Writing to sample file works...need to extend file i/o into class...">
+      <created>1595386048968</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1595386048968</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -315,7 +321,8 @@
     <MESSAGE value="Cleanup for FileIO" />
     <MESSAGE value="Reading files work!&#10; - Encryptio and decryption" />
     <MESSAGE value="File Cleanup" />
-    <option name="LAST_COMMIT_MESSAGE" value="File Cleanup" />
+    <MESSAGE value="Writing to sample file works...need to extend file i/o into class..." />
+    <option name="LAST_COMMIT_MESSAGE" value="Writing to sample file works...need to extend file i/o into class..." />
   </component>
   <component name="WindowStateProjectService">
     <state x="195" y="202" key="#Inspections" timestamp="1594955968106">
@@ -382,12 +389,16 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="201" y="268" width="540" height="524" key="StructurePopup/0.0.1920.1040@0.0.1920.1040" timestamp="1595207806772" />
-    <state x="451" y="183" key="Vcs.Push.Dialog.v2" timestamp="1595230757774">
+    <state x="451" y="183" key="Vcs.Push.Dialog.v2" timestamp="1595386050481">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1594700572582" />
     <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1595033667055" />
-    <state x="451" y="183" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1595230757774" />
+    <state x="451" y="183" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1595386050481" />
+    <state x="518" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1595385924090">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="518" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1595385924090" />
     <state x="323" y="296" key="refactoring.ChangeSignatureDialog" timestamp="1595224394250">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
