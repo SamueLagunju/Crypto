@@ -131,7 +131,7 @@ def main():
     print("Verifying OS...")
     if osCheck() == constants.SYS_ERROR:
         sys.exit()
-
+    file_buffer = ""
     if options.encrypt_file:
         print('Encrypting...Low Mode...')
         for file_index in options.encrypt_file:
@@ -139,8 +139,18 @@ def main():
             print(f'Encryption File: {input_file}')
             with open(input_file, 'r') as file_pointer:
                 for cnt, line in enumerate(file_pointer):
-                    result = seans_encryption(line)
-                    print("Encrypted Line {}: {}".format(cnt, result))
+                    file_buffer += seans_encryption(line)
+
+                # Testing write to file - WEIRD OUTPUT
+                file_pointer.close()
+                file_pointer = open(input_file, "w")
+                file_pointer.write(file_buffer)
+                file_pointer.close()
+
+                # input_file is the file getting renamed,
+                # file_name is the part of file name before extension and ext is current extension
+                file_name, ext = os.path.splitext(input_file)
+                os.rename(input_file, file_name + '.crp')
 
     if options.decrypt_file:
         print('Decrypting...Low Mode...')
@@ -149,8 +159,17 @@ def main():
             print(f'Decryption File: {input_file}')
             with open(input_file, 'r') as file_pointer:
                 for cnt, line in enumerate(file_pointer):
-                    result = seans_decryption(line)
-                    print("Decrypted Line {}: {}".format(cnt, result))
+                    file_buffer += seans_decryption(line)
+
+                file_pointer.close()
+                file_pointer = open(input_file, "w")
+                file_pointer.write(file_buffer)
+                file_pointer.close()
+
+                # input_file is the file getting renamed,
+                # file_name is the part of file name before extension and ext is current extension
+                file_name, ext = os.path.splitext(input_file)
+                os.rename(input_file, file_name + '.txt')
 
 
 if __name__ == "__main__":
