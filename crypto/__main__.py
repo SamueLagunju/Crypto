@@ -131,7 +131,7 @@ def main():
     print("Verifying OS...")
     if osCheck() == constants.SYS_ERROR:
         sys.exit()
-
+    file_buffer = ""
     if options.encrypt_file:
         print('Encrypting...Low Mode...')
         for file_index in options.encrypt_file:
@@ -139,9 +139,14 @@ def main():
             print(f'Encryption File: {input_file}')
             with open(input_file, 'r') as file_pointer:
                 for cnt, line in enumerate(file_pointer):
-                    result = seans_encryption(line)
-                    print("Encrypted Line {}: {}".format(cnt, result))
+                    file_buffer += seans_encryption(line)
 
+                # Testing write to file - WEIRD OUTPUT
+                file_pointer.close()
+                file_pointer = open(input_file, "w")
+                file_pointer.write(file_buffer)
+                file_pointer.close()
+                os.rename(input_file, 'Woi.crp')
     if options.decrypt_file:
         print('Decrypting...Low Mode...')
         for file_index in options.decrypt_file:
@@ -149,8 +154,13 @@ def main():
             print(f'Decryption File: {input_file}')
             with open(input_file, 'r') as file_pointer:
                 for cnt, line in enumerate(file_pointer):
-                    result = seans_decryption(line)
-                    print("Decrypted Line {}: {}".format(cnt, result))
+                    file_buffer += seans_decryption(line)
+
+                file_pointer.close()
+                file_pointer = open(input_file, "w")
+                file_pointer.write(file_buffer)
+                file_pointer.close()
+                os.rename(input_file, 'Woi.txt')
 
 
 if __name__ == "__main__":

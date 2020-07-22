@@ -1,5 +1,5 @@
 # Crypto 
-An encrypting / decrypting utility for Linux. This utility will take any
+An encrypting / decrypting utility (    Linux/Windows). This utility will take any
 ASCII file or folder and encrypt it in such a way that its contents are
 not readable until they are decrypted by the utility.
 

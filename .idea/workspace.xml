@@ -20,8 +20,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3e1f1c2f-08f1-4cf0-8422-6a945af2044b" name="Default Changelist" comment="File Cleanup">
+      <change afterPath="$PROJECT_DIR$/data/Text2.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/crypto/__main__.py" beforeDir="false" afterPath="$PROJECT_DIR$/crypto/__main__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/Text.crp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/Text.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/Text.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,10 +43,15 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/data" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\slagu\Downloads\T\CryptoMagic\data" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\slagu\Downloads\T\CryptoMagic\data" />
       <recent name="C:\Users\slagu\Downloads\T\CryptoMagic\src" />
       <recent name="C:\Users\slagu\Downloads\T\CryptoMagic" />
       <recent name="C:\Users\slagu\Downloads\T\CryptoMagic\docs\source" />
