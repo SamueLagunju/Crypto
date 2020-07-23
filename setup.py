@@ -1,34 +1,20 @@
-#!/usr/bin/env python
-
-import os
-from setuptools import setup, find_packages
-from crypto import __version__
-import pathlib
-
-here = pathlib.Path(__file__).parent.resolve()
-# Get the long description from the README file
-long_description = (here / 'README.md').read_text(encoding='utf-8')
+import re #regex tool
+from setuptools import setup
 
 
-# the setup
+with open("README.md", "rb") as f:
+    long_descr = f.read().decode("utf-8")
+
 setup(
-    name='crypto',
-    version=__version__,
-    description='An encrypting / decrypting utility for Windows/Linux.',
-    long_description=long_description,
-    url='https://github.com/SamueLagunju/Crypto',
-    author='Samuel Oloruntoba Lagunju',
-    author_email='taofsamuel@gmail.com',
-    license='MIT',
-    keywords='cryptography cross-platform tutorial',
-    packages=find_packages(exclude=('docs', 'tests', 'env', 'crypto-runner.py')),
-    include_package_data=True,
-    install_requires=[
-    ],
-    extras_require={
-        'dev': [],
-        'docs': [],
-        'testing': [],
+    name="Crypto",
+    version='1.0.0',  # Required
+    packages=["crypto"],
+    entry_points={
+        "console_scripts": ['crypto = crypto.crypto:main']
     },
-    classifiers=[],
+    description="An encrypting / decrypting utility for Linux/Windows. ",
+    long_description=long_descr,
+    author="Samuel Oloruntoba Lagunju",
+    author_email="taofsamuel@gmail.com",
+    url="https://github.com/SamueLagunju/Crypto.git",
 )
