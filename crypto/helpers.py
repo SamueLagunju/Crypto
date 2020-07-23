@@ -13,7 +13,7 @@ def validate_file(file):
     config = Path(file)
     if not config.is_file():
         raise argparse.ArgumentTypeError("Could not find: {0}".format(file))
-
+    return file
 
 #   FUNCTION:       osCheck()
 #   DESCRIPTION:    Checks which operating system its being run on
@@ -45,7 +45,7 @@ def arg_parser(args=sys.argv[1:]):
                         dest='encrypt_file', help="Produces an encrypted file\n")
     parser.add_argument('-d', '--decrypt', metavar='Decryption file', action='append', type=validate_file,
                         dest='decrypt_file', help="Produces a decrypted file\n")
-    parser.add_argument('Filename', metavar='No-switch file', nargs='?',  type=str,
+    parser.add_argument('Filename', metavar='No-switch file', nargs='?',  type=validate_file,
                          help="Produces an encrypted file\n")
     options = parser.parse_args(args)
     return options

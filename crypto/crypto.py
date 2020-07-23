@@ -12,3 +12,4 @@ class Program:
         if osCheck():
             sys.exit(SYS_ERROR)
         options = arg_parser(sys.argv[1:])
+        print(options)
