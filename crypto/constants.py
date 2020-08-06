@@ -1,9 +1,17 @@
-"""
-* Project Name: CryptoMagic
-* File Name: constants.py
-* Programmer: Samuel Lagunju
-* Date: July 16, 2020
-* Description: This file contains global constants.
-"""
+#
+# FILE:        constants.py
+# PROJECT:      CryptoMagic
+# PROGRAMMER:   Samuel Lagunju
+# DESCRIPTION:  This file contains global constants (and imports for now.)
+#
+import sys
+import os
 
-SYS_ERROR = -1
+SYS_ERROR = False
+stopLoop = False
+encryptMode = 23
+decryptMode = 32
+available_extensions = [".txt", ".pdf"]
+
+program_directory = ""
+program_os = ""
