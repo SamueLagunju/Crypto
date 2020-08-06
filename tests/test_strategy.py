@@ -3,28 +3,32 @@ import pytest
 from crypto.crypter import Crypter
 from crypto.strategy import SeanStrategy
 
-def test_encrypt_string():
-    print("HI")
-    # Arrange
-    input = "abcdef"
-    client = Crypter("", SeanStrategy())
 
-    # Act
-    result = client.encrypt_txt(input)
+class TestSeanStrategy:
+    """ Tests for the Sean Strategy. """
 
-    # Assert
-    print(result)
-    assert result == "515253545556"
+    @pytest.mark.parametrize(
+        "input,expected", [("abcdef", "515253545556"),],
+    )
+    def test_encrypt_string(self, input, expected):
+        # Arrange
+        client = Crypter("", SeanStrategy())
 
-def test_decrypt_string():
-    print("HI")
-    # Arrange
-    input = "515253545556"
-    client = Crypter("", SeanStrategy())
+        # Act
+        result = client.encrypt_txt(input)
 
-    # Act
-    result = client.decrypt_txt(input)
+        # Assert
+        assert result == expected
 
-    # Assert
-    print(result)
-    assert result == "abcdef"
+    @pytest.mark.parametrize(
+        "input,expected", [("515253545556", "abcdef"),],
+    )
+    def test_decrypt_string(self, input, expected):
+        # Arrange
+        client = Crypter("", SeanStrategy())
+
+        # Act
+        result = client.decrypt_txt(input)
+
+        # Assert
+        assert result == expected
