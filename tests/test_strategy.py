@@ -34,7 +34,17 @@ class TestSeanStrategy:
         assert result == expected
 
     @pytest.mark.parametrize(
-        "input,expected", [("515253545556", "abcdef"),],
+        "input,expected",
+        [
+            ("515253545556", "abcdef"),
+            # (
+            #     (
+            #         "4458596380555E5362696064595F5E80635358555D55805963806062556464698067555962548E\n"
+            #         "39635E87648059642F812F\n"
+            #     ),
+            #     ("This encryption scheme is pretty weird.\nIsn't it?!?\n"),
+            # ),
+        ],
     )
     def test_decrypt_string(self, input, expected):
         # Arrange
