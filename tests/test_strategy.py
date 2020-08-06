@@ -8,7 +8,20 @@ class TestSeanStrategy:
     """ Tests for the Sean Strategy. """
 
     @pytest.mark.parametrize(
-        "input,expected", [("abcdef", "515253545556"),],
+        "input,expected",
+        [
+            ("abcdef", "515253545556"),
+            (
+                (
+                    "Hello There how are you?\n"
+                    "My name is Sean Clarke.\tI like software!\n"
+                ),
+                (
+                    "38555C5C5F80445855625580585F678051625580695F652F\n"
+                    "3D69805E515D55805963804355515E80335C51625B558ETT39805C595B5580635F56646751625581\n"
+                ),
+            ),
+        ],
     )
     def test_encrypt_string(self, input, expected):
         # Arrange
