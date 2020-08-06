@@ -1,15 +1,33 @@
 from .helpers import *
+from .crypter import *
+from .strategy import SeanStrategy
+from .fileio import read_file
 
 
 def main():
-    run = Program()
-    run.execute_program()
+    program_directory = Path().resolve()
+    program_os = os_checker()
+    if not program_os:
+        sys.exit(SYS_ERROR)
 
+    args = arg_parser(sys.argv[1:])
+    if args.decrypt_file:
+        for file_name in args.decrypt_file:
+            print("Decrypting file: {0}".format(file_name))
 
-class Program:
+            crypter = Crypter(file_name, SeanStrategy())
+            file_contents = read_file(file_name)
 
-    def execute_program(self):
-        if osCheck():
-            sys.exit(SYS_ERROR)
-        options = arg_parser(sys.argv[1:])
-        print(options)
+            decrypted_text = crypter.decrypt_txt(file_contents)
+
+            print(decrypted_text)
+    if args.encrypt_file:
+        for file_name in args.encrypt_file:
+            print("Encrypting file: {0}".format(file_name))
+
+            crypter = Crypter(file_name, SeanStrategy())
+            file_contents = read_file(file_name)
+
+            encrypted_text = crypter.encrypt_txt(file_contents)
+
+            print(encrypted_text)
