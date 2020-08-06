@@ -46,8 +46,6 @@ The encryption scheme is applied to each character in the line:
 *   The **carriage return** characters are **not encrypted** – they are left as is in the resultant output file. 
 *   NOTE: The term “carriage return” in this document does not apply to any specific ASCII code.
     It applies to the typical end-of-line character that exists in TEXT files within the Linux OS.
-    - [ ]   Need to investigate what constitutes a carriage return 
-            (i.e. end-of-line character in a TEXT file) in the Linux OS
 *   If is not a tab or a carriage return character, then apply the encryption scheme in steps below
 *   Take the ASCII code for the input character and subtract a value of 16 from it.
 *   If the resulting outChar value is less than 32, then another step is taken: `outChar = (outChar – 32) + 144`
