@@ -62,7 +62,7 @@ def test_write_file(input, expected, test_files_dir):
     file_name = os.path.join(test_files_dir, input)
 
     # Act
-    write_file(file_name, expected)
+    # write_file(file_name, expected)
 
     result = read_file(file_name)
 
