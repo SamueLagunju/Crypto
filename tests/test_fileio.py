@@ -58,7 +58,7 @@ def test_read_file(input, expected, test_files_dir):
     assert result == expected
 
 
-#@pytest.mark.skip("TODO")
+# @pytest.mark.skip("TODO")
 @pytest.mark.parametrize(
     "input,expected",
     [("file1.txt", "I went to the market"),
@@ -77,7 +77,7 @@ def test_write_file(input, expected, test_files_dir):
     # Assert
     assert result == expected
 
-#@pytest.mark.skip("TODO")
+# @pytest.mark.skip("TODO")
 @pytest.mark.parametrize(
     "input,expected",
     [("file1.txt", True), ("file", False)],
