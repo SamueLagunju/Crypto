@@ -10,7 +10,7 @@ setup(
     version='1.0.0',  # Required
     packages=["crypto"],
     entry_points={
-        "console_scripts": ['crypto = crypto.crypto:main']
+        "console_scripts": ['crypto = crypto:main']
     },
     description="An encrypting / decrypting utility for Linux/Windows. ",
     long_description=long_descr,

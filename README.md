@@ -93,4 +93,5 @@ This project is licensed under the MIT License - see the
 
 # Acknowledgments
 *   Sean Clarke
+*   Kai Prince
 

@@ -1,43 +1,51 @@
-#
 # FILE:         __main__.py
 # PROJECT:      crypto
 # PROGRAMMER:   Samuel Lagunju
-# DESCRIPTION:  Runs the application...
-#
+# DESCRIPTION:  This file contains main for the module
 
-from .helpers import *
-from .crypter import *
-from .strategy import SeanStrategy
-from .fileio import read_file
+
+import sys
+from crypter import Crypter
+from strategy import SeanStrategy
+from fileio import read_file, write_file, validate_file
+from helpers import arg_parser
 
 
 def main():
-    program_directory = Path().resolve()
-    program_os = os_checker()
-    if not program_os:
-        sys.exit(SYS_ERROR)
+    # Not completely sure I might need to implement.
+    # program_directory = Path().resolve()
+    # program_os = os_checker()
+    # if not program_os:
+    #     sys.exit(SYS_ERROR)
 
     args = arg_parser(sys.argv[1:])
+    # If there are files to be decrypted
     if args.decrypt_file:
         for file_name in args.decrypt_file:
-            print("Decrypting file: {0}".format(file_name))
+            # If the user's input is valid, process with encryption
+            if validate_file(file_name):
+                print("Decrypting file: {0}".format(file_name))
+                crypter = Crypter(file_name, SeanStrategy())
+                file_contents = read_file(file_name)
+                decrypted_text = crypter.decrypt_txt(file_contents)
+                write_file(file_name, decrypted_text)
+                # print(decrypted_text)
+            else:
+                print("Input {0} was not a valid file.".format(file_name))
 
-            crypter = Crypter(file_name, SeanStrategy())
-            file_contents = read_file(file_name)
-
-            decrypted_text = crypter.decrypt_txt(file_contents)
-
-            print(decrypted_text)
+    # If there are files to be encrypted
     if args.encrypt_file:
         for file_name in args.encrypt_file:
-            print("Encrypting file: {0}".format(file_name))
+            # If the user's input is valid, process with encryption
+            if validate_file(file_name):
+                print("Encrypting file: {0}".format(file_name))
+                crypter = Crypter(file_name, SeanStrategy())
+                file_contents = read_file(file_name)
+                encrypted_text = crypter.encrypt_txt(file_contents)
+                write_file(file_name, encrypted_text)
+            else:
+                print("Input {0} was not a valid file.".format(file_name))
 
-            crypter = Crypter(file_name, SeanStrategy())
-            file_contents = read_file(file_name)
-
-            encrypted_text = crypter.encrypt_txt(file_contents)
-
-            print(encrypted_text)
 
 if __name__ == '__main__':
     main()

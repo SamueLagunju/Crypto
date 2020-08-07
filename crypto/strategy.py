@@ -1,6 +1,5 @@
-# This file defines a strategy pattern
 import abc
-
+# This file defines a strategy pattern
 class Strategy:
     @abc.abstractmethod
     def encrypt_text(self, input_text):
@@ -52,11 +51,11 @@ class SeanStrategy(Strategy):
                     plain_text += '\t'
                 else:
                     # Converting from hex to decimal and adding 16
-                    plain_char = int(char_pair, 16) + 16
+                    plain_char = int(char_pair, 16)
+                    plain_char += 16
                     # If the resulting outChar value is greater than 127, then another step is taken
                     if plain_char > 127:
                         plain_char = (plain_char - 144) + 32
                     # Transforming result to a char
                     plain_text += chr(plain_char)
-
         return plain_text

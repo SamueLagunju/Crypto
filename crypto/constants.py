@@ -9,9 +9,7 @@ import os
 
 SYS_ERROR = False
 stopLoop = False
-encryptMode = 23
-decryptMode = 32
-available_extensions = [".txt", ".pdf"]
+
 
 program_directory = ""
 program_os = ""

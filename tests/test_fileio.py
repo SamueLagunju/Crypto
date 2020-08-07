@@ -7,7 +7,7 @@
 """
 import pytest
 import os
-from crypto.fileio import read_file
+from crypto.fileio import read_file, validate_file, write_file
 
 
 @pytest.fixture()
@@ -23,6 +23,12 @@ def test_files_dir(tmp_path):
             copyfile(src, dest_file)
 
     yield tmp_path
+
+    # Teardown
+    for f in filesToCopy:
+        dest_file = tmp_path / f
+        print(tmp_path)
+        os.remove(dest_file)
 
 
 def copyfile(source, dest, buffer_size=1024 * 1024):
@@ -52,19 +58,37 @@ def test_read_file(input, expected, test_files_dir):
     assert result == expected
 
 
-@pytest.mark.skip("TODO")
+#@pytest.mark.skip("TODO")
 @pytest.mark.parametrize(
     "input,expected",
-    [("write1.txt", "test string"), ("write2.txt", "another test string")],
-)
+    [("file1.txt", "I went to the market"),
+     ("read2.txt", "I went to the market")],
+    )
 def test_write_file(input, expected, test_files_dir):
+    # Arrange
+    file_name = os.path.join(test_files_dir, input)
+    content = "I went to the market"
+
+    # Act
+    # file_buffer = read_file(file_name)
+    if write_file(file_name, content):
+        result = read_file(file_name)
+
+    # Assert
+    assert result == expected
+
+#@pytest.mark.skip("TODO")
+@pytest.mark.parametrize(
+    "input,expected",
+    [("file1.txt", True), ("file", False)],
+)
+def test_validate_file(input, expected, test_files_dir):
     # Arrange
     file_name = os.path.join(test_files_dir, input)
 
     # Act
-    # write_file(file_name, expected)
-
-    result = read_file(file_name)
+    result = validate_file(file_name)
 
     # Assert
     assert result == expected
+

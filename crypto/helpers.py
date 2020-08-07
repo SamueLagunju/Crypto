@@ -1,77 +1,13 @@
+# PROJECT       :   Crypto
+# FILE          :   helpers.py
+# PROGRAMMER    :   Samuel Lagunju
+# DATE          :   2020-08-07
+# DESCRIPTION   :   The functions in this file are used to
+
 import platform
 from pathlib import Path
 import argparse
-from .constants import *
-
-
-# define Python user-defined exceptions
-class Error(Exception):
-    """Base class for other exceptions"""
-    pass
-
-
-class PotentialFileError(Error):
-    """Raised when the input file might be invalid"""
-    pass
-
-
-class ValueTooLargeError(Error):
-    """Raised when the input value is too large"""
-    pass
-
-
-#   FUNCTION:       validate_file
-#   DESCRIPTION:    Checking if a file exists
-#   PARAMETERS:     file - file inputted from command line arg
-#   RETURNS:        If the file does not exist, the function raises an error
-def validate_file(files, whatMode=encryptMode):
-    file_name, ext = os.path.splitext(files)
-    loop = True
-    # If file has no extension, try to open the file with several extensions
-    if ext:
-        if not os.path.exists(files):
-            # Argparse uses the ArgumentTypeError to give a rejection message like:
-            # error: argument input: x does not exist
-            raise argparse.ArgumentTypeError("Could not find: {0}".format(files))
-        return files
-    else:
-        print("No extension detected...Will try to search in current directory")
-        currentDirectory = Path().absolute()
-        for current_test_extension in available_extensions:
-            test_file = Path(currentDirectory, files).with_suffix(current_test_extension)
-            try:
-                f = open(test_file)
-                print("{} is accessible".format(files))
-                f.close()
-                break
-            except FileNotFoundError:
-                print('{} does not exist in directory...'.format(test_file))
-
-
-
-    # if not Path(file).exists():
-    #     raise argparse.ArgumentTypeError("Could not find: {0}".format(file))
-    # if not Path(file).exists():
-    #     raise argparse.ArgumentTypeError("Could not find: {0}".format(file))
-    # return file
-    #
-    # if not Path(file).is_file():
-    #     raise argparse.ArgumentTypeError("Could not find: {0}".format(file))
-    # return file
-    # Getting current directory of script to find file
-
-
-    # try:
-    #
-    #     f = open(file_name, 'r')
-    # except OSError:
-    #     print("Could not open/read file:", file_name)
-    #     raise PotentialFileError
-    # except PotentialFileError:
-    #     if whatMode == 'Decrypt':
-    #         print('Decrypt Switch detected')
-    # # print(file)
-    # return file_name
+from constants import *
 
 
 #   FUNCTION:       osCheck()
@@ -94,7 +30,12 @@ def os_checker():
 
     return plt
 
-
+#   FUNCTION:       validate_file
+#   DESCRIPTION:    Checking if a file exists
+#                   Also checks if the file exists with other extensions
+#   PARAMETERS:     File            -  Input file
+#   RETURNS:        valid_status    -  If the file exist, it returns true
+#                                      If the file does not exist, it returns false
 def arg_parser(args=sys.argv[1:]):
     print('Parsing Command line Argument...')
 
