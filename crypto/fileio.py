@@ -2,10 +2,11 @@
 
 import os
 
+
 def read_file(input_file):
     file_buffer = ""
 
-    with open(input_file, 'r') as file_pointer:
+    with open(input_file, "r") as file_pointer:
         for cnt, line in enumerate(file_pointer):
             file_buffer += line
 
