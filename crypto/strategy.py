@@ -36,26 +36,45 @@ class SeanStrategy(Strategy):
         return cipher_text
 
     def decrypt_text(self, cipher_text):
+        # plain_text = ""
+        # n = 2
+        # for line_index in cipher_text.readline():
+        #     for index in range(0, len(cipher_text), n):
+        #         char_pair = cipher_text[index: index + n]
+        #         if char_pair == 'TT':
+        #             plain_text += '\t'
+        #         else:
+        #             # Converting from hex to decimal and adding 16
+        #             plain_char = int(char_pair, 16) + 16
+        #
+        #             if plain_char > 127:
+        #                 plain_char = (plain_char - 144) + 32
+        #
+        #             plain_text += chr(plain_char)
+        #
+        # return plain_text
         plain_text = ""
-        # Transversing the string using range
         n = 2
-        for index in range(0, len(cipher_text), n):
-            # The carriage return characters are not decrypted.
-            if "\n" in cipher_text[index]:
-                plain_text += cipher_text[index]
-            else:
-                char_pair = cipher_text[index: index + n]
-                # If the pair of characters is the sequence TT
-                # Tt simply transforms into a <tab> character (ASCII value 9) in the output file.
+        # Parsing the cipher text, line by line
+        for cipher_line in cipher_text.splitlines():
+            # Parsing each line and decrypting the file
+            for index in range(0, len(cipher_line), n):
+                # Capturing each pair of characters in the input line
+                char_pair = cipher_line[index: index + n]
+                # If the pair of characters is the sequence TT it simply transforms into a <tab> character
                 if char_pair == 'TT':
                     plain_text += '\t'
                 else:
                     # Converting from hex to decimal and adding 16
-                    plain_char = int(char_pair, 16)
-                    plain_char += 16
+                    plain_char = int(char_pair, 16) + 16
                     # If the resulting outChar value is greater than 127, then another step is taken
                     if plain_char > 127:
                         plain_char = (plain_char - 144) + 32
-                    # Transforming result to a char
                     plain_text += chr(plain_char)
+
+            # Adding the new line character back to the line
+            plain_text += '\n'
         return plain_text
+
+
+
