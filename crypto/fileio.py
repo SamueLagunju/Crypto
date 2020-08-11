@@ -20,7 +20,6 @@ def read_file(input_file):
 def write_file(output_file, content):
     with open(output_file, "w") as file_pointer:
         file_pointer.write(content)
-        return True
 
 
 #   FUNCTION:       validate_file
@@ -43,3 +42,20 @@ def validate_file(file):
     if ext:
         valid_status = os.path.exists(file)
     return valid_status
+
+
+def check_write(file_buffer, file):
+    # Write to the file first
+    write_file(file, file_buffer)
+
+    # Open the written file
+    file_content = read_file(file)
+
+    # Compare file content with file_buffer
+    if file_buffer == file_content:
+        write_status = True
+    else:
+        write_status = False
+
+    print(write_status)
+    return write_status

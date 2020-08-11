@@ -7,8 +7,8 @@
 """
 import pytest
 import os
-from crypto.fileio import read_file, validate_file, write_file
-
+from crypto.fileio import read_file, validate_file, write_file, check_write
+from crypto.strategy import SeanStrategy
 
 @pytest.fixture()
 def test_files_dir(tmp_path):
@@ -61,26 +61,25 @@ def test_read_file(input, expected, test_files_dir):
 # @pytest.mark.skip("TODO")
 @pytest.mark.parametrize(
     "input,expected",
-    [("file1.txt", "I went to the market"),
-     ("read2.txt", "I went to the market")],
+    [("write1.txt", "abcdef"),
+     ("write2.txt", "I went to the market")],
     )
 def test_write_file(input, expected, test_files_dir):
     # Arrange
     file_name = os.path.join(test_files_dir, input)
-    content = "I went to the market"
 
     # Act
-    # file_buffer = read_file(file_name)
-    if write_file(file_name, content):
-        result = read_file(file_name)
+    write_file(file_name, expected)
+
 
     # Assert
+    result = read_file(file_name)
     assert result == expected
 
 # @pytest.mark.skip("TODO")
 @pytest.mark.parametrize(
     "input,expected",
-    [("file1.txt", True), ("file", False)],
+    [("write1.txt", False), ("read1.txt", True)],
 )
 def test_validate_file(input, expected, test_files_dir):
     # Arrange
@@ -92,3 +91,23 @@ def test_validate_file(input, expected, test_files_dir):
     # Assert
     assert result == expected
 
+#
+# FUNCTION      :   test_valide_write()
+# DESCRIPTION   :   This function ensures the content in a file is properly written.
+#                   It writes to a file, should open the written file and check
+#                   if the file_buffer that was written to the file is exactly the same in the opened file.
+# PARAMETERS    :
+# RETURNS       :
+
+@pytest.mark.parametrize(
+    "Filename, file_buffer, expected",
+    [("read1.txt", "abcdef", True), ("read2.txt", "zyxwuv", True)],
+)
+def test_validate_write(Filename, file_buffer, expected, test_files_dir):
+    # Arrange
+    file_name = os.path.join(test_files_dir, Filename)
+
+    # Act
+    valid_write = check_write(file_buffer, file_name)
+    # Assert
+    assert valid_write == expected

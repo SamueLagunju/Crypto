@@ -5,10 +5,10 @@
 
 
 import sys
-from crypter import Crypter
-from strategy import SeanStrategy
-from fileio import read_file, write_file, validate_file
-from helpers import arg_parser
+from .crypter import Crypter
+from .strategy import SeanStrategy
+from .fileio import read_file, write_file, validate_file
+from .helpers import arg_parser
 
 
 def main():
