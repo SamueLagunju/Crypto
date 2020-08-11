@@ -1,6 +1,6 @@
 import pytest
 
-from crypto.crypter import crypter
+from crypto.crypter import Crypter
 from crypto.strategy import SeanStrategy
 
 
@@ -25,7 +25,7 @@ class TestSeanStrategy:
     )
     def test_encrypt_string(self, input, expected):
         # Arrange
-        client = crypter("", SeanStrategy())
+        client = Crypter("", SeanStrategy())
 
         # Act
         result = client.encrypt_txt(input)
@@ -48,7 +48,7 @@ class TestSeanStrategy:
     )
     def test_decrypt_string(self, input, expected):
         # Arrange
-        client = crypter("", SeanStrategy())
+        client = Crypter("", SeanStrategy())
 
         # Act
         result = client.decrypt_txt(input)

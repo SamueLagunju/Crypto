@@ -5,7 +5,7 @@
 
 
 import sys
-from .crypter import crypter
+from .crypter import Crypter
 from .strategy import SeanStrategy
 from .fileio import read_file, write_file, validate_file
 from .helpers import arg_parser
@@ -25,7 +25,7 @@ def main():
             # If the user's input is valid, process with encryption
             if validate_file(file_name):
                 print("Decrypting file: {0}".format(file_name))
-                crypter = crypter(file_name, SeanStrategy())
+                crypter = Crypter(file_name, SeanStrategy())
                 file_contents = read_file(file_name)
                 decrypted_text = crypter.decrypt_txt(file_contents)
                 write_file(file_name, decrypted_text)
@@ -39,7 +39,7 @@ def main():
             # If the user's input is valid, process with encryption
             if validate_file(file_name):
                 print("Encrypting file: {0}".format(file_name))
-                crypter = crypter(file_name, SeanStrategy())
+                crypter = Crypter(file_name, SeanStrategy())
                 file_contents = read_file(file_name)
                 encrypted_text = crypter.encrypt_txt(file_contents)
                 write_file(file_name, encrypted_text)

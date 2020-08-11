@@ -1,4 +1,4 @@
-class crypter:
+class Crypter:
     def __init__(self, input_file, strategy):
         self.input_file = input_file
         self.strategy = strategy
