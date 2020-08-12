@@ -52,10 +52,5 @@ def check_write(file_buffer, file):
     file_content = read_file(file)
 
     # Compare file content with file_buffer
-    if file_buffer == file_content:
-        write_status = True
-    else:
-        write_status = False
-
-    print(write_status)
-    return write_status
+    if file_buffer != file_content:
+        raise IOError

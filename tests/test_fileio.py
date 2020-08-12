@@ -102,17 +102,24 @@ def test_validate_file(input, expected, test_files_dir):
 # RETURNS       :
 
 @pytest.mark.parametrize(
-    "Filename, file_buffer, expected",
+    "file_name, file_buffer, expected",
     [("read1.txt", "abcdef", True), ("read2.txt", "zyxwuv", False)],
 )
-def test_validate_write(Filename, file_buffer, expected, test_files_dir):
+def test_validate_write(file_name, file_buffer, expected, test_files_dir):
     # Arrange
-    file_name = os.path.join(test_files_dir, Filename)
+    file_name = os.path.join(test_files_dir, file_name)
 
     # Act
-    valid_write = check_write(file_buffer, file_name)
+    try:
+        check_write(file_buffer, file_name)
+        assert True
+    except IOError:
+        assert False
     # Assert
-    assert valid_write == expected
+    # with pytest.raises(IOError):
+    #     valid_write = False
+    #
+    # assert valid_write == expected
 
 
 def test_failed_write(mocker):

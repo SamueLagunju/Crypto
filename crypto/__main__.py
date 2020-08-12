@@ -5,10 +5,10 @@
 
 
 import sys
-from .crypter import Crypter
-from .strategy import SeanStrategy
-from .fileio import read_file, write_file, validate_file
-from .helpers import arg_parser
+from crypter import Crypter
+from strategy import SeanStrategy
+from fileio import read_file, write_file, validate_file, check_write
+from helpers import arg_parser
 
 
 def main():
@@ -29,7 +29,11 @@ def main():
                 file_contents = read_file(file_name)
                 decrypted_text = crypter.decrypt_txt(file_contents)
                 write_file(file_name, decrypted_text)
-                print("{0} is Decrypted".format(file_name))
+                try:
+                    check_write(decrypted_text, file_name)
+                    print("Decrypted File: {0}".format(file_name))
+                except IOError:
+                    print("Failed to write to: {0}".format(file_name))
             else:
                 print("Input {0} was not a valid file.".format(file_name))
 
@@ -43,7 +47,11 @@ def main():
                 file_contents = read_file(file_name)
                 encrypted_text = crypter.encrypt_txt(file_contents)
                 write_file(file_name, encrypted_text)
-                print("{0} is Encrypted".format(file_name))
+                try:
+                    check_write(encrypted_text, file_name)
+                    print("Encrypted File: {0}".format(file_name))
+                except IOError:
+                    print("Failed to write to: {0}".format(file_name))
             else:
                 print("Input {0} was not a valid file.".format(file_name))
 
