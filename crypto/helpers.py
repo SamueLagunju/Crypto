@@ -7,7 +7,7 @@
 import platform
 from pathlib import Path
 import argparse
-from constants import *
+from .constants import *
 
 
 #   FUNCTION:       osCheck()
