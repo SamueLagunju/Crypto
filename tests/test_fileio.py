@@ -17,8 +17,8 @@ def test_files_dir(tmp_path):
     FILES_FOLDER = os.path.join(".", "tests", "mock_files")
 
     # Copy files in test uploads folder to temp directory
-    filesToCopy = os.listdir(FILES_FOLDER)
-    for f in filesToCopy:
+    files_to_copy = os.listdir(FILES_FOLDER)
+    for f in files_to_copy:
         with open(os.path.join(FILES_FOLDER, f), "rb") as src:
             dest_file = tmp_path / f
             copyfile(src, dest_file)
@@ -26,10 +26,6 @@ def test_files_dir(tmp_path):
     yield tmp_path
 
     # Teardown
-    for f in filesToCopy:
-        dest_file = tmp_path / f
-        print(tmp_path)
-        os.remove(dest_file)
 
 
 def copyfile(source, dest, buffer_size=1024 * 1024):
