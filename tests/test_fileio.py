@@ -125,8 +125,10 @@ def test_validate_write(file_name, file_buffer, expected, test_files_dir):
     "file_name, expected",
     [("Text.crp",  "Text.txt"), ("AnotherText.txt",  "AnotherText.Txt")],
 )
-def test_convert_ext(file_name, expected):
+def test_convert_ext(file_name, expected, test_files_dir):
     # Arrange
+    file_name = os.path.join(test_files_dir, file_name)
+
     # Act
     convert_ext(file_name)
 
