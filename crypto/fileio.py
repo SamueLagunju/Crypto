@@ -54,3 +54,12 @@ def check_write(file_buffer, file):
     # Compare file content with file_buffer
     if file_buffer != file_content:
         raise IOError
+
+
+def convert_ext(file):
+    file_name, ext = os.path.splitext(file)
+    if ext == ".txt":
+        os.rename(file, file_name + ".crp")
+
+    elif ext == ".crp":
+        os.rename(file, file_name + ".txt")

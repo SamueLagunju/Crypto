@@ -7,7 +7,7 @@
 import sys
 from crypter import Crypter
 from strategy import SeanStrategy
-from fileio import read_file, write_file, validate_file, check_write
+from fileio import read_file, write_file, validate_file, check_write, convert_ext
 from helpers import arg_parser
 
 
@@ -31,6 +31,7 @@ def main():
                 write_file(file_name, decrypted_text)
                 try:
                     check_write(decrypted_text, file_name)
+                    convert_ext(file_name)
                     print("Decrypted File: {0}".format(file_name))
                 except IOError:
                     print("Failed to write to: {0}".format(file_name))
@@ -49,6 +50,7 @@ def main():
                 write_file(file_name, encrypted_text)
                 try:
                     check_write(encrypted_text, file_name)
+                    convert_ext(file_name)
                     print("Encrypted File: {0}".format(file_name))
                 except IOError:
                     print("Failed to write to: {0}".format(file_name))

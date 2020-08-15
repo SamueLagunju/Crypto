@@ -7,7 +7,7 @@
 """
 import pytest
 import os
-from crypto.fileio import read_file, validate_file, write_file, check_write
+from crypto.fileio import read_file, validate_file, write_file, check_write, convert_ext
 from crypto.strategy import SeanStrategy
 
 
@@ -108,7 +108,6 @@ def test_validate_file(input, expected, test_files_dir):
 def test_validate_write(file_name, file_buffer, expected, test_files_dir):
     # Arrange
     file_name = os.path.join(test_files_dir, file_name)
-
     # Act
     try:
         check_write(file_buffer, file_name)
@@ -119,7 +118,25 @@ def test_validate_write(file_name, file_buffer, expected, test_files_dir):
     # with pytest.raises(IOError):
     #     valid_write = False
     #
-    # assert valid_write == expected
+    # assert result == expected
+
+#
+# FUNCTION      :   test_convert_ext()
+# DESCRIPTION   :   This function ensures the file's extension is changed according to its inputs
+# PARAMETERS    :
+# RETURNS       :
+@pytest.mark.parametrize(
+    "file_name, expected",
+    [("Text.crp",  "Text.txt"), ("AnotherText.txt",  "AnotherText.Txt")],
+)
+def test_convert_ext(file_name, expected):
+    # Arrange
+    # Act
+    convert_ext(file_name)
+
+    # Assert
+    if file_name == expected:
+        assert False
 
 
 def test_failed_write(mocker):
@@ -142,3 +159,4 @@ def test_failed_write(mocker):
     write_mock().write.assert_any_call(content)
     # ..that exception is raised.
     assert exception.type is IOError
+

@@ -7,7 +7,7 @@
 import platform
 from pathlib import Path
 import argparse
-from .constants import *
+import sys
 
 
 #   FUNCTION:       osCheck()
@@ -26,8 +26,7 @@ def os_checker():
         print('Mac OS detected')
     else:
         print("Unidentified system")
-        plt = SYS_ERROR
-
+        raise SystemError
     return plt
 
 #   FUNCTION:       validate_file
