@@ -9,6 +9,11 @@ import os
 available_extensions = [".txt", ".pdf"]
 
 
+def open_file(new_input):
+    obj_file = open(new_input, "r")
+    return obj_file
+
+
 def read_file(input_file):
     file_buffer = ""
     with open(input_file, "r") as file_pointer:
@@ -59,7 +64,9 @@ def check_write(file_buffer, file):
 def convert_ext(file):
     file_name, ext = os.path.splitext(file)
     if ext == ".txt":
-        os.rename(file, file_name + ".crp")
-
+        new_file = file_name + '.crp'
+        os.rename(file, new_file)
     elif ext == ".crp":
-        os.rename(file, file_name + ".txt")
+        new_file = file_name + '.txt'
+        os.rename(file, new_file)
+    return new_file

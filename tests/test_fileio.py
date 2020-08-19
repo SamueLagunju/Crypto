@@ -7,7 +7,7 @@
 """
 import pytest
 import os
-from crypto.fileio import read_file, validate_file, write_file, check_write, convert_ext
+from crypto.fileio import read_file, validate_file, write_file, check_write, convert_ext, open_file
 from crypto.strategy import SeanStrategy
 
 
@@ -123,18 +123,23 @@ def test_validate_write(file_name, file_buffer, expected, test_files_dir):
 # RETURNS       :
 @pytest.mark.parametrize(
     "file_name, expected",
-    [("Text.crp",  "Text.txt"), ("AnotherText.txt",  "AnotherText.Txt")],
+    [("Text.txt", True), ("AnotherText.crp", True)],
 )
 def test_convert_ext(file_name, expected, test_files_dir):
     # Arrange
     file_name = os.path.join(test_files_dir, file_name)
 
     # Act
-    convert_ext(file_name)
+    new_file = convert_ext(file_name)
 
     # Assert
-    if file_name == expected:
-        assert False
+    # If it fails to open the same file, its been renamed.
+    try:
+        file_obj = open_file(file_name)
+    except OSError:
+        assert True
+
+
 
 
 def test_failed_write(mocker):
