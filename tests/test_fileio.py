@@ -123,7 +123,7 @@ def test_validate_write(file_name, file_buffer, expected, test_files_dir):
 # RETURNS       :
 @pytest.mark.parametrize(
     "file_name, expected",
-    [("Text.txt", True), ("AnotherText.crp", True)],
+    [("Text.txt", "Text.crp"), ("AnotherText.crp", "AnotherText.txt")],
 )
 def test_convert_ext(file_name, expected, test_files_dir):
     # Arrange
