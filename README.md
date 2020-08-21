@@ -5,8 +5,8 @@ not readable until they are decrypted by the utility.
 
 # Table of content
 
-- [Version](##Version)
-- [Specification](#Specification)
+- [Version](#version)
+- [Specification](#specification)
 - [License](#License)
 - [Acknowledgments](#Acknowledgments)
 
@@ -96,11 +96,11 @@ The decryption scheme is applied to each pair of characters in the input line:
             Isn't it?!? <CR\> 
             ```
 
-#License
+# License
 This project is licensed under the MIT License - see the
 [LICENSE.md](LICENSE.md) file for details
 
-#Acknowledgments
+# Acknowledgments
 *   Sean Clarke
 *   Kai Prince
 
