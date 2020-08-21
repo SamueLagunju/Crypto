@@ -7,7 +7,7 @@
 """
 import pytest
 import os
-from crypto.fileio import read_file, validate_file, write_file, check_write
+from crypto.fileio import read_file, validate_file, write_file, check_write, convert_ext, open_file
 from crypto.strategy import SeanStrategy
 
 
@@ -17,8 +17,8 @@ def test_files_dir(tmp_path):
     FILES_FOLDER = os.path.join(".", "tests", "mock_files")
 
     # Copy files in test uploads folder to temp directory
-    filesToCopy = os.listdir(FILES_FOLDER)
-    for f in filesToCopy:
+    files_to_copy = os.listdir(FILES_FOLDER)
+    for f in files_to_copy:
         with open(os.path.join(FILES_FOLDER, f), "rb") as src:
             dest_file = tmp_path / f
             copyfile(src, dest_file)
@@ -26,10 +26,6 @@ def test_files_dir(tmp_path):
     yield tmp_path
 
     # Teardown
-    for f in filesToCopy:
-        dest_file = tmp_path / f
-        print(tmp_path)
-        os.remove(dest_file)
 
 
 def copyfile(source, dest, buffer_size=1024 * 1024):
@@ -108,7 +104,6 @@ def test_validate_file(input, expected, test_files_dir):
 def test_validate_write(file_name, file_buffer, expected, test_files_dir):
     # Arrange
     file_name = os.path.join(test_files_dir, file_name)
-
     # Act
     try:
         check_write(file_buffer, file_name)
@@ -119,7 +114,32 @@ def test_validate_write(file_name, file_buffer, expected, test_files_dir):
     # with pytest.raises(IOError):
     #     valid_write = False
     #
-    # assert valid_write == expected
+    # assert result == expected
+
+#
+# FUNCTION      :   test_convert_ext()
+# DESCRIPTION   :   This function ensures the file's extension is changed according to its inputs
+# PARAMETERS    :
+# RETURNS       :
+@pytest.mark.parametrize(
+    "file_name, expected",
+    [("Text.txt", "Text.crp"), ("AnotherText.crp", "AnotherText.txt")],
+)
+def test_convert_ext(file_name, expected, test_files_dir):
+    # Arrange
+    file_name = os.path.join(test_files_dir, file_name)
+
+    # Act
+    new_file = convert_ext(file_name)
+
+    # Assert
+    # If it fails to open the same file, its been renamed.
+    try:
+        file_obj = open_file(file_name)
+    except OSError:
+        assert True
+
+
 
 
 def test_failed_write(mocker):
@@ -142,3 +162,4 @@ def test_failed_write(mocker):
     write_mock().write.assert_any_call(content)
     # ..that exception is raised.
     assert exception.type is IOError
+

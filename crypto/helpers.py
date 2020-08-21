@@ -2,18 +2,18 @@
 # FILE          :   helpers.py
 # PROGRAMMER    :   Samuel Lagunju
 # DATE          :   2020-08-07
-# DESCRIPTION   :   The functions in this file are used to
+# DESCRIPTION   :   The functions in this file are miscellaneous
 
 import platform
-from pathlib import Path
 import argparse
-from .constants import *
+import sys
 
 
 #   FUNCTION:       osCheck()
 #   DESCRIPTION:    Checks which operating system its being run on
 #   PARAMETERS:     N/A
-#   RETURNS:        SYS_ERROR - If it cannot detect an OS
+#   RETURNS:        plt         -   Name of platform that was detected
+#                   SYS_ERROR   -   Raised an error if it cannot detect an OS
 def os_checker():
     # OS Check
     print("Verifying OS...")
@@ -26,16 +26,17 @@ def os_checker():
         print('Mac OS detected')
     else:
         print("Unidentified system")
-        plt = SYS_ERROR
-
+        raise SystemError
     return plt
 
-#   FUNCTION:       validate_file
-#   DESCRIPTION:    Checking if a file exists
-#                   Also checks if the file exists with other extensions
-#   PARAMETERS:     File            -  Input file
-#   RETURNS:        valid_status    -  If the file exist, it returns true
-#                                      If the file does not exist, it returns false
+#
+# FUNCTION      :   arg_parser
+# DESCRIPTION   :   This function parses arguments inputted by the user and returns it as a list
+# PARAMETERS    :   sys.argv[1:]    -   A list of strings representing the arguments
+#                                       (as separated by spaces) on the command-line
+# RETURNS       :   options         -   A parser object
+
+
 def arg_parser(args=sys.argv[1:]):
     print('Parsing Command line Argument...')
 
