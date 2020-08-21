@@ -133,11 +133,10 @@ def test_convert_ext(file_name, expected, test_files_dir):
     new_file = convert_ext(file_name)
 
     # Assert
-    # If it fails to open the same file, its been renamed.
     try:
-        file_obj = open_file(file_name)
+        file_obj = open_file(new_file)
     except OSError:
-        assert True
+        assert False
 
 
 
