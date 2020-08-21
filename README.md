@@ -3,6 +3,13 @@ An encrypting / decrypting utility (    Linux/Windows). This utility will take a
 ASCII file or folder and encrypt it in such a way that its contents are
 not readable until they are decrypted by the utility.
 
+# Table of content
+
+- [Version](##Version)
+- [Specification](#Specification)
+- [License](#License)
+- [Acknowledgments](#Acknowledgments)
+
 ## Version
 ![Version](https://img.shields.io/badge/Release-v0.5-blue)
 
@@ -64,7 +71,7 @@ The encryption scheme is applied to each character in the line:
             3D69805E515D55805963804355515E80335C51625B558ETT39805C595B5580635F56646751625581<CR\>
             ```
                     
-## Decryption scheme  
+##Decryption scheme  
 The decryption scheme is applied to each pair of characters in the input line:
 *   If the pair of characters is the sequence **TT** 
     it simply transforms into a **<tab\>** character (ASCII value 9) in the output file.
@@ -89,11 +96,11 @@ The decryption scheme is applied to each pair of characters in the input line:
             Isn't it?!? <CR\> 
             ```
 
-# License
+#License
 This project is licensed under the MIT License - see the
 [LICENSE.md](LICENSE.md) file for details
 
-# Acknowledgments
+#Acknowledgments
 *   Sean Clarke
 *   Kai Prince
 
