@@ -45,15 +45,17 @@ def main():
         for file_name in args.encrypt_file:
             # If the user's input is valid, process with encryption
             if validate_file(file_name):
+                # If the user's input is valid, process with encryption
                 print("Encrypting file: {0}".format(file_name))
                 crypter = Crypter(file_name, SeanStrategy())
-                file_contents = read_file(file_name)
-                encrypted_text = crypter.encrypt_txt(file_contents)
-                write_file(file_name, encrypted_text)
+                # All FileIO operations
                 try:
+                    file_contents = read_file(file_name)
+                    encrypted_text = crypter.encrypt_txt(file_contents)
+                    write_file(file_name, encrypted_text)
                     check_write(encrypted_text, file_name)
-                    convert_ext(file_name)
-                    print("Encrypted File: {0}".format(file_name))
+                    new_file = convert_ext(file_name)
+                    print("Encrypted File: {0}".format(new_file))
                 except IOError:
                     print("Failed to write to: {0}".format(file_name))
             else:

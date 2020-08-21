@@ -14,9 +14,12 @@ not readable until they are decrypted by the utility.
     *   If none of these switches is specified, `–-encrypt` is assumed 
     *   The utility also takes the name of an **ASCII input file** to encrypt/decrypt as an argument.
     *   For example: 
-        * `crypto-runner.py –e/--encrypt myFile.txt` will encrypt the contents of the myFile.txt file 
-        * `crypto-runner.py myFile.txt` will encrypt the contents of the myFile.txt file 
-        * `crypto-runner.py –d/--decrypt myFile.crp` will decrypt the contents of the myFile.crp file
+        * `crypto-runner.py –e/--encrypt myFile.txt` will encrypt the contents of the myFile.txt file   
+        ![Encryption Demo](demo/EncryptGif.gif)  
+        * `crypto-runner.py myFile.txt` will encrypt the contents of the myFile.txt file  
+        * `crypto-runner.py –d/--decrypt myFile.crp` will decrypt the contents of the myFile.crp file  
+        ![Decryption Demo](demo/DecryptGif.gif)  
+
 
 2.  When the utility is asked to –encrypt an ASCII file, it will take the 
     input filename and produce the encrypted file with the same base filename
@@ -40,7 +43,7 @@ not readable until they are decrypted by the utility.
     Crypto will process the input ASCII file one line at a time 
     and will continue to process the input file until you reach the end of the file. 
     
-## Encryption scheme ##
+## Encryption scheme 
 The encryption scheme is applied to each character in the line:
 *   If the character is a **\<tab\>** (ASCII value 9) it will simply transform it into the output character sequence **TT**.
 *   The **carriage return** characters are **not encrypted** – they are left as is in the resultant output file. 
@@ -62,7 +65,7 @@ The encryption scheme is applied to each character in the line:
             3D69805E515D55805963804355515E80335C51625B558ETT39805C595B5580635F56646751625581<CR\>
             ```
                     
-## Decryption scheme ##
+## Decryption scheme  
 The decryption scheme is applied to each pair of characters in the input line:
 *   If the pair of characters is the sequence **TT** 
     it simply transforms into a **<tab\>** character (ASCII value 9) in the output file.
