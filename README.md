@@ -1,10 +1,10 @@
 # Crypto 
-An encrypting / decrypting utility (    Linux/Windows). This utility will take any
+An encrypting/decrypting utility (Linux/Windows). This utility will take any
 ASCII file or folder and encrypt it in such a way that its contents are
 not readable until they are decrypted by the utility.
 
 ## Version
-![Version](https://img.shields.io/badge/Release-v0.5-blue)
+![Version](https://img.shields.io/badge/Release-v1-blue)
 
 # Specification 
 1. The utility is called **crypto** and is written in Python 
@@ -15,7 +15,7 @@ not readable until they are decrypted by the utility.
     *   The utility also takes the name of an **ASCII input file** to encrypt/decrypt as an argument.
     *   For example: 
         * `crypto-runner.py –e/--encrypt myFile.txt` will encrypt the contents of the myFile.txt file 
-        * `crypto-runner.py myFile.txt` will encrypt the contents of the myFile.txt file 
+        * `crypto-runner.py myFile.txt` will encrypt the contents of the myFile.txt file `Coming Soon - V2`
         * `crypto-runner.py –d/--decrypt myFile.crp` will decrypt the contents of the myFile.crp file
 
 2.  When the utility is asked to –encrypt an ASCII file, it will take the 
@@ -40,12 +40,14 @@ not readable until they are decrypted by the utility.
     Crypto will process the input ASCII file one line at a time 
     and will continue to process the input file until you reach the end of the file. 
     
-## Encryption scheme ##
+# Files
+## .TXT
+### Encryption scheme
 The encryption scheme is applied to each character in the line:
 *   If the character is a **\<tab\>** (ASCII value 9) it will simply transform it into the output character sequence **TT**.
 *   The **carriage return** characters are **not encrypted** – they are left as is in the resultant output file. 
 *   NOTE: The term “carriage return” in this document does not apply to any specific ASCII code.
-    It applies to the typical end-of-line character that exists in TEXT files within the Linux OS.
+    It applies to the typical end-of-line character that exists in TEXT files within the OS.
 *   If is not a tab or a carriage return character, then apply the encryption scheme in steps below
 *   Take the ASCII code for the input character and subtract a value of 16 from it.
 *   If the resulting outChar value is less than 32, then another step is taken: `outChar = (outChar – 32) + 144`
@@ -62,7 +64,7 @@ The encryption scheme is applied to each character in the line:
             3D69805E515D55805963804355515E80335C51625B558ETT39805C595B5580635F56646751625581<CR\>
             ```
                     
-## Decryption scheme ##
+### Decryption scheme
 The decryption scheme is applied to each pair of characters in the input line:
 *   If the pair of characters is the sequence **TT** 
     it simply transforms into a **<tab\>** character (ASCII value 9) in the output file.
@@ -70,7 +72,7 @@ The decryption scheme is applied to each pair of characters in the input line:
     *  For example:
         *   The pair of characters “38” from the encrypted file will translate into an outChar value of 56 decimal.
         *   The pair of characters “5C” from the encrypted file will translate into an outChar value of 92 decimal. 
-*   16 is addedto outChar. 
+*   16 is added to outChar. 
 *   If the resulting outChar value is greater than 127, 
     then another step is taken: `outChar = (outChar - 144) + 32` 
 *   The outChar value now contains the decrypted ASCII code for the character that you have just decoded. 
@@ -86,6 +88,8 @@ The decryption scheme is applied to each pair of characters in the input line:
             This encryption scheme is pretty weird. <CR\>
             Isn't it?!? <CR\> 
             ```
+## .JPEG
+### `Coming Soon - V2`
 
 # License
 This project is licensed under the MIT License - see the
