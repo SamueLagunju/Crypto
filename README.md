@@ -4,7 +4,7 @@ ASCII file or folder and encrypt it in such a way that its contents are
 not readable until they are decrypted by the utility.
 
 ## Version
-![Version](https://img.shields.io/badge/Release-v1-blue)
+![Version](https://img.shields.io/badge/Release-v1.0-blue)
 
 # Specification 
 1. The utility is called **crypto** and is written in Python 
