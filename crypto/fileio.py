@@ -8,12 +8,20 @@ import os
 
 available_extensions = [".txt", ".pdf"]
 
-
+# FUNCTION      :   open_file
+# DESCRIPTION   :   This function opens an existing file
+# PARAMETERS    :   new_input   -   User input used to create a file object
+# RETURNS       :   obj_file    -   A file object that contains methods and attributes
+#                                   which latter can be used to retrieve information or
+#                                   manipulate the file that was just opened
 def open_file(new_input):
     obj_file = open(new_input, "r")
     return obj_file
 
-
+# FUNCTION      :   read_file
+# DESCRIPTION   :   This function reads an existing file and extract its content
+# PARAMETERS    :   input_file  -   Input file used for reading
+# RETURNS       :   file_buffer -   Content in the file, each line separated accordingly
 def read_file(input_file):
     file_buffer = ""
     with open(input_file, "r") as file_pointer:
@@ -22,6 +30,11 @@ def read_file(input_file):
     return file_buffer
 
 
+# FUNCTION      :   write_file
+# DESCRIPTION   :   This function writes content to an existing file
+# PARAMETERS    :   output_file -   Output file used for writing
+#                   content     -   Content in the file, each line separated accordingly
+# RETURNS       :   N/A
 def write_file(output_file, content):
     with open(output_file, "w") as file_pointer:
         file_pointer.write(content)
@@ -48,7 +61,12 @@ def validate_file(file):
         valid_status = os.path.exists(file)
     return valid_status
 
-
+# FUNCTION      :   check_write
+# DESCRIPTION   :   This function checks if the content in the file were
+#                   properly written the first time
+# PARAMETERS    :   file_buffer   -   Content in the file, each line separated accordingly
+#                   file          -   File being verified
+# RETURNS       :   IOError -   If there is an issue, this exception is raised.
 def check_write(file_buffer, file):
     # Write to the file first
     write_file(file, file_buffer)
@@ -61,6 +79,10 @@ def check_write(file_buffer, file):
         raise IOError
 
 
+# FUNCTION      :   convert_ext
+# DESCRIPTION   :   This function converts the extension of a file
+# PARAMETERS    :   file        -   Name of file and its extension
+# RETURNS       :   new_file    -   Name of the file with its new extension
 def convert_ext(file):
     file_name, ext = os.path.splitext(file)
     if ext == ".txt":
