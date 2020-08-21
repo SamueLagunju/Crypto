@@ -14,22 +14,21 @@ not readable until they are decrypted by the utility.
     *   If none of these switches is specified, `–-encrypt` is assumed 
     *   The utility also takes the name of an **ASCII input file** to encrypt/decrypt as an argument.
     *   For example: 
-        * `crypto-runner.py –e/--encrypt myFile.txt` will encrypt the contents of the myFile.txt file   
-        ![Encryption Demo](demo/EncryptGif.gif)  
-        * `crypto-runner.py myFile.txt` will encrypt the contents of the myFile.txt file  
-        * `crypto-runner.py –d/--decrypt myFile.crp` will decrypt the contents of the myFile.crp file  
-        ![Decryption Demo](demo/DecryptGif.gif)  
-
+        * `py crypto –e/--encrypt myFile.txt` will encrypt the contents of the myFile.txt file   
+        * `py crypto myFile.txt` will encrypt the contents of the myFile.txt file  
+        * `py crypto –d/--decrypt myFile.crp` will decrypt the contents of the myFile.crp file  
 
 2.  When the utility is asked to –encrypt an ASCII file, it will take the 
     input filename and produce the encrypted file with the same base filename
     and an .crp file extension
-    *   `crypto-runner.py –-encrypt myFile.txt` will produce an encrypted file called myFile.crp
+    *   `py crypto –-encrypt SampleFile.txt` will produce an encrypted file called SampleFile.crp
+        ![Encryption Demo](demo/EncryptGif.gif)  
 
 3.  When the utility is asked to –decrypt an encrypted file, it will take 
     the input filename and produce the decrypted file with the same base filename 
     and an .txt file extension
-    *   `crypto-runner.py –-decrypt myFile.crp` will produce a decrypted file called myFile.txt
+    *   `py crypto –-decrypt SampleFile.crp` will produce a decrypted file called SampleFile.txt
+        ![Decryption Demo](demo/DecryptGif.gif)  
 
 4.  It should be noted that the input file can have any file extension. When asked to encrypt, 
     it will replace the existing file extension (if any) with .CRP. 
