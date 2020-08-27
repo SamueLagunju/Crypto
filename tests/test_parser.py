@@ -1,5 +1,3 @@
-import crypto
-
 from crypto.helpers import arg_parser
 
 
@@ -27,7 +25,11 @@ def test_encrypt(input, expected):
 
 
 @pytest.mark.parametrize(
-    "input,expected", [(["file.txt"], [["file.txt"]]), (["test.txt"], [["test.txt"]]),],
+    "input,expected",
+    [
+        (["file.txt"], [["file.txt"]]),
+        (["test.txt"], [["test.txt"]]),
+    ],
 )
 def test_encrypt_implicit(input, expected):
     # Arrange
@@ -58,4 +60,3 @@ def test_decrypt(input, expected):
 
     # Assert
     assert result.decrypt_file == expected
-

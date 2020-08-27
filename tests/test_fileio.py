@@ -13,9 +13,7 @@ from crypto.fileio import (
     write_file,
     check_write,
     convert_ext,
-    open_file,
 )
-from crypto.strategy import SeanStrategy
 
 
 @pytest.fixture()
@@ -97,9 +95,11 @@ def test_validate_file(input, expected, test_files_dir):
 
 #
 # FUNCTION      :   test_valide_write()
-# DESCRIPTION   :   This function ensures the content in a file is properly written.
+# DESCRIPTION   :   This function ensures the content in a file is
+#                   properly written.
 #                   It writes to a file, should open the written file and check
-#                   if the file_buffer that was written to the file is exactly the same in the opened file.
+#                   if the file_buffer that was written to the file is exactly
+#                   the same in the opened file.
 # PARAMETERS    :
 # RETURNS       :
 
@@ -126,7 +126,8 @@ def test_validate_write(file_name, file_buffer, expected, test_files_dir):
 
 #
 # FUNCTION      :   test_convert_ext()
-# DESCRIPTION   :   This function ensures the file's extension is changed according to its inputs
+# DESCRIPTION   :   This function ensures the file's extension is changed
+#                   according to its inputs
 # PARAMETERS    :
 # RETURNS       :
 @pytest.mark.parametrize(
@@ -149,7 +150,8 @@ def test_convert_ext(file_name, expected, test_files_dir):
 
 
 def test_failed_write(mocker):
-    """ This test expects that the program will raise an exception if the file cannot be written to. """
+    """This test expects that the program will raise an exception if the file
+    cannot be written to."""
 
     # Arrange
     file = "file.txt"

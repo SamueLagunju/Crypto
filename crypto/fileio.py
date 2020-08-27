@@ -32,7 +32,8 @@ def write_file(output_file, content):
 #                   Also checks if the file exists with other extensions
 #   PARAMETERS:     File            -  Input file
 #   RETURNS:        valid_status    -  If the file exist, it returns true
-#                                      If the file does not exist, it returns false
+#                                      If the file does not exist, it returns
+#                                       false
 def validate_file(file):
     valid_status = False
     file_name, ext = os.path.splitext(file)
@@ -64,9 +65,9 @@ def check_write(file_buffer, file):
 def convert_ext(file):
     file_name, ext = os.path.splitext(file)
     if ext == ".txt":
-        new_file = file_name + '.crp'
+        new_file = file_name + ".crp"
         os.rename(file, new_file)
     elif ext == ".crp":
-        new_file = file_name + '.txt'
+        new_file = file_name + ".txt"
         os.rename(file, new_file)
     return new_file

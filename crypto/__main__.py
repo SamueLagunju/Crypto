@@ -62,5 +62,5 @@ def main():
                 print("Input {0} was not a valid file.".format(file_name))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
