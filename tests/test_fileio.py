@@ -7,7 +7,14 @@
 """
 import pytest
 import os
-from crypto.fileio import read_file, validate_file, write_file, check_write, convert_ext, open_file
+from crypto.fileio import (
+    read_file,
+    validate_file,
+    write_file,
+    check_write,
+    convert_ext,
+    open_file,
+)
 from crypto.strategy import SeanStrategy
 
 
@@ -29,7 +36,7 @@ def test_files_dir(tmp_path):
 
 
 def copyfile(source, dest, buffer_size=1024 * 1024):
-    """      
+    """
     Copy a file from source to dest. source and dest
     must be file-like objects, i.e. any object with a read or
     write method, like for example StringIO.
@@ -58,8 +65,7 @@ def test_read_file(input, expected, test_files_dir):
 # @pytest.mark.skip("TODO")
 @pytest.mark.parametrize(
     "input,expected",
-    [("write1.txt", "abcdef"),
-     ("write2.txt", "I went to the market")],
+    [("write1.txt", "abcdef"), ("write2.txt", "I went to the market")],
 )
 def test_write_file(input, expected, test_files_dir):
     # Arrange
@@ -97,6 +103,7 @@ def test_validate_file(input, expected, test_files_dir):
 # PARAMETERS    :
 # RETURNS       :
 
+
 @pytest.mark.parametrize(
     "file_name, file_buffer, expected",
     [("read1.txt", "abcdef", True), ("read2.txt", "zyxwuv", False)],
@@ -116,6 +123,7 @@ def test_validate_write(file_name, file_buffer, expected, test_files_dir):
     #
     # assert result == expected
 
+
 #
 # FUNCTION      :   test_convert_ext()
 # DESCRIPTION   :   This function ensures the file's extension is changed according to its inputs
@@ -128,17 +136,16 @@ def test_validate_write(file_name, file_buffer, expected, test_files_dir):
 def test_convert_ext(file_name, expected, test_files_dir):
     # Arrange
     file_name = os.path.join(test_files_dir, file_name)
+    expected_file_name = os.path.join(test_files_dir, expected)
 
     # Act
     new_file = convert_ext(file_name)
 
     # Assert
-    try:
-        file_obj = open_file(new_file)
-    except OSError:
-        assert False
-
-
+    # ..that the new file name is correct
+    assert new_file == expected_file_name
+    # ..that the file has been renamed
+    assert os.path.exists(expected_file_name)
 
 
 def test_failed_write(mocker):
@@ -147,7 +154,7 @@ def test_failed_write(mocker):
     # Arrange
     file = "file.txt"
     content = "test content"
-    write_mock = mocker.patch('builtins.open', new=mocker.mock_open())
+    write_mock = mocker.patch("builtins.open", new=mocker.mock_open())
 
     # Act
     # ..allow exception to be raised.
@@ -157,8 +164,7 @@ def test_failed_write(mocker):
 
     # Assert
     # ..that open is called.
-    write_mock.assert_any_call(file, 'w')
+    write_mock.assert_any_call(file, "w")
     write_mock().write.assert_any_call(content)
     # ..that exception is raised.
     assert exception.type is IOError
-
