@@ -1,7 +1,17 @@
+# PROJECT       :   Crypto
+# FILE          :   strategy.py
+# PROGRAMMER    :   Samuel Lagunju
+# DATE          :   2020-08-20
+# DESCRIPTION   :   The functions in this file are used to support the strategy interface interface
+
+
 import abc
 
 
-# This file defines a strategy pattern
+#
+#   NAME          :   Strategy
+#   PURPOSE       :   The Strategy class declares operations common to all supported versions
+#                     of some algorithm.
 class Strategy:
     @abc.abstractmethod
     def encrypt_text(self, input_text):
@@ -12,11 +22,19 @@ class Strategy:
         pass
 
 
+#
+#   NAME          :   SeanStrategy
+#   PURPOSE       :   The SeanStrategy class implement the algorithms while following
+#                     the base strategy interface. The interface makes them interchangeable in the context.
+#                     Concrete strategy for Sean Clarke's encryption scheme.
 class SeanStrategy(Strategy):
-    """ Concrete strategy for Sean Clarke's encryption scheme. """
 
+    # METHOD        :   encrypt_text
+    # DESCRIPTION   :   This function translate the ASCII value of the
+    #                   new encrypted character to a 2 digit hexadecimal value.
+    # PARAMETERS    :   plain_text  -   Text that is about to be encrypted into cipher text
+    # RETURNS       :   cipher_text -   2 digit hexadecimal value
     def encrypt_text(self, plain_text):
-        # DO MAGIC
         cipher_text = ""
         # Transversing the string using range function
         for pt_char_index in range(len(plain_text)):
@@ -42,24 +60,12 @@ class SeanStrategy(Strategy):
 
         return cipher_text
 
+    # METHOD        :   decrypt_text
+    # DESCRIPTION   :   This function translates a 2 digit hexadecimal
+    #                   value to a decoded ASCII value
+    # PARAMETERS    :   cipher_text  -   Text that is about to be decrypted into plain text
+    # RETURNS       :   plain_text   -   ASCII value
     def decrypt_text(self, cipher_text):
-        # plain_text = ""
-        # n = 2
-        # for line_index in cipher_text.readline():
-        #     for index in range(0, len(cipher_text), n):
-        #         char_pair = cipher_text[index: index + n]
-        #         if char_pair == 'TT':
-        #             plain_text += '\t'
-        #         else:
-        #             # Converting from hex to decimal and adding 16
-        #             plain_char = int(char_pair, 16) + 16
-        #
-        #             if plain_char > 127:
-        #                 plain_char = (plain_char - 144) + 32
-        #
-        #             plain_text += chr(plain_char)
-        #
-        # return plain_text
         plain_text = ""
         n = 2
         # Parsing the cipher text, line by line

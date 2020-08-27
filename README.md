@@ -103,6 +103,10 @@ The decryption scheme is applied to each pair of characters in the input line:
       Isn't it?!? <CR\>
       ```
 
+## .JPEG
+
+### `Coming Soon - V2`
+
 # Setup
 
 ## Python Virtual Env
