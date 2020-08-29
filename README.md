@@ -32,14 +32,14 @@ input filename and produce the encrypted file with the same base filename
 and an .crp file extension
 
    - `py crypto –-encrypt SampleFile.txt` will produce an encrypted file called SampleFile.crp
-     ![Encryption Demo](demo/EncryptGif.gif)
+      ![Encryption Demo](demo/EncryptGif.gif)
 
 When the utility is asked to –decrypt an encrypted file, it will take
 the input filename and produce the decrypted file with the same base filename
 and an .txt file extension
 
    - `py crypto –-decrypt SampleFile.crp` will produce a decrypted file called SampleFile.txt
-     ![Decryption Demo](demo/DecryptGif.gif)
+      ![Decryption Demo](demo/DecryptGif.gif)
 
 It should be noted that the input file can have any file extension. When asked to encrypt,
 it will replace the existing file extension (if any) with .CRP.
