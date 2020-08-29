@@ -11,7 +11,7 @@ An encrypting / decrypting utility (Linux/Windows). This utility will take any A
 
 ## Version
 
-![Version](https://img.shields.io/badge/Release-v0.5-blue)
+![Version](https://img.shields.io/badge/Release-v01.0-blue)
 
 # Specification
 
