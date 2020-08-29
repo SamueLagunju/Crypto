@@ -15,7 +15,7 @@ An encrypting / decrypting utility (Linux/Windows). This utility will take any A
 
 # Specification
 
-1. The utility is called **crypto** and is written in Python
+The utility is called **crypto** and is written in Python
 
    - The utility has 2 command-line switches
      - `–e ` or `--encrypt`
@@ -27,31 +27,31 @@ An encrypting / decrypting utility (Linux/Windows). This utility will take any A
      - `py crypto myFile.txt` will encrypt the contents of the myFile.txt file
      - `py crypto –d/--decrypt myFile.crp` will decrypt the contents of the myFile.crp file
 
-2. When the utility is asked to –encrypt an ASCII file, it will take the
-   input filename and produce the encrypted file with the same base filename
-   and an .crp file extension
+When the utility is asked to –encrypt an ASCII file, it will take the
+input filename and produce the encrypted file with the same base filename
+and an .crp file extension
 
    - `py crypto –-encrypt SampleFile.txt` will produce an encrypted file called SampleFile.crp
      ![Encryption Demo](demo/EncryptGif.gif)
 
-3. When the utility is asked to –decrypt an encrypted file, it will take
-   the input filename and produce the decrypted file with the same base filename
-   and an .txt file extension
+When the utility is asked to –decrypt an encrypted file, it will take
+the input filename and produce the decrypted file with the same base filename
+and an .txt file extension
 
    - `py crypto –-decrypt SampleFile.crp` will produce a decrypted file called SampleFile.txt
      ![Decryption Demo](demo/DecryptGif.gif)
 
-4. It should be noted that the input file can have any file extension. When asked to encrypt,
-   it will replace the existing file extension (if any) with .CRP.
-   Similarly when asked to decrypt, it will replace the existing file extension (if any) with .TXT
+It should be noted that the input file can have any file extension. When asked to encrypt,
+it will replace the existing file extension (if any) with .CRP.
+Similarly when asked to decrypt, it will replace the existing file extension (if any) with .TXT
    - Encrypting always produces a file with a .CRP extension
    - Decrypting always produces a file with a .TXT extension
    - When asked to encrypt or decrypt a file that has no extension crypto
      will append the .TXT (if decrypting) and .CRP (if encrypting)
-5. Each line (up to and including the carriage return (noted as <CR\> below))
-   in the unencrypted ASCII file is guaranteed of being less than 120 characters.
-   Crypto will process the input ASCII file one line at a time
-   and will continue to process the input file until you reach the end of the file.
+Each line (up to and including the carriage return (noted as <CR\> below))
+in the unencrypted ASCII file is guaranteed of being less than 120 characters.
+Crypto will process the input ASCII file one line at a time
+and will continue to process the input file until you reach the end of the file.
 
 ## Encryption scheme
 
