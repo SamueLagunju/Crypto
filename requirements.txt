@@ -1,2 +1,5 @@
 pytest
 pytest-mock
+flake8
+black
+flake8-black

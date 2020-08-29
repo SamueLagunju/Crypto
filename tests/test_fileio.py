@@ -7,8 +7,13 @@
 """
 import pytest
 import os
-from crypto.fileio import read_file, validate_file, write_file, check_write, convert_ext, open_file
-from crypto.strategy import SeanStrategy
+from crypto.fileio import (
+    read_file,
+    validate_file,
+    write_file,
+    check_write,
+    convert_ext,
+)
 
 
 @pytest.fixture()
@@ -29,7 +34,7 @@ def test_files_dir(tmp_path):
 
 
 def copyfile(source, dest, buffer_size=1024 * 1024):
-    """      
+    """
     Copy a file from source to dest. source and dest
     must be file-like objects, i.e. any object with a read or
     write method, like for example StringIO.
@@ -58,8 +63,7 @@ def test_read_file(input, expected, test_files_dir):
 # @pytest.mark.skip("TODO")
 @pytest.mark.parametrize(
     "input,expected",
-    [("write1.txt", "abcdef"),
-     ("write2.txt", "I went to the market")],
+    [("write1.txt", "abcdef"), ("write2.txt", "I went to the market")],
 )
 def test_write_file(input, expected, test_files_dir):
     # Arrange
@@ -91,11 +95,14 @@ def test_validate_file(input, expected, test_files_dir):
 
 #
 # FUNCTION      :   test_valide_write()
-# DESCRIPTION   :   This function ensures the content in a file is properly written.
+# DESCRIPTION   :   This function ensures the content in a file is
+#                   properly written.
 #                   It writes to a file, should open the written file and check
-#                   if the file_buffer that was written to the file is exactly the same in the opened file.
+#                   if the file_buffer that was written to the file is exactly
+#                   the same in the opened file.
 # PARAMETERS    :
 # RETURNS       :
+
 
 @pytest.mark.parametrize(
     "file_name, file_buffer, expected",
@@ -116,9 +123,11 @@ def test_validate_write(file_name, file_buffer, expected, test_files_dir):
     #
     # assert result == expected
 
+
 #
 # FUNCTION      :   test_convert_ext()
-# DESCRIPTION   :   This function ensures the file's extension is changed according to its inputs
+# DESCRIPTION   :   This function ensures the file's extension is changed
+#                   according to its inputs
 # PARAMETERS    :
 # RETURNS       :
 @pytest.mark.parametrize(
@@ -128,27 +137,26 @@ def test_validate_write(file_name, file_buffer, expected, test_files_dir):
 def test_convert_ext(file_name, expected, test_files_dir):
     # Arrange
     file_name = os.path.join(test_files_dir, file_name)
+    expected_file_name = os.path.join(test_files_dir, expected)
 
     # Act
     new_file = convert_ext(file_name)
 
     # Assert
-    # If it fails to open the same file, its been renamed.
-    try:
-        file_obj = open_file(file_name)
-    except OSError:
-        assert True
-
-
+    # ..that the new file name is correct
+    assert new_file == expected_file_name
+    # ..that the file has been renamed
+    assert os.path.exists(expected_file_name)
 
 
 def test_failed_write(mocker):
-    """ This test expects that the program will raise an exception if the file cannot be written to. """
+    """This test expects that the program will raise an exception if the file
+    cannot be written to."""
 
     # Arrange
     file = "file.txt"
     content = "test content"
-    write_mock = mocker.patch('builtins.open', new=mocker.mock_open())
+    write_mock = mocker.patch("builtins.open", new=mocker.mock_open())
 
     # Act
     # ..allow exception to be raised.
@@ -158,8 +166,7 @@ def test_failed_write(mocker):
 
     # Assert
     # ..that open is called.
-    write_mock.assert_any_call(file, 'w')
+    write_mock.assert_any_call(file, "w")
     write_mock().write.assert_any_call(content)
     # ..that exception is raised.
     assert exception.type is IOError
-
