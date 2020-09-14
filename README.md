@@ -77,7 +77,7 @@ The encryption scheme is applied to each character in the line:
       3D69805E515D55805963804355515E80335C51625B558ETT39805C595B5580635F56646751625581<CR\>
       ```
 
-##Decryption scheme  
+## Decryption scheme  
 The decryption scheme is applied to each pair of characters in the input line:
 
 - If the pair of characters is the sequence **TT**
