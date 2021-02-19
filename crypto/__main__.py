@@ -22,7 +22,8 @@ def main(encrypt, decrypt, files):
     # if not program_os:
     #     sys.exit(SYS_ERROR)
     decryption_extension = ["crp", "cip", "cpc"]
-    encryption_extension = ["crp", "cip", "cpc"]
+    encryption_extension = ["txt", "doc", "pdf"]
+    output_text=''
 
     # If there are files to be decrypted
     if decrypt:
@@ -67,34 +68,18 @@ def main(encrypt, decrypt, files):
 
     elif files:
         for filename in files:
-            if filename not in decryption_extension:
-                # If the user's input is valid, process with encryption
-                print("Encrypting: {0}".format(filename))
-                crypter = Crypter(filename, SeanStrategy())
-                # All FileIO operations
-                try:
-                    file_contents = read_file(filename)
-                    encrypted_text = crypter.encrypt_txt(file_contents)
-                    write_file(filename, encrypted_text)
-                    check_write(encrypted_text, filename)
-                    new_file = convert_ext(filename)
-                    print("Encrypted File: {0}".format(new_file))
-                except IOError:
-                    print("Failed to write to: {0}".format(filename))
-            elif filename not in encryption_extension:
-                # If the user's input is valid, process with encryption
+            crypter = Crypter(filename, SeanStrategy())
+            file_contents = read_file(filename)
+            if any(file in filename for file in decryption_extension):
                 print("Decrypting: {0}".format(filename))
-                crypter = Crypter(filename, SeanStrategy())
-                # All FileIO operations
-                try:
-                    file_contents = read_file(filename)
-                    decrypted_text = crypter.decrypt_txt(file_contents)
-                    write_file(filename, decrypted_text)
-                    check_write(decrypted_text, filename)
-                    new_file = convert_ext(filename)
-                    print("Decrypted File: {0}".format(new_file))
-                except IOError:
-                    print("Failed to write to: {0}".format(filename))
+                output_text = crypter.decrypt_txt(file_contents)
+            if any(file in filename for file in encryption_extension):
+                print("Encrypting: {0}".format(filename))
+                output_text = crypter.encrypt_txt(file_contents)
+            write_file(filename, output_text)
+            check_write(output_text, filename)
+            new_file = convert_ext(filename)
+            print("Output File: {0}".format(new_file))
     else:
         print("No argument detected")
         print("Exiting...")
