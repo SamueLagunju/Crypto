@@ -66,6 +66,7 @@ def main(encrypt, decrypt, files):
             else:
                 print("Input {0} was not a valid file.".format(file_name))
 
+    # NEW - File encryption based on its extension
     elif files:
         for filename in files:
             crypter = Crypter(filename, SeanStrategy())
