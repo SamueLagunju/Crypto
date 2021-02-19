@@ -1,17 +1,13 @@
-# Crypto
+# Crypto ![Version](https://img.shields.io/badge/Release-v1.0-blue)
 
 An encrypting / decrypting utility (Linux/Windows). This utility will take any ASCII file or folder and encrypt it in such a way that its contents are not readable until they are decrypted by the utility.
 
 # Table of content
 
-- [Version](#version)
 - [Specification](#specification)
 - [License](#License)
 - [Acknowledgments](#Acknowledgments)
 
-## Version
-
-![Version](https://img.shields.io/badge/Release-v1.0-blue)
 
 # Specification
 
