@@ -5,27 +5,31 @@
 
 
 import sys
+import click
 from crypter import Crypter
 from strategy import SeanStrategy
 from fileio import read_file, write_file, validate_file, check_write, convert_ext
-from helpers import arg_parser
 
 
-def main():
+@click.command()
+@click.option('--encrypt', '-e', multiple=True, default='', help="Produces an encrypted file\n")
+@click.option('--decrypt', '-d', multiple=True, default='', help="Produces a decrypted file\n")
+@click.argument('files', nargs=-1, type=click.Path())
+def main(encrypt, decrypt, files):
     # Not completely sure I might need to implement.
     # program_directory = Path().resolve()
     # program_os = os_checker()
     # if not program_os:
     #     sys.exit(SYS_ERROR)
-
-    args = arg_parser(sys.argv[1:])
+    decryption_extension = ["crp", "cip", "cpc"]
+    encryption_extension = ["crp", "cip", "cpc"]
 
     # If there are files to be decrypted
-    if args.decrypt_file:
-        for file_name in args.decrypt_file:
+    if decrypt:
+        for file_name in decrypt:
             if validate_file(file_name):
                 # If the user's input is valid, process with encryption
-                print("Decrypting file: {0}".format(file_name))
+                print("Decrypting: {0}".format(file_name))
                 crypter = Crypter(file_name, SeanStrategy())
                 # All FileIO operations
                 try:
@@ -41,12 +45,12 @@ def main():
                 print("Input {0} was not a valid file.".format(file_name))
 
     # If there are files to be encrypted
-    if args.encrypt_file:
-        for file_name in args.encrypt_file:
+    elif encrypt:
+        for file_name in encrypt:
             # If the user's input is valid, process with encryption
             if validate_file(file_name):
                 # If the user's input is valid, process with encryption
-                print("Encrypting file: {0}".format(file_name))
+                print("Encrypting: {0}".format(file_name))
                 crypter = Crypter(file_name, SeanStrategy())
                 # All FileIO operations
                 try:
@@ -61,6 +65,39 @@ def main():
             else:
                 print("Input {0} was not a valid file.".format(file_name))
 
+    elif files:
+        for filename in files:
+            if filename not in decryption_extension:
+                # If the user's input is valid, process with encryption
+                print("Encrypting: {0}".format(filename))
+                crypter = Crypter(filename, SeanStrategy())
+                # All FileIO operations
+                try:
+                    file_contents = read_file(filename)
+                    encrypted_text = crypter.encrypt_txt(file_contents)
+                    write_file(filename, encrypted_text)
+                    check_write(encrypted_text, filename)
+                    new_file = convert_ext(filename)
+                    print("Encrypted File: {0}".format(new_file))
+                except IOError:
+                    print("Failed to write to: {0}".format(filename))
+            elif filename not in encryption_extension:
+                # If the user's input is valid, process with encryption
+                print("Decrypting: {0}".format(filename))
+                crypter = Crypter(filename, SeanStrategy())
+                # All FileIO operations
+                try:
+                    file_contents = read_file(filename)
+                    decrypted_text = crypter.decrypt_txt(file_contents)
+                    write_file(filename, decrypted_text)
+                    check_write(decrypted_text, filename)
+                    new_file = convert_ext(filename)
+                    print("Decrypted File: {0}".format(new_file))
+                except IOError:
+                    print("Failed to write to: {0}".format(filename))
+    else:
+        print("No argument detected")
+        print("Exiting...")
 
 if __name__ == "__main__":
     main()
