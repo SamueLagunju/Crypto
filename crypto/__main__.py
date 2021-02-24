@@ -77,10 +77,10 @@ def main(encrypt, decrypt, files):
             if any(file in filename for file in encryption_extension):
                 print("Encrypting: {0}".format(filename))
                 output_text = crypter.encrypt_txt(file_contents)
-            write_file(filename, output_text)
-            check_write(output_text, filename)
-            new_file = convert_ext(filename)
-            print("Output File: {0}".format(new_file))
+            new_file_name = convert_ext(filename)
+            write_file(new_file_name, output_text)
+            check_write(output_text, new_file_name)
+            print("Output File: {0}".format(new_file_name))
     else:
         print("No argument detected")
         print("Exiting...")

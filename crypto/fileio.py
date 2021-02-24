@@ -88,8 +88,6 @@ def convert_ext(file):
     file_name, ext = os.path.splitext(file)
     if ext == ".txt":
         new_file = file_name + ".crp"
-        os.rename(file, new_file)
     elif ext == ".crp":
         new_file = file_name + ".txt"
-        os.rename(file, new_file)
     return new_file
