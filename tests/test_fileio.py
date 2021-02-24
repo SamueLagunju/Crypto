@@ -136,17 +136,13 @@ def test_validate_write(file_name, file_buffer, expected, test_files_dir):
 )
 def test_convert_ext(file_name, expected, test_files_dir):
     # Arrange
-    file_name = os.path.join(test_files_dir, file_name)
-    expected_file_name = os.path.join(test_files_dir, expected)
 
     # Act
     new_file = convert_ext(file_name)
 
     # Assert
     # ..that the new file name is correct
-    assert new_file == expected_file_name
-    # ..that the file has been renamed
-    assert os.path.exists(expected_file_name)
+    assert new_file == expected
 
 
 def test_failed_write(mocker):
