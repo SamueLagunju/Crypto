@@ -71,10 +71,10 @@ def main(encrypt, decrypt, files):
         for filename in files:
             crypter = Crypter(filename, SeanStrategy())
             file_contents = read_file(filename)
-            if any(file in filename for file in decryption_extension):
+            if any(ext in filename for ext in decryption_extension):
                 print("Decrypting: {0}".format(filename))
                 output_text = crypter.decrypt_txt(file_contents)
-            if any(file in filename for file in encryption_extension):
+            elif any(file in filename for file in encryption_extension):
                 print("Encrypting: {0}".format(filename))
                 output_text = crypter.encrypt_txt(file_contents)
             write_file(filename, output_text)
