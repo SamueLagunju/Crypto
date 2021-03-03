@@ -78,16 +78,3 @@ def check_write(file_buffer, file):
     # Compare file content with file_buffer
     if file_buffer != file_content:
         raise IOError
-
-
-# FUNCTION      :   convert_ext
-# DESCRIPTION   :   This function converts the extension of a file
-# PARAMETERS    :   file        -   Name of file and its extension
-# RETURNS       :   new_file    -   Name of the file with its new extension
-def convert_ext(file):
-    file_name, ext = os.path.splitext(file)
-    if ext == ".txt":
-        new_file = file_name + ".crp"
-    elif ext == ".crp":
-        new_file = file_name + ".txt"
-    return new_file

@@ -22,6 +22,10 @@ class Strategy:
         pass
 
 
+    @abc.abstractmethod
+    def convert_ext(self, file_name, old_ext):
+        pass
+
 #
 #   NAME          :   SeanStrategy
 #   PURPOSE       :   The SeanStrategy class implement the algorithms while following
@@ -90,3 +94,15 @@ class SeanStrategy(Strategy):
             # Adding the new line character back to the line
             plain_text += "\n"
         return plain_text
+
+    # FUNCTION      :   convert_ext
+    # DESCRIPTION   :   This function converts the extension of a file
+    # PARAMETERS    :   file        -   Name of file and its extension
+    # RETURNS       :   new_file    -   Name of the file with its new extension
+    def convert_ext(self, file_name, old_ext):
+        if old_ext == "txt":
+            new_file = file_name + ".crp"
+        elif ext == "crp":
+            new_file = file_name + ".txt"
+        return new_file
+

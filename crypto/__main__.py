@@ -8,7 +8,7 @@ import sys
 import click
 from crypter import Crypter
 from strategy import SeanStrategy
-from fileio import read_file, write_file, validate_file, check_write, convert_ext
+from fileio import read_file, write_file, validate_file, check_write
 
 
 @click.command()
@@ -68,16 +68,17 @@ def main(encrypt, decrypt, files):
 
     # NEW - File encryption based on its extension
     elif files:
-        for filename in files:
+        for file in files:
+            filename, file_extension = file.split('.', 1)
             crypter = Crypter(filename, SeanStrategy())
-            file_contents = read_file(filename)
-            if any(file in filename for file in decryption_extension):
-                print("Decrypting: {0}".format(filename))
+            file_contents = read_file(file)
+            if file_extension in decryption_extension:
+                print("Decrypting: {0}".format(file))
                 output_text = crypter.decrypt_txt(file_contents)
-            if any(file in filename for file in encryption_extension):
-                print("Encrypting: {0}".format(filename))
+            if file_extension in encryption_extension:
+                print("Encrypting: {0}".format(file))
                 output_text = crypter.encrypt_txt(file_contents)
-            new_file_name = convert_ext(filename)
+            new_file_name = crypter.convert_ext(filename, file_extension)
             write_file(new_file_name, output_text)
             check_write(output_text, new_file_name)
             print("Output File: {0}".format(new_file_name))

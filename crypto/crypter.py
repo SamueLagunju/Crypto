@@ -40,3 +40,6 @@ class Crypter:
     # RETURNS       :   decrypted text
     def decrypt_txt(self, cipher_text):
         return self.strategy.decrypt_text(cipher_text)
+
+    def convert_ext(self, file_name, old_ext):
+        return self.strategy.convert_ext(file_name, old_ext)
