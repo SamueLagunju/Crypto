@@ -102,7 +102,7 @@ class SeanStrategy(Strategy):
     def convert_ext(self, file_name, old_ext):
         if old_ext == "txt":
             new_file = file_name + ".crp"
-        elif ext == "crp":
+        elif old_ext == "crp":
             new_file = file_name + ".txt"
         return new_file
 
