@@ -10,8 +10,7 @@ An encrypting / decrypting utility (Linux/Windows). This utility will take any A
 - [Acknowledgments](#Acknowledgments)
 
 ## Version
-
-![Version](https://img.shields.io/badge/Release-v1.0-blue)
+![Version](https://img.shields.io/badge/Release-v2.0-red)
 
 # Specification
 
