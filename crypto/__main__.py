@@ -24,12 +24,10 @@ def main(encrypt, decrypt, files):
              decrypt,
              files]
     # If there are files
-    if any(rules):
-        for element in rules:
-            if element:
-                for file in element:
-                    if validate_file(file):
-                        list_of_files.append(file)
+    for element in rules:
+        for file in element:
+            if validate_file(file):
+                list_of_files.append(file)
 
         crypter = Crypter()
         crypter.execute(list_of_files)
