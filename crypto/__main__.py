@@ -69,7 +69,7 @@ def main(encrypt, decrypt, files):
     # NEW - File encryption based on its extension
     elif files:
         for file in files:
-            filename, file_extension = file.split('.', 1)
+filename, file_extension = os.path.splitext(file)
             crypter = Crypter(filename, SeanStrategy())
             file_contents = read_file(file)
             if file_extension in decryption_extension:
