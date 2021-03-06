@@ -38,6 +38,7 @@ class SeanStrategy(Strategy):
     #                   new encrypted character to a 2 digit hexadecimal value.
     # PARAMETERS    :   plain_text  -   Text that is about to be encrypted into cipher text
     # RETURNS       :   cipher_text -   2 digit hexadecimal value
+
     def encrypt_text(self, plain_text):
         cipher_text = ""
         # Transversing the string using range function
