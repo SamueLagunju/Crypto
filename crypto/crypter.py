@@ -46,11 +46,16 @@ class Crypter:
             if ext in strategy.get_supported_types():
                 return strategy
 
-    def whichExtension(self, strategy: Strategy, file_name):
+    def convert_ext(self, strategy: Strategy, file_name) -> new_file_name:
         extPair = strategy.get_supported_types()
 
-        if self.should_encrypt:
-            # new_file = file_name +
+        for pair in  extPair:
+            if self.should_encrypt:
+                new_file_name = file_name + pair.encrypted
+            else:
+                new_file_name = file_name + pair.decrypted
+
+        return new_file_name
 
     def execute(self, files):
         for file in files:
