@@ -12,7 +12,18 @@ import abc
 #   NAME          :   Strategy
 #   PURPOSE       :   The Strategy class declares operations common to all supported versions
 #                     of some algorithm.
-class Strategy:
+from typing import List, Tuple
+from collections import namedtuple
+
+ExtPair = namedtuple("ExtPair", ["encrypted", "decrypted"])
+
+
+class Strategy(abc.ABC):
+
+    @abc.abstractmethod
+    def get_supported_types(self) -> List[ExtPair]:
+        pass
+
     @abc.abstractmethod
     def encrypt_text(self, input_text):
         pass
@@ -22,16 +33,17 @@ class Strategy:
         pass
 
 
-    @abc.abstractmethod
-    def convert_ext(self, file_name, old_ext):
-        pass
-
 #
 #   NAME          :   SeanStrategy
 #   PURPOSE       :   The SeanStrategy class implement the algorithms while following
 #                     the base strategy interface. The interface makes them interchangeable in the context.
 #                     Concrete strategy for Sean Clarke's encryption scheme.
 class SeanStrategy(Strategy):
+
+    def encrypt(self, data: bytes):
+        """ Convert to plain text, then call inner function. """
+        plain_text = data.decode("utf-8")
+        return self.encrypt_text(plain_text)
 
     # METHOD        :   encrypt_text
     # DESCRIPTION   :   This function translate the ASCII value of the
@@ -64,6 +76,12 @@ class SeanStrategy(Strategy):
                     cipher_text += format(cipher_char, "X")
 
         return cipher_text
+
+    def decrypt(self, data: bytes):
+        """ Convert to plain text, then call inner function. """
+        cipher_text = data.decode("ascii")
+        return self.decrypt_text(cipher_text)
+        pass
 
     # METHOD        :   decrypt_text
     # DESCRIPTION   :   This function translates a 2 digit hexadecimal

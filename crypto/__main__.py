@@ -19,21 +19,17 @@ def main(encrypt, decrypt, files):
     # program_os = os_checker()
     # if not program_os:
     #     sys.exit(SYS_ERROR)
-    list_of_files = []
-    rules = [encrypt,
-             decrypt,
-             files]
-    # If there are files
-    for element in rules:
-        for file in element:
-            if validate_file(file):
-                list_of_files.append(file)
+    all_files = [*encrypt, *decrypt, *files]
+    valid_files = [file for file in all_files if validate_file(file)]
 
-        crypter = Crypter()
-        crypter.execute(list_of_files)
-    else:
+    if not valid_files:
+        # TODO replace with click mandatory
         print("No argument detected")
         print("Exiting...")
+        return
+
+    crypter = Crypter()
+    crypter.execute(valid_files)
 
 
 if __name__ == "__main__":
