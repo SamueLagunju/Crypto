@@ -25,15 +25,15 @@ class Strategy(abc.ABC):
         pass
 
     @abc.abstractmethod
-    def encrypt_text(self, input_text):
+    def encrypt(self, data: bytes):
         pass
 
     @abc.abstractmethod
-    def decrypt_text(self, cipher_text):
+    def decrypt(self, data: bytes):
         pass
 
 
-#
+    #
 #   NAME          :   SeanStrategy
 #   PURPOSE       :   The SeanStrategy class implement the algorithms while following
 #                     the base strategy interface. The interface makes them interchangeable in the context.
@@ -50,8 +50,8 @@ class SeanStrategy(Strategy):
     #                   new encrypted character to a 2 digit hexadecimal value.
     # PARAMETERS    :   plain_text  -   Text that is about to be encrypted into cipher text
     # RETURNS       :   cipher_text -   2 digit hexadecimal value
-
-    def encrypt_text(self, plain_text):
+    @staticmethod
+    def encrypt_text(plain_text):
         cipher_text = ""
         # Transversing the string using range function
         for pt_char_index in range(len(plain_text)):
@@ -88,7 +88,8 @@ class SeanStrategy(Strategy):
     #                   value to a decoded ASCII value
     # PARAMETERS    :   cipher_text  -   Text that is about to be decrypted into plain text
     # RETURNS       :   plain_text   -   ASCII value
-    def decrypt_text(self, cipher_text):
+    @staticmethod
+    def decrypt_text(cipher_text):
         plain_text = ""
         n = 2
         # Parsing the cipher text, line by line
@@ -114,14 +115,38 @@ class SeanStrategy(Strategy):
             plain_text += "\n"
         return plain_text
 
-    # FUNCTION      :   convert_ext
-    # DESCRIPTION   :   This function converts the extension of a file
-    # PARAMETERS    :   file        -   Name of file and its extension
-    # RETURNS       :   new_file    -   Name of the file with its new extension
-    def convert_ext(self, file_name, old_ext):
-        if old_ext == "txt":
-            new_file = file_name + ".crp"
-        elif old_ext == "crp":
-            new_file = file_name + ".txt"
-        return new_file
 
+    @staticmethod
+    def get_supported_types() -> List[ExtPair]:
+        return [ExtPair(".txt", ".crp")]
+
+
+#
+#   NAME          :   RubikStrategy
+#   PURPOSE       :   The RubikStrategy class implement the algorithms while following
+#                     the base strategy interface. The interface makes them interchangeable in the context.
+class RubikStrategy(Strategy):
+
+    def encrypt(self, data: bytes):
+        raise NotImplemented
+
+    def decrypt(self, data: bytes):
+        raise NotImplemented
+
+    def get_supported_types(self) -> List[ExtPair]:
+        return [ExtPair(".jpeg", ".cip")]
+
+
+#
+#   NAME          :   DocStrategy
+#   PURPOSE       :   The DocStrategy class implement the algorithms while following
+#                     the base strategy interface. The interface makes them interchangeable in the context.
+class DocStrategy(Strategy):
+    def get_supported_types(self) -> List[ExtPair]:
+        return [ExtPair(".doc", ".cop"), ExtPair(".pdf", ".cpc")]
+
+    def encrypt(self, data: bytes):
+        raise NotImplemented
+
+    def decrypt(self, data: bytes):
+        raise NotImplemented
