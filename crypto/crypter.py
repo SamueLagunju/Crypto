@@ -40,19 +40,31 @@ class Crypter:
         return False
 
     def get_strategy(self, ext: str) -> Strategy:
-        """ Returns the first strategy the supports the given type. """
+        """ Returns the first strategy that supports the given type. """
         for strategy in self.strategies:
-            if ext in strategy.get_supported_types():
-                return strategy
+            for ext_pair in strategy.get_supported_types():
+                if ext in ext_pair:
+                    return strategy
 
-    def convert_ext(self, strategy: Strategy, file_name) -> new_file_name:
-        extPair = strategy.get_supported_types()
+        raise ValueError(f"No strategy found that supports the ext '{ext}'")
 
-        for pair in  extPair:
-            if self.should_encrypt:
-                new_file_name = file_name + pair.encrypted
-            else:
-                new_file_name = file_name + pair.decrypted
+    def convert_ext(self, strategy: Strategy, file_name: str) -> str:
+        """ Consumes a file name and produces a new file name. """
+        ext_pairs = strategy.get_supported_types()
+        file_stem, file_extension = os.path.splitext(file_name)
+
+        new_file_name = None
+        for pair in ext_pairs:
+            if file_extension in pair:
+                if self.should_encrypt(strategy, file_extension):
+                    new_file_name = file_stem + pair.encrypted
+                else:
+                    new_file_name = file_stem + pair.decrypted
+
+        if new_file_name is None:
+            raise ValueError(
+                f"Strategy {type(strategy)} does not support extension {file_extension}."
+            )
 
         return new_file_name
 
