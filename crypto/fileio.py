@@ -18,6 +18,7 @@ def open_file(new_input):
     obj_file = open(new_input, "r")
     return obj_file
 
+
 # FUNCTION      :   read_file
 # DESCRIPTION   :   This function reads an existing file and extract its content
 # PARAMETERS    :   input_file  -   Input file used for reading
@@ -61,6 +62,7 @@ def validate_file(file):
     if ext:
         valid_status = os.path.exists(file)
     return valid_status
+
 
 # FUNCTION      :   check_write
 # DESCRIPTION   :   This function checks if the content in the file were

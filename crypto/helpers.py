@@ -34,6 +34,7 @@ def os_checker():
         raise SystemError
     return plt
 
+
 #
 # FUNCTION      :   arg_parser
 # DESCRIPTION   :   This function parses arguments inputted by the user and returns it as a list

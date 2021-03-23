@@ -4,7 +4,6 @@
 # DATE          :   2020-08-19
 # DESCRIPTION   :   This file contains the class Crypter.
 
-import sys
 import os
 from typing import List, Callable
 
@@ -30,6 +29,8 @@ class Crypter:
 
     @staticmethod
     def should_encrypt(strategy: Strategy, ext: str) -> bool:
+        """Returns true if the provided file extension represents
+        an encrypted file."""
         types = strategy.get_supported_types()
 
         for extensions in types:
@@ -67,7 +68,9 @@ class Crypter:
 
         return new_file_name
 
-    def execute(self, files):
+    def execute(self, files: List[str]):
+        """ Encrypts or decrypts the given files. """
+
         for file in files:
             print("Reading content from: {0}".format(file))
             file_contents = self.fileio.read_file(file)
