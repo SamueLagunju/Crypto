@@ -14,6 +14,11 @@ import sys
 #   PARAMETERS:     N/A
 #   RETURNS:        plt         -   Name of platform that was detected
 #                   SYS_ERROR   -   Raised an error if it cannot detect an OS
+from typing import List
+
+from crypto.strategy import Strategy, SeanStrategy, RubikStrategy, DocStrategy
+
+
 def os_checker():
     # OS Check
     print("Verifying OS...")
@@ -66,3 +71,10 @@ def arg_parser(args=sys.argv[1:]):
     )
     options = parser.parse_args(args)
     return options
+
+
+def make_strategies() -> List[Strategy]:
+    """ Factory function that creates all the Strategies. """
+    strategies = [SeanStrategy(), RubikStrategy(), DocStrategy()]
+
+    return strategies

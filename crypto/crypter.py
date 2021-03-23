@@ -6,10 +6,11 @@
 
 import sys
 import os
-from typing import List, Tuple
+from typing import List, Callable
 
-from strategy import SeanStrategy, Strategy, RubikStrategy, DocStrategy
-from fileio import read_file, write_file, check_write
+from .helpers import make_strategies
+from .strategy import Strategy
+from . import fileio as _fileio
 
 
 #   NAME          :   Crypter
@@ -19,15 +20,13 @@ class Crypter:
 
     strategies: List[Strategy]
 
-    def __init__(self):
-        self.strategies = self.make_strategies()
-
-    @staticmethod
-    def make_strategies() -> List[Strategy]:
-        """ Factory function that creates all the Strategies. """
-        strategies = [SeanStrategy(), RubikStrategy(), DocStrategy()]
-
-        return strategies
+    def __init__(
+        self,
+        strategy_factory: Callable[[], List[Strategy]] = make_strategies,
+        fileio=_fileio,
+    ):
+        self.strategies = strategy_factory()
+        self.fileio = fileio
 
     @staticmethod
     def should_encrypt(strategy: Strategy, ext: str) -> bool:
@@ -71,8 +70,8 @@ class Crypter:
     def execute(self, files):
         for file in files:
             print("Reading content from: {0}".format(file))
-            file_contents = read_file(file)
-            filename, file_extension = os.path.splitext(file)
+            file_contents = self.fileio.read_file(file)
+            file_stem, file_extension = os.path.splitext(file)
 
             strategy = self.get_strategy(file_extension)
 
