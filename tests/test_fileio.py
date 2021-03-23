@@ -12,7 +12,6 @@ from crypto.fileio import (
     validate_file,
     write_file,
     check_write,
-    convert_ext,
 )
 
 
@@ -122,27 +121,6 @@ def test_validate_write(file_name, file_buffer, expected, test_files_dir):
     #     valid_write = False
     #
     # assert result == expected
-
-
-#
-# FUNCTION      :   test_convert_ext()
-# DESCRIPTION   :   This function ensures the file's extension is changed
-#                   according to its inputs
-# PARAMETERS    :
-# RETURNS       :
-@pytest.mark.parametrize(
-    "file_name, expected",
-    [("Text.txt", "Text.crp"), ("AnotherText.crp", "AnotherText.txt")],
-)
-def test_convert_ext(file_name, expected, test_files_dir):
-    # Arrange
-
-    # Act
-    new_file = convert_ext(file_name)
-
-    # Assert
-    # ..that the new file name is correct
-    assert new_file == expected
 
 
 def test_failed_write(mocker):
