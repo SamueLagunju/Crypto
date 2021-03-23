@@ -8,10 +8,6 @@
 import abc
 
 
-#
-#   NAME          :   Strategy
-#   PURPOSE       :   The Strategy class declares operations common to all supported versions
-#                     of some algorithm.
 from typing import List, Tuple
 from collections import namedtuple
 
@@ -19,7 +15,16 @@ ExtPair = namedtuple("ExtPair", ["encrypted", "decrypted"])
 
 
 class Strategy(abc.ABC):
+    """
+    NAME          :   Strategy
+    PURPOSE       :   The Strategy class accurately extends the behavior
+                      of a Strategy pattern.
 
+                      It is an interface of interest for encrypting/decrypting
+                      file contents.
+    """
+
+    @staticmethod
     @abc.abstractmethod
     def get_supported_types(self) -> List[ExtPair]:
         pass

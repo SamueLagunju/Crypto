@@ -14,8 +14,7 @@ from fileio import read_file, write_file, check_write
 
 #   NAME          :   Crypter
 #   PURPOSE       :   The Crypter class has been created to
-#                     accurately extends the behavior of a Strategy pattern
-#                     It is an interface of interest for encrypting/decrypting
+#                     encrypt or decrypt files.
 class Crypter:
 
     strategies: List[Strategy]
