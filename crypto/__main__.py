@@ -10,9 +10,13 @@ from fileio import validate_file
 
 
 @click.command()
-@click.option('--encrypt', '-e', multiple=True, default='', help="Produces an encrypted file\n")
-@click.option('--decrypt', '-d', multiple=True, default='', help="Produces a decrypted file\n")
-@click.argument('files', nargs=-1, type=click.Path())
+@click.option(
+    "--encrypt", "-e", multiple=True, default="", help="Produces an encrypted file\n"
+)
+@click.option(
+    "--decrypt", "-d", multiple=True, default="", help="Produces a decrypted file\n"
+)
+@click.argument("files", nargs=-1, type=click.Path())
 def main(encrypt, decrypt, files):
     # Not completely sure I might need to implement.
     # program_directory = Path().resolve()

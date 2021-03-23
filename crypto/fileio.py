@@ -18,6 +18,7 @@ def open_file(new_input):
     obj_file = open(new_input, "r")
     return obj_file
 
+
 # FUNCTION      :   read_file
 # DESCRIPTION   :   This function reads an existing file and extract its content
 # PARAMETERS    :   input_file  -   Input file used for reading
@@ -62,6 +63,7 @@ def validate_file(file):
         valid_status = os.path.exists(file)
     return valid_status
 
+
 # FUNCTION      :   check_write
 # DESCRIPTION   :   This function checks if the content in the file were
 #                   properly written the first time
@@ -78,15 +80,3 @@ def check_write(file_buffer, file):
     # Compare file content with file_buffer
     if file_buffer != file_content:
         raise IOError
-
-
-# FUNCTION      :   convert_ext
-# DESCRIPTION   :   This function converts the extension of a file
-# PARAMETERS    :   file        -   Name of file and its extension
-# RETURNS       :   new_file    -   Name of the file with its new extension
-def convert_ext(self, file_name, old_ext):
-    if old_ext == "txt":
-        new_file = file_name + ".crp"
-    elif old_ext == "crp":
-        new_file = file_name + ".txt"
-    return new_file
