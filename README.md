@@ -1,20 +1,17 @@
-# Crypto
+# Crypto ![Version](https://img.shields.io/badge/Release-v1.5-blue)
 
 An encrypting / decrypting utility (Linux/Windows). This utility will take any ASCII file or folder and encrypt it in such a way that its contents are not readable until they are decrypted by the utility.
 
 # Table of content
 
-- [Version](#version)
 - [Specification](#specification)
 - [License](#License)
 - [Acknowledgments](#Acknowledgments)
 
-## Version
-![Version](https://img.shields.io/badge/Release-v2.0-red)
 
 # Specification
 
-The utility is called **crypto** and is written in Python
+1. The utility is called **crypto** and is written in Python
 
    - The utility has 2 command-line switches
      - `–e ` or `--encrypt`
@@ -26,31 +23,31 @@ The utility is called **crypto** and is written in Python
      - `py crypto myFile.txt` will encrypt the contents of the myFile.txt file
      - `py crypto –d/--decrypt myFile.crp` will decrypt the contents of the myFile.crp file
 
-When the utility is asked to –encrypt an ASCII file, it will take the
-input filename and produce the encrypted file with the same base filename
-and an .crp file extension
+2. When the utility is asked to –encrypt an ASCII file, it will take the
+   input filename and produce the encrypted file with the same base filename
+   and an .crp file extension
 
    - `py crypto –-encrypt SampleFile.txt` will produce an encrypted file called SampleFile.crp
-      ![Encryption Demo](demo/EncryptGif.gif)
+     ![Encryption Demo](demo/EncryptGif.gif)
 
-When the utility is asked to –decrypt an encrypted file, it will take
-the input filename and produce the decrypted file with the same base filename
-and an .txt file extension
+3. When the utility is asked to –decrypt an encrypted file, it will take
+   the input filename and produce the decrypted file with the same base filename
+   and an .txt file extension
 
    - `py crypto –-decrypt SampleFile.crp` will produce a decrypted file called SampleFile.txt
-      ![Decryption Demo](demo/DecryptGif.gif)
+     ![Decryption Demo](demo/DecryptGif.gif)
 
-It should be noted that the input file can have any file extension. When asked to encrypt,
-it will replace the existing file extension (if any) with .CRP.
-Similarly when asked to decrypt, it will replace the existing file extension (if any) with .TXT
+4. It should be noted that the input file can have any file extension. When asked to encrypt,
+   it will replace the existing file extension (if any) with .CRP.
+   Similarly when asked to decrypt, it will replace the existing file extension (if any) with .TXT
    - Encrypting always produces a file with a .CRP extension
    - Decrypting always produces a file with a .TXT extension
    - When asked to encrypt or decrypt a file that has no extension crypto
      will append the .TXT (if decrypting) and .CRP (if encrypting)
-Each line (up to and including the carriage return (noted as <CR\> below))
-in the unencrypted ASCII file is guaranteed of being less than 120 characters.
-Crypto will process the input ASCII file one line at a time
-and will continue to process the input file until you reach the end of the file.
+5. Each line (up to and including the carriage return (noted as <CR\> below))
+   in the unencrypted ASCII file is guaranteed of being less than 120 characters.
+   Crypto will process the input ASCII file one line at a time
+   and will continue to process the input file until you reach the end of the file.
 
 ## Encryption scheme
 
@@ -76,7 +73,7 @@ The encryption scheme is applied to each character in the line:
       3D69805E515D55805963804355515E80335C51625B558ETT39805C595B5580635F56646751625581<CR\>
       ```
 
-##Decryption scheme  
+## Decryption scheme  
 The decryption scheme is applied to each pair of characters in the input line:
 
 - If the pair of characters is the sequence **TT**
