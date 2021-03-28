@@ -8,33 +8,55 @@
 import abc
 
 
-#
-#   NAME          :   Strategy
-#   PURPOSE       :   The Strategy class declares operations common to all supported versions
-#                     of some algorithm.
-class Strategy:
+from typing import List, Tuple
+from collections import namedtuple
+
+ExtPair = namedtuple("ExtPair", ["encrypted", "decrypted"])
+
+
+class Strategy(abc.ABC):
+    """
+    NAME          :   Strategy
+    PURPOSE       :   The Strategy class accurately extends the behavior
+                      of a Strategy pattern.
+
+                      It is an interface of interest for encrypting/decrypting
+                      file contents.
+    """
+
+    @staticmethod
     @abc.abstractmethod
-    def encrypt_text(self, input_text):
+    def get_supported_types() -> List[ExtPair]:
         pass
 
     @abc.abstractmethod
-    def decrypt_text(self, cipher_text):
+    def encrypt(self, data: bytes) -> bytes:
         pass
 
+    @abc.abstractmethod
+    def decrypt(self, data: bytes) -> bytes:
+        pass
 
-#
+    #
+
+
 #   NAME          :   SeanStrategy
 #   PURPOSE       :   The SeanStrategy class implement the algorithms while following
 #                     the base strategy interface. The interface makes them interchangeable in the context.
 #                     Concrete strategy for Sean Clarke's encryption scheme.
 class SeanStrategy(Strategy):
+    def encrypt(self, data: bytes) -> bytes:
+        """ Convert to plain text, then call inner function. """
+        plain_text = data.decode("utf-8")
+        return self.encrypt_text(plain_text).encode("utf-8")
 
     # METHOD        :   encrypt_text
     # DESCRIPTION   :   This function translate the ASCII value of the
     #                   new encrypted character to a 2 digit hexadecimal value.
     # PARAMETERS    :   plain_text  -   Text that is about to be encrypted into cipher text
     # RETURNS       :   cipher_text -   2 digit hexadecimal value
-    def encrypt_text(self, plain_text):
+    @staticmethod
+    def encrypt_text(plain_text: str) -> str:
         cipher_text = ""
         # Transversing the string using range function
         for pt_char_index in range(len(plain_text)):
@@ -60,12 +82,18 @@ class SeanStrategy(Strategy):
 
         return cipher_text
 
+    def decrypt(self, data: bytes) -> bytes:
+        """ Convert to plain text, then call inner function. """
+        cipher_text = data.decode("utf-8")
+        return self.decrypt_text(cipher_text).encode("utf-8")
+
     # METHOD        :   decrypt_text
     # DESCRIPTION   :   This function translates a 2 digit hexadecimal
     #                   value to a decoded ASCII value
     # PARAMETERS    :   cipher_text  -   Text that is about to be decrypted into plain text
     # RETURNS       :   plain_text   -   ASCII value
-    def decrypt_text(self, cipher_text):
+    @staticmethod
+    def decrypt_text(cipher_text: str) -> str:
         plain_text = ""
         n = 2
         # Parsing the cipher text, line by line
@@ -90,3 +118,37 @@ class SeanStrategy(Strategy):
             # Adding the new line character back to the line
             plain_text += "\n"
         return plain_text
+
+    @staticmethod
+    def get_supported_types() -> List[ExtPair]:
+        return [ExtPair(".txt", ".crp")]
+
+
+#
+#   NAME          :   RubikStrategy
+#   PURPOSE       :   The RubikStrategy class implement the algorithms while following
+#                     the base strategy interface. The interface makes them interchangeable in the context.
+class RubikStrategy(Strategy):
+    def encrypt(self, data: bytes):
+        raise NotImplemented
+
+    def decrypt(self, data: bytes):
+        raise NotImplemented
+
+    def get_supported_types(self) -> List[ExtPair]:
+        return [ExtPair(".jpeg", ".cip")]
+
+
+#
+#   NAME          :   DocStrategy
+#   PURPOSE       :   The DocStrategy class implement the algorithms while following
+#                     the base strategy interface. The interface makes them interchangeable in the context.
+class DocStrategy(Strategy):
+    def get_supported_types(self) -> List[ExtPair]:
+        return [ExtPair(".doc", ".cop"), ExtPair(".pdf", ".cpc")]
+
+    def encrypt(self, data: bytes):
+        raise NotImplemented
+
+    def decrypt(self, data: bytes):
+        raise NotImplemented

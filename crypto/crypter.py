@@ -4,39 +4,83 @@
 # DATE          :   2020-08-19
 # DESCRIPTION   :   This file contains the class Crypter.
 
+import os
+from typing import List, Callable
+
+from .helpers import make_strategies
+from .strategy import Strategy
+from . import fileio as _fileio
+
 
 #   NAME          :   Crypter
 #   PURPOSE       :   The Crypter class has been created to
-#                     accurately extends the behavior of a Strategy pattern
-#                     It is an interface of interest for encrypting/decrypting
+#                     encrypt or decrypt files.
 class Crypter:
 
-    # METHOD        :   init
-    # DESCRIPTION   :   This function is called after the instance has been created
-    # PARAMETERS    :   input_file  -   File meant for encrypting/decrypting
-    #                   strategy    -   Algorithm use to work on the input file
-    # RETURNS       :   N/A
-    def __init__(self, input_file, strategy):
-        self.input_file = input_file
-        self.strategy = strategy
+    strategies: List[Strategy]
 
-    # METHOD        :   print_input_file
-    # DESCRIPTION   :   This function is used to print the entire content of the input file.
-    # PARAMETERS    :   N/A
-    # RETURNS       :   Prints output of file.
-    def print_input_file(self):
-        print(self.input_file)
+    def __init__(
+        self,
+        strategy_factory: Callable[[], List[Strategy]] = make_strategies,
+        fileio=_fileio,
+    ):
+        self.strategies = strategy_factory()
+        self.fileio = fileio
 
-    # METHOD        :   encrypt_txt
-    # DESCRIPTION   :   This function is a default strategy behavior
-    # PARAMETERS    :   plain_text  -   Text that is about to be encrypted into cipher text
-    # RETURNS       :   encrypted text
-    def encrypt_txt(self, plain_text):
-        return self.strategy.encrypt_text(plain_text)
+    @staticmethod
+    def should_encrypt(strategy: Strategy, ext: str) -> bool:
+        """Returns true if the provided file extension represents
+        an encrypted file."""
+        types = strategy.get_supported_types()
 
-    # METHOD        :   decrypt_txt
-    # DESCRIPTION   :   This function is a default strategy behavior
-    # PARAMETERS    :   cipher_text  -   Text that is about to be decrypted into plain text
-    # RETURNS       :   decrypted text
-    def decrypt_txt(self, cipher_text):
-        return self.strategy.decrypt_text(cipher_text)
+        for extensions in types:
+            if ext in extensions:
+                return ext == extensions.encrypted
+
+        return False
+
+    def get_strategy(self, ext: str) -> Strategy:
+        """ Returns the first strategy that supports the given type. """
+        for strategy in self.strategies:
+            for ext_pair in strategy.get_supported_types():
+                if ext in ext_pair:
+                    return strategy
+
+        raise ValueError(f"No strategy found that supports the ext '{ext}'")
+
+    def convert_ext(self, strategy: Strategy, file_name: str) -> str:
+        """ Consumes a file name and produces a new file name. """
+        ext_pairs = strategy.get_supported_types()
+        file_stem, file_extension = os.path.splitext(file_name)
+
+        new_file_name = None
+        for pair in ext_pairs:
+            if file_extension in pair:
+                if self.should_encrypt(strategy, file_extension):
+                    new_file_name = file_stem + pair.encrypted
+                else:
+                    new_file_name = file_stem + pair.decrypted
+
+        if new_file_name is None:
+            raise ValueError(
+                f"Strategy {type(strategy)} does not support extension {file_extension}."
+            )
+
+        return new_file_name
+
+    def execute(self, files: List[str]):
+        """ Encrypts or decrypts the given files. """
+
+        for file in files:
+            print("Reading content from: {0}".format(file))
+            file_contents = self.fileio.read_file(file)
+            file_stem, file_extension = os.path.splitext(file)
+
+            strategy = self.get_strategy(file_extension)
+
+            if self.should_encrypt(strategy, file_extension):
+                print("Encrypting: {0}".format(file))
+                strategy.encrypt(file_contents)
+            else:
+                print("Decrypting: {0}".format(file))
+                strategy.decrypt(file_contents)

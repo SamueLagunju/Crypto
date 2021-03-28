@@ -18,13 +18,14 @@ def open_file(new_input):
     obj_file = open(new_input, "r")
     return obj_file
 
+
 # FUNCTION      :   read_file
 # DESCRIPTION   :   This function reads an existing file and extract its content
 # PARAMETERS    :   input_file  -   Input file used for reading
 # RETURNS       :   file_buffer -   Content in the file, each line separated accordingly
 def read_file(input_file):
     file_buffer = ""
-    with open(input_file, "r") as file_pointer:
+    with open(input_file, "rb") as file_pointer:
         for cnt, line in enumerate(file_pointer):
             file_buffer += line
     return file_buffer
@@ -62,6 +63,7 @@ def validate_file(file):
         valid_status = os.path.exists(file)
     return valid_status
 
+
 # FUNCTION      :   check_write
 # DESCRIPTION   :   This function checks if the content in the file were
 #                   properly written the first time
@@ -78,18 +80,3 @@ def check_write(file_buffer, file):
     # Compare file content with file_buffer
     if file_buffer != file_content:
         raise IOError
-
-
-# FUNCTION      :   convert_ext
-# DESCRIPTION   :   This function converts the extension of a file
-# PARAMETERS    :   file        -   Name of file and its extension
-# RETURNS       :   new_file    -   Name of the file with its new extension
-def convert_ext(file):
-    file_name, ext = os.path.splitext(file)
-    if ext == ".txt":
-        new_file = file_name + ".crp"
-        os.rename(file, new_file)
-    elif ext == ".crp":
-        new_file = file_name + ".txt"
-        os.rename(file, new_file)
-    return new_file
