@@ -72,21 +72,20 @@ class Crypter:
 
         for file in files:
             print("Reading content from: {0}".format(file))
-            file_contents = self.fileio.read_file(file)
             file_stem, file_extension = os.path.splitext(file)
 
             strategy = self.get_strategy(file_extension)
 
             if self.should_encrypt(strategy, file_extension):
                 print("Encrypting: {0}".format(file))
-                return_text = strategy.encrypt(file_contents)
+                return_text = strategy.encrypt(file)
                 new_file = self.convert_ext(strategy, file)
                 self.fileio.write_file(new_file, return_text)
                 print("Encrypted File: {0}".format(new_file))
 
             else:
                 print("Decrypting: {0}".format(file))
-                return_text = strategy.decrypt(file_contents)
+                return_text = strategy.decrypt(file)
                 new_file = self.convert_ext(strategy, file)
                 self.fileio.write_file(new_file, return_text)
                 print("Decrypted File: {0}".format(new_file))

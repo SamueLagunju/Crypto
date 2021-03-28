@@ -79,3 +79,4 @@ def make_strategies() -> List[Strategy]:
     strategies = [SeanStrategy(), RubikStrategy(), DocStrategy()]
 
     return strategies
+

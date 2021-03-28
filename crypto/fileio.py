@@ -6,7 +6,7 @@
 
 import os
 
-available_extensions = [".txt", ".pdf"]
+available_extensions = [".txt", ".pdf", ".jpeg"]
 
 # FUNCTION      :   open_file
 # DESCRIPTION   :   This function opens an existing file
@@ -23,14 +23,23 @@ def open_file(new_input):
 # DESCRIPTION   :   This function reads an existing file and extract its content
 # PARAMETERS    :   input_file  -   Input file used for reading
 # RETURNS       :   file_buffer -   Content in the file, each line separated accordingly
-def read_file(input_file):
+def read_binary_file(input_file):
     with open(input_file, "rb") as file_pointer:
         file_buffer = file_pointer.read()
         # for cnt, line in enumerate(file_pointer):
         #     file_buffer += line
     return file_buffer
 
-
+# FUNCTION      :   read_file
+# DESCRIPTION   :   This function reads an existing file and extract its content
+# PARAMETERS    :   input_file  -   Input file used for reading
+# RETURNS       :   file_buffer -   Content in the file, each line separated accordingly
+def read_text_file(input_file):
+    file_buffer = ''
+    with open(input_file, "r") as file_pointer:
+        for cnt, line in enumerate(file_pointer):
+            file_buffer += line
+    return file_buffer
 # FUNCTION      :   write_file
 # DESCRIPTION   :   This function writes content to an existing file
 # PARAMETERS    :   output_file -   Output file used for writing
@@ -80,3 +89,5 @@ def check_write(file_buffer, file):
     # Compare file content with file_buffer
     if file_buffer != file_content:
         raise IOError
+
+
