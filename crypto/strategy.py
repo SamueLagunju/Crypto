@@ -45,10 +45,10 @@ class Strategy(abc.ABC):
 #                     the base strategy interface. The interface makes them interchangeable in the context.
 #                     Concrete strategy for Sean Clarke's encryption scheme.
 class SeanStrategy(Strategy):
-    def encrypt(self, data: bytes) -> bytes:
+    def encrypt(self, data : bytes):
         """ Convert to plain text, then call inner function. """
         plain_text = data.decode("utf-8")
-        return self.encrypt_text(plain_text).encode("utf-8")
+        return self.encrypt_text(plain_text)
 
     # METHOD        :   encrypt_text
     # DESCRIPTION   :   This function translate the ASCII value of the
@@ -82,10 +82,10 @@ class SeanStrategy(Strategy):
 
         return cipher_text
 
-    def decrypt(self, data: bytes) -> bytes:
+    def decrypt(self, data : bytes):
         """ Convert to plain text, then call inner function. """
-        cipher_text = data.decode("utf-8")
-        return self.decrypt_text(cipher_text).encode("utf-8")
+        cipher_text = data.decode("ascii")
+        return self.decrypt_text(cipher_text)
 
     # METHOD        :   decrypt_text
     # DESCRIPTION   :   This function translates a 2 digit hexadecimal

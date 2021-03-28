@@ -7,9 +7,9 @@
 import os
 from typing import List, Callable
 
-from .helpers import make_strategies
-from .strategy import Strategy
-from . import fileio as _fileio
+from helpers import make_strategies
+from strategy import Strategy
+import fileio as _fileio
 
 
 #   NAME          :   Crypter
@@ -57,15 +57,14 @@ class Crypter:
         for pair in ext_pairs:
             if file_extension in pair:
                 if self.should_encrypt(strategy, file_extension):
-                    new_file_name = file_stem + pair.encrypted
-                else:
                     new_file_name = file_stem + pair.decrypted
+                else:
+                    new_file_name = file_stem + pair.encrypted
 
         if new_file_name is None:
             raise ValueError(
                 f"Strategy {type(strategy)} does not support extension {file_extension}."
             )
-
         return new_file_name
 
     def execute(self, files: List[str]):
@@ -80,7 +79,14 @@ class Crypter:
 
             if self.should_encrypt(strategy, file_extension):
                 print("Encrypting: {0}".format(file))
-                strategy.encrypt(file_contents)
+                return_text = strategy.encrypt(file_contents)
+                new_file = self.convert_ext(strategy, file)
+                self.fileio.write_file(new_file, return_text)
+                print("Encrypted File: {0}".format(new_file))
+
             else:
                 print("Decrypting: {0}".format(file))
-                strategy.decrypt(file_contents)
+                return_text = strategy.decrypt(file_contents)
+                new_file = self.convert_ext(strategy, file)
+                self.fileio.write_file(new_file, return_text)
+                print("Decrypted File: {0}".format(new_file))

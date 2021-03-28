@@ -24,10 +24,10 @@ def open_file(new_input):
 # PARAMETERS    :   input_file  -   Input file used for reading
 # RETURNS       :   file_buffer -   Content in the file, each line separated accordingly
 def read_file(input_file):
-    file_buffer = ""
     with open(input_file, "rb") as file_pointer:
-        for cnt, line in enumerate(file_pointer):
-            file_buffer += line
+        file_buffer = file_pointer.read()
+        # for cnt, line in enumerate(file_pointer):
+        #     file_buffer += line
     return file_buffer
 
 

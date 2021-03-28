@@ -16,7 +16,7 @@ import sys
 #                   SYS_ERROR   -   Raised an error if it cannot detect an OS
 from typing import List
 
-from crypto.strategy import Strategy, SeanStrategy, RubikStrategy, DocStrategy
+from strategy import Strategy, SeanStrategy, RubikStrategy, DocStrategy
 
 
 def os_checker():
