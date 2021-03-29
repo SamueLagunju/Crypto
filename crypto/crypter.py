@@ -2,7 +2,7 @@
 # FILE          :   crypter.py
 # PROGRAMMER    :   Samuel Lagunju
 # DATE          :   2020-08-19
-# DESCRIPTION   :   This file contains the class Crypter.
+# DESCRIPTION   :   This file contains the class Crypter. 
 
 import os
 from collections import namedtuple
