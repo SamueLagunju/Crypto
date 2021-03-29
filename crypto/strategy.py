@@ -7,11 +7,10 @@
 
 import abc
 
-from fileio import read_text_file, read_binary_file
-from typing import List, Tuple
+from typing import List, Tuple, Callable, Any
 from collections import namedtuple
 
-ExtPair = namedtuple("ExtPair", ["encrypted", "decrypted"])
+ExtPair = namedtuple("ExtPair", ["decrypted", "encrypted"])
 
 
 class Strategy(abc.ABC):
@@ -45,9 +44,7 @@ class Strategy(abc.ABC):
 #                     the base strategy interface. The interface makes them interchangeable in the context.
 #                     Concrete strategy for Sean Clarke's encryption scheme.
 class SeanStrategy(Strategy):
-    def encrypt(self, file):
-        """ Obtain file content """
-        file_contents = read_text_file(file)
+    def encrypt(self, file_contents):
         """ Call inner function. """
         return self.encrypt_text(file_contents)
 
@@ -57,7 +54,7 @@ class SeanStrategy(Strategy):
     # PARAMETERS    :   plain_text  -   Text that is about to be encrypted into cipher text
     # RETURNS       :   cipher_text -   2 digit hexadecimal value
     @staticmethod
-    def encrypt_text(plain_text):
+    def encrypt_text(plain_text: str):
         cipher_text = ""
         # Transversing the string using range function
         for pt_char_index in range(len(plain_text)):
@@ -83,10 +80,7 @@ class SeanStrategy(Strategy):
 
         return cipher_text
 
-
-    def decrypt(self, file):
-        """ Obtain file content """
-        file_contents = read_text_file(file)
+    def decrypt(self, file_contents: str):
         """ Call inner function. """
         return self.decrypt_text(file_contents)
 
@@ -96,7 +90,7 @@ class SeanStrategy(Strategy):
     # PARAMETERS    :   cipher_text  -   Text that is about to be decrypted into plain text
     # RETURNS       :   plain_text   -   ASCII value
     @staticmethod
-    def decrypt_text(cipher_text):
+    def decrypt_text(cipher_text: str):
         plain_text = ""
         n = 2
         # Parsing the cipher text, line by line
@@ -104,7 +98,7 @@ class SeanStrategy(Strategy):
             # Parsing each line and decrypting the file
             for index in range(0, len(cipher_line), n):
                 # Capturing each pair of characters in the input line
-                char_pair = cipher_line[index: index + n]
+                char_pair = cipher_line[index : index + n]
                 # If the pair of characters is the sequence TT it simply transforms
                 # into a <tab> character
                 if char_pair == "TT":
@@ -140,6 +134,7 @@ class RubikStrategy(Strategy):
 
     def get_supported_types(self) -> List[ExtPair]:
         return [ExtPair(".jpeg", ".cip"), ExtPair(".JPG", ".cip")]
+
 
 #
 #   NAME          :   DocStrategy

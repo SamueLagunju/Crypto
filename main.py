@@ -1,12 +1,13 @@
+ 
 # FILE:         __main__.py
 # PROJECT:      crypto
 # PROGRAMMER:   Samuel Lagunju
 # DESCRIPTION:  This file is the main for the module
-
+import os
 
 import click
-from crypter import Crypter
-from fileio import validate_file
+from crypto.crypter import Crypter, CrypterFactory
+from crypto.fileio import validate_file
 
 
 @click.command()
@@ -18,11 +19,6 @@ from fileio import validate_file
 )
 @click.argument("files", nargs=-1, type=click.Path())
 def main(encrypt, decrypt, files):
-    # Not completely sure I might need to implement.
-    # program_directory = Path().resolve()
-    # program_os = os_checker()
-    # if not program_os:
-    #     sys.exit(SYS_ERROR)
     all_files = [*encrypt, *decrypt, *files]
     valid_files = [file for file in all_files if validate_file(file)]
 
@@ -32,9 +28,16 @@ def main(encrypt, decrypt, files):
         print("Exiting...")
         return
 
-    crypter = Crypter()
-    crypter.execute(valid_files)
+    crypter_factory = CrypterFactory()
+
+    for file_name in valid_files:
+        file_stem, file_extension = os.path.splitext(file_name)
+
+        crypter = crypter_factory.create(file_extension)
+
+        crypter.execute(file_name)
 
 
 if __name__ == "__main__":
     main()
+
