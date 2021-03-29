@@ -88,23 +88,6 @@ def validate_file(file):
     return valid_status
 
 
-# FUNCTION      :   check_write
-# DESCRIPTION   :   This function checks if the content in the file were
-#                   properly written the first time
-# PARAMETERS    :   file_buffer   -   Content in the file, each line separated accordingly
-#                   file          -   File being verified
-# RETURNS       :   IOError -   If there is an issue, this exception is raised.
-# def check_write(file_buffer, file):
-#     # Write to the file first
-#     write_file(file, file_buffer)
-#
-#     # Open the written file
-#     file_content = read_file(file)
-#
-#     # Compare file content with file_buffer
-#     if file_buffer != file_content:
-#         raise IOError
-
 
 # FUNCTION      :   read_image
 # DESCRIPTION   :   This function reads an existing image and extract its content
