@@ -6,8 +6,9 @@
 
 
 import abc
+
+from typing import List, Tuple, Callable, Any
 from collections import namedtuple
-from typing import List
 
 ExtPair = namedtuple("ExtPair", ["decrypted", "encrypted"])
 
@@ -43,10 +44,6 @@ class Strategy(abc.ABC):
 #                     the base strategy interface. The interface makes them interchangeable in the context.
 #                     Concrete strategy for Sean Clarke's encryption scheme.
 class SeanStrategy(Strategy):
-    # METHOD        :   encrypt
-    # DESCRIPTION   :   This function is a strategy function that executes the encrypt_text function
-    # PARAMETERS    :   file_contents  -   Text that is about to be encrypted into cipher text
-    # RETURNS       :   encrypted text
     def encrypt(self, file_contents):
         """ Call inner function. """
         return self.encrypt_text(file_contents)
@@ -82,10 +79,7 @@ class SeanStrategy(Strategy):
                     cipher_text += format(cipher_char, "X")
 
         return cipher_text
-    # METHOD        :   decrypt
-    # DESCRIPTION   :   This function is a strategy function that executes the decrypt_text function
-    # PARAMETERS    :   file_contents  -   Text that is about to be encrypted into cipher text
-    # RETURNS       :   decrypted text
+
     def decrypt(self, file_contents: str):
         """ Call inner function. """
         return self.decrypt_text(file_contents)
