@@ -7,8 +7,15 @@
 import os
 from PIL import Image
 
-
 available_extensions = [".txt", ".pdf", ".jpeg"]
+
+
+def file_deconstruct(valid_file, file_stems=[], file_extensions=[], file_names=[]):
+    file_stem, file_extension = os.path.splitext(valid_file)
+    file_stems.append(file_stem)
+    file_extensions.append(file_extension)
+    file_names.append(valid_file)
+
 
 # FUNCTION      :   open_file
 # DESCRIPTION   :   This function opens an existing file
@@ -86,24 +93,6 @@ def validate_file(file):
     if ext:
         valid_status = os.path.exists(file)
     return valid_status
-
-
-# FUNCTION      :   check_write
-# DESCRIPTION   :   This function checks if the content in the file were
-#                   properly written the first time
-# PARAMETERS    :   file_buffer   -   Content in the file, each line separated accordingly
-#                   file          -   File being verified
-# RETURNS       :   IOError -   If there is an issue, this exception is raised.
-# def check_write(file_buffer, file):
-#     # Write to the file first
-#     write_file(file, file_buffer)
-#
-#     # Open the written file
-#     file_content = read_file(file)
-#
-#     # Compare file content with file_buffer
-#     if file_buffer != file_content:
-#         raise IOError
 
 
 # FUNCTION      :   read_image

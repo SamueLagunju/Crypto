@@ -39,11 +39,16 @@ class CrypterFactory:
 
         self.mapping = mapping
 
-    def create(self, file):
-        variant = self.mapping[file]
-        return Crypter(
-            variant.strategy(), variant.read_func, variant.write_func, variant.operation
-        )
+    def create(self, files):
+        variants = []
+        result = []
+        for file in files:
+            variants.append(self.mapping[file])
+
+        #
+        for variant in variants:
+            result.append(Crypter(variant.strategy(), variant.read_func, variant.write_func, variant.operation))
+        return result
 
 
 #   NAME          :   Crypter

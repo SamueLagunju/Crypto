@@ -7,7 +7,7 @@ import os
 
 import click
 from crypto.crypter import Crypter, CrypterFactory
-from crypto.fileio import validate_file
+from crypto.fileio import validate_file, file_deconstruct
 
 
 @click.command()
@@ -20,24 +20,23 @@ from crypto.fileio import validate_file
 @click.argument("files", nargs=-1, type=click.Path())
 def main(encrypt, decrypt, files):
     all_files = [*encrypt, *decrypt, *files]
-    valid_files = [file for file in all_files if validate_file(file)]
+    valid_files = [file for file in all_files if validate_file(file) == True]
+    invalid_files = [file for file in all_files if (validate_file(file) == False)]
 
-    if not valid_files:
-        # TODO replace with click mandatory
-        print("No argument detected")
-        print("Exiting...")
-        return
+    if valid_files:
+        crypter_factory = CrypterFactory()
+        file_stems, file_extensions, file_names = ([] for i in range(3))
+        for file_name in valid_files:
+            file_deconstruct(file_name, file_stems, file_extensions, file_names)
+        crypter_ojects = crypter_factory.create(file_extensions)
+        for crypter_ojects, file_names in zip(crypter_ojects, file_names):
+            crypter_ojects.execute(file_names)
 
-    crypter_factory = CrypterFactory()
+    if invalid_files:
+        for invalid_file in invalid_files:
+            print("Invalid File: {0}".format(invalid_file))
 
-    for file_name in valid_files:
-        file_stem, file_extension = os.path.splitext(file_name)
-
-        crypter = crypter_factory.create(file_extension)
-
-        crypter.execute(file_name)
-
-
+    print("Exiting...")
 if __name__ == "__main__":
     main()
 
