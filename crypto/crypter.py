@@ -31,7 +31,7 @@ ext_mapping = {
 
 #   NAME          :   CrypterFactory
 #   PURPOSE       :   This class is used to create the appropriate Crypter class, given a file name.
-#                     Defines an interface for creating an object, but let subclasses decide which class to instantiate.
+#                     Produce families of related objects without specifying their concrete classes.
 class CrypterFactory:
     def __init__(self, mapping: Dict[str, CrypterVariant] = None):
         if mapping is None:
