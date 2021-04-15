@@ -45,7 +45,6 @@ class CrypterFactory:
         for file in files:
             variants.append(self.mapping[file])
 
-        #
         for variant in variants:
             result.append(Crypter(variant.strategy(), variant.read_func, variant.write_func, variant.operation))
         return result

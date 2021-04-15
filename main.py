@@ -25,9 +25,7 @@ def main(encrypt, decrypt, files):
 
     if valid_files:
         crypter_factory = CrypterFactory()
-        file_stems, file_extensions, file_names = ([] for i in range(3))
-        for file_name in valid_files:
-            file_deconstruct(file_name, file_stems, file_extensions, file_names)
+        file_stems, file_extensions, file_names =  file_deconstruct(valid_files)
         crypter_ojects = crypter_factory.create(file_extensions)
         for crypter_ojects, file_names in zip(crypter_ojects, file_names):
             crypter_ojects.execute(file_names)
@@ -39,4 +37,3 @@ def main(encrypt, decrypt, files):
     print("Exiting...")
 if __name__ == "__main__":
     main()
-

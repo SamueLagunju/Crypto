@@ -10,11 +10,18 @@ from PIL import Image
 available_extensions = [".txt", ".pdf", ".jpeg"]
 
 
-def file_deconstruct(valid_file, file_stems=[], file_extensions=[], file_names=[]):
-    file_stem, file_extension = os.path.splitext(valid_file)
-    file_stems.append(file_stem)
-    file_extensions.append(file_extension)
-    file_names.append(valid_file)
+def file_deconstruct(valid_files):
+    file_stems = []
+    file_extensions = []
+    file_names = []
+    
+    for valid_file in valid_files:
+        file_stem, file_extension = os.path.splitext(valid_file)
+        file_stems.append(file_stem)
+        file_extensions.append(file_extension)
+        file_names.append(valid_file)
+        
+    return (file_stems, file_extensions, file_names)
 
 
 # FUNCTION      :   open_file
