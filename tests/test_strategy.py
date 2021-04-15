@@ -28,7 +28,7 @@ class TestSeanStrategy:
         client = SeanStrategy()
 
         # Act
-        result = client.encrypt_text(input)
+        result = client.encrypt(input)
 
         # Assert
         assert result == expected
@@ -52,7 +52,7 @@ class TestSeanStrategy:
         client = SeanStrategy()
 
         # Act
-        result = client.decrypt_text(input)
+        result = client.decrypt(input)
 
         # Assert
         assert result == expected

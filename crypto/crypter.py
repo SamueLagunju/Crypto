@@ -2,91 +2,106 @@
 # FILE          :   crypter.py
 # PROGRAMMER    :   Samuel Lagunju
 # DATE          :   2020-08-19
-# DESCRIPTION   :   This file contains the class Crypter.
+# DESCRIPTION   :   This file contains the class Crypter. 
 
 import os
-from typing import List, Callable
+from collections import namedtuple
+from typing import List, Callable, Dict, Literal
 
-from helpers import make_strategies
-from strategy import Strategy
-import fileio as _fileio
+from .strategy import Strategy, SeanStrategy, RubikStrategy
+from . import fileio as _fileio
+
+CrypterVariant = namedtuple(
+    "CrypterVariant", ["read_func", "write_func", "strategy", "operation"]
+)
+ext_mapping = {
+    ".txt": CrypterVariant(
+        _fileio.read_text_file, _fileio.write_text_file, SeanStrategy, "encrypt"
+    ),
+    ".crp": CrypterVariant(
+        _fileio.read_text_file, _fileio.write_text_file, SeanStrategy, "decrypt"
+    ),
+    ".jpg": CrypterVariant(
+        _fileio.read_image, _fileio.write_image, RubikStrategy, "encrypt"
+    ),
+    ".cip": CrypterVariant(
+        _fileio.read_image, _fileio.write_image, RubikStrategy, "decrypt"
+    ),
+}
+
+#   NAME          :   CrypterFactory
+#   PURPOSE       :   This class is used to create the appropriate Crypter class, given a file name.
+#                     Produce families of related objects without specifying their concrete classes.
+class CrypterFactory:
+    def __init__(self, mapping: Dict[str, CrypterVariant] = None):
+        if mapping is None:
+            mapping = ext_mapping
+
+        self.mapping = mapping
+
+    def create(self, files):
+        variants = []
+        result = []
+        for file in files:
+            variants.append(self.mapping[file])
+
+        for variant in variants:
+            result.append(Crypter(variant.strategy(), variant.read_func, variant.write_func, variant.operation))
+        return result
 
 
 #   NAME          :   Crypter
 #   PURPOSE       :   The Crypter class has been created to
 #                     encrypt or decrypt files.
 class Crypter:
-
-    strategies: List[Strategy]
-
     def __init__(
         self,
-        strategy_factory: Callable[[], List[Strategy]] = make_strategies,
-        fileio=_fileio,
+        strategy: Strategy,
+        read_func: Callable,
+        write_func: Callable,
+        operation: Literal["encrypt", "decrypt"],
     ):
-        self.strategies = strategy_factory()
-        self.fileio = fileio
+        self.strategy = strategy
+        self.read_func = read_func
+        self.write_func = write_func
+        self.operation = operation
 
-    @staticmethod
-    def should_encrypt(strategy: Strategy, ext: str) -> bool:
-        """Returns true if the provided file extension represents
-        an encrypted file."""
-        types = strategy.get_supported_types()
-
-        for extensions in types:
-            if ext in extensions:
-                return ext == extensions.encrypted
-
-        return False
-
-    def get_strategy(self, ext: str) -> Strategy:
-        """ Returns the first strategy that supports the given type. """
-        for strategy in self.strategies:
-            for ext_pair in strategy.get_supported_types():
-                if ext in ext_pair:
-                    return strategy
-
-        raise ValueError(f"No strategy found that supports the ext '{ext}'")
-
-    def convert_ext(self, strategy: Strategy, file_name: str) -> str:
+    def convert_ext(self, file_name: str) -> str:
         """ Consumes a file name and produces a new file name. """
-        ext_pairs = strategy.get_supported_types()
+        ext_pairs = self.strategy.get_supported_types()
         file_stem, file_extension = os.path.splitext(file_name)
 
         new_file_name = None
         for pair in ext_pairs:
             if file_extension in pair:
-                if self.should_encrypt(strategy, file_extension):
+                if self.operation == "decrypt":
                     new_file_name = file_stem + pair.decrypted
                 else:
                     new_file_name = file_stem + pair.encrypted
 
         if new_file_name is None:
             raise ValueError(
-                f"Strategy {type(strategy)} does not support extension {file_extension}."
+                f"Strategy {type(self.strategy)} does not support extension {file_extension}."
             )
+
         return new_file_name
 
-    def execute(self, files: List[str]):
+    def execute(self, file: str):
         """ Encrypts or decrypts the given files. """
 
-        for file in files:
-            print("Reading content from: {0}".format(file))
-            file_contents = self.fileio.read_file(file)
-            file_stem, file_extension = os.path.splitext(file)
+        print("Reading content from: {0}".format(file))
+        file_stem, file_extension = os.path.splitext(file)
+        strategy = self.strategy
+        file_contents = self.read_func(file)
 
-            strategy = self.get_strategy(file_extension)
+        if self.operation == "encrypt":
+            print("Encrypting: {0}".format(file))
+            return_text = strategy.encrypt(file_contents)
+        else:
+            print("Decrypting: {0}".format(file))
+            return_text = strategy.decrypt(file_contents)
 
-            if self.should_encrypt(strategy, file_extension):
-                print("Encrypting: {0}".format(file))
-                return_text = strategy.encrypt(file_contents)
-                new_file = self.convert_ext(strategy, file)
-                self.fileio.write_file(new_file, return_text)
-                print("Encrypted File: {0}".format(new_file))
-
-            else:
-                print("Decrypting: {0}".format(file))
-                return_text = strategy.decrypt(file_contents)
-                new_file = self.convert_ext(strategy, file)
-                self.fileio.write_file(new_file, return_text)
-                print("Decrypted File: {0}".format(new_file))
+        new_file = self.convert_ext(file)
+        # Write File contents
+        self.write_func(new_file, return_text)
+        print("New File: {0}".format(new_file))

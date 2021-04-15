@@ -5,8 +5,24 @@
 # DESCRIPTION   :   The functions in this file are used to
 
 import os
+from PIL import Image
 
-available_extensions = [".txt", ".pdf"]
+available_extensions = [".txt", ".pdf", ".jpeg"]
+
+
+def file_deconstruct(valid_files):
+    file_stems = []
+    file_extensions = []
+    file_names = []
+    
+    for valid_file in valid_files:
+        file_stem, file_extension = os.path.splitext(valid_file)
+        file_stems.append(file_stem)
+        file_extensions.append(file_extension)
+        file_names.append(valid_file)
+        
+    return (file_stems, file_extensions, file_names)
+
 
 # FUNCTION      :   open_file
 # DESCRIPTION   :   This function opens an existing file
@@ -23,7 +39,7 @@ def open_file(new_input):
 # DESCRIPTION   :   This function reads an existing file and extract its content
 # PARAMETERS    :   input_file  -   Input file used for reading
 # RETURNS       :   file_buffer -   Content in the file, each line separated accordingly
-def read_file(input_file):
+def read_binary_file(input_file):
     with open(input_file, "rb") as file_pointer:
         file_buffer = file_pointer.read()
         # for cnt, line in enumerate(file_pointer):
@@ -31,13 +47,35 @@ def read_file(input_file):
     return file_buffer
 
 
-# FUNCTION      :   write_file
-# DESCRIPTION   :   This function writes content to an existing file
+# FUNCTION      :   read_text_file
+# DESCRIPTION   :   This function reads an existing file and extract its content
+# PARAMETERS    :   input_file  -   Input file used for reading
+# RETURNS       :   file_buffer -   Content in the file, each line separated accordingly
+def read_text_file(input_file):
+    file_buffer = ""
+    with open(input_file, "r") as file_pointer:
+        for cnt, line in enumerate(file_pointer):
+            file_buffer += line
+    return file_buffer
+
+
+# FUNCTION      :   write_text_file
+# DESCRIPTION   :   This function writes content to an existing text file
 # PARAMETERS    :   output_file -   Output file used for writing
 #                   content     -   Content in the file, each line separated accordingly
 # RETURNS       :   N/A
-def write_file(output_file, content):
+def write_text_file(output_file, content):
     with open(output_file, "w") as file_pointer:
+        file_pointer.write(content)
+
+
+# FUNCTION      :   write_binary_file
+# DESCRIPTION   :   This function writes content to an existing binary file
+# PARAMETERS    :   output_file -   Output file used for writing
+#                   content     -   Content in the file, each line separated accordingly
+# RETURNS       :   N/A
+def write_binary_file(output_file, content):
+    with open(output_file, "wb") as file_pointer:
         file_pointer.write(content)
 
 
@@ -64,19 +102,19 @@ def validate_file(file):
     return valid_status
 
 
-# FUNCTION      :   check_write
-# DESCRIPTION   :   This function checks if the content in the file were
-#                   properly written the first time
-# PARAMETERS    :   file_buffer   -   Content in the file, each line separated accordingly
-#                   file          -   File being verified
-# RETURNS       :   IOError -   If there is an issue, this exception is raised.
-def check_write(file_buffer, file):
-    # Write to the file first
-    write_file(file, file_buffer)
+# FUNCTION      :   read_image
+# DESCRIPTION   :   This function reads an existing image and extract its content
+# PARAMETERS    :   input_file  -   Input file used for reading
+# RETURNS       :   image_buffer -   Content in the image, an image object
+def read_image(input_file):
+    image_buffer = Image.open(input_file)
+    return image_buffer
 
-    # Open the written file
-    file_content = read_file(file)
 
-    # Compare file content with file_buffer
-    if file_buffer != file_content:
-        raise IOError
+# FUNCTION      :   write_text_file
+# DESCRIPTION   :   This function writes content to an existing text file
+# PARAMETERS    :   output_file -   Output file used for writing
+#                   content     -   Content in the file, each line separated accordingly
+# RETURNS       :   N/A
+def write_image(output_file, content):
+    Image.save(output_file)
