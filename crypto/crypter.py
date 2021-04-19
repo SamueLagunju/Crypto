@@ -22,12 +22,13 @@ ext_mapping = {
         _fileio.read_text_file, _fileio.write_text_file, SeanStrategy, "decrypt"
     ),
     ".jpg": CrypterVariant(
-        _fileio.read_image, _fileio.write_image, RubikStrategy, "encrypt"
+        _fileio.read_binary_file, _fileio.write_binary_file, RubikStrategy, "encrypt"
     ),
     ".cip": CrypterVariant(
-        _fileio.read_image, _fileio.write_image, RubikStrategy, "decrypt"
+        _fileio.read_binary_file, _fileio.write_binary_file, RubikStrategy, "decrypt"
     ),
 }
+
 
 #   NAME          :   CrypterFactory
 #   PURPOSE       :   This class is used to create the appropriate Crypter class, given a file name.
@@ -55,11 +56,11 @@ class CrypterFactory:
 #                     encrypt or decrypt files.
 class Crypter:
     def __init__(
-        self,
-        strategy: Strategy,
-        read_func: Callable,
-        write_func: Callable,
-        operation: Literal["encrypt", "decrypt"],
+            self,
+            strategy: Strategy,
+            read_func: Callable,
+            write_func: Callable,
+            operation: Literal["encrypt", "decrypt"],
     ):
         self.strategy = strategy
         self.read_func = read_func
@@ -88,20 +89,21 @@ class Crypter:
 
     def execute(self, file: str):
         """ Encrypts or decrypts the given files. """
+        try:
+            print("Reading content from: {0}".format(file))
+            strategy = self.strategy
+            file_contents = self.read_func(file)
 
-        print("Reading content from: {0}".format(file))
-        file_stem, file_extension = os.path.splitext(file)
-        strategy = self.strategy
-        file_contents = self.read_func(file)
+            if self.operation == "encrypt":
+                print("Encrypting: {0}".format(file))
+                return_text = strategy.encrypt(file_contents)
+            else:
+                print("Decrypting: {0}".format(file))
+                return_text = strategy.decrypt(file_contents)
 
-        if self.operation == "encrypt":
-            print("Encrypting: {0}".format(file))
-            return_text = strategy.encrypt(file_contents)
-        else:
-            print("Decrypting: {0}".format(file))
-            return_text = strategy.decrypt(file_contents)
-
-        new_file = self.convert_ext(file)
-        # Write File contents
-        self.write_func(new_file, return_text)
-        print("New File: {0}".format(new_file))
+            new_file = self.convert_ext(file)
+            # Write File contents
+            self.write_func(new_file, return_text)
+            print("New File: {0}".format(new_file))
+        except FileNotFoundError:
+            print("File does not exist")

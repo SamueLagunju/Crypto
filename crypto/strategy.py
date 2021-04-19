@@ -6,6 +6,8 @@
 
 
 import abc
+from PIL import Image
+import random
 
 from typing import List, Tuple, Callable, Any
 from collections import namedtuple
@@ -127,13 +129,31 @@ class SeanStrategy(Strategy):
 #                     the base strategy interface. The interface makes them interchangeable in the context.
 class RubikStrategy(Strategy):
     def encrypt(self, file):
-        raise NotImplemented
+        """ Call inner function. """
+        return self.encrypt_image(file)
 
-    def decrypt(self, data: bytes):
-        raise NotImplemented
+    def decrypt(self, file):
+        return self.decrypt_image(file)
 
     def get_supported_types(self) -> List[ExtPair]:
-        return [ExtPair(".jpeg", ".cip"), ExtPair(".JPG", ".cip")]
+        return [ExtPair(".jpg", ".cip")]
+
+    def encrypt_image(self, img):
+        key = 10
+        numericData = bytearray(img)
+        # performing XOR operation on each value of bytearray
+        for index, values in enumerate(img):
+            numericData[index] = values ^ key
+
+        return numericData
+
+    def decrypt_image(self, img):
+        key = 10
+        numericData = bytearray(img)
+        # performing XOR operation on each value of bytearray
+        for index, values in enumerate(img):
+            numericData[index] = values ^ key
+        return numericData
 
 
 #
