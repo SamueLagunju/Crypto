@@ -8,7 +8,7 @@
 import abc
 from PIL import Image
 import random
-
+from .constants import image_key
 from typing import List, Tuple, Callable, Any
 from collections import namedtuple
 
@@ -139,24 +139,31 @@ class RubikStrategy(Strategy):
         return [ExtPair(".jpg", ".cip")]
 
     def encrypt_image(self, img):
-        key = 10
         numericData = bytearray(img)
         # performing XOR operation on each value of bytearray
         for index, values in enumerate(img):
-            numericData[index] = values ^ key
-
+            numericData[index] = values ^ image_key
         return numericData
 
     def decrypt_image(self, img):
-        key = 10
         numericData = bytearray(img)
         # performing XOR operation on each value of bytearray
         for index, values in enumerate(img):
-            numericData[index] = values ^ key
+            numericData[index] = values ^ image_key
         return numericData
 
+    def requestKey(self):
+        while True:
+            try:
+                key_input = int(input("Please input your key:"))
+            except ValueError:
+                print("Invalid Input! Try again.")
+                continue
+            else:
+                break
+        return key_input
 
-#
+            #
 #   NAME          :   DocStrategy
 #   PURPOSE       :   The DocStrategy class implement the algorithms while following
 #                     the base strategy interface. The interface makes them interchangeable in the context.
