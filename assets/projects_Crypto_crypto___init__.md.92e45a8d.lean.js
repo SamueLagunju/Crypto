@@ -1,1 +1,0 @@
-import{o as t,c as n,d as a}from"./app.50dbb70a.js";const o='{"title":"","description":"","frontmatter":{},"relativePath":"projects/Crypto/crypto/__init__.md","lastUpdated":1619456284419}',s={},e=a('',2);s.render=function(a,o,s,r,p,_){return t(),n("div",null,[e])};export default s;export{o as __pageData};
