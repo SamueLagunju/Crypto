@@ -9,6 +9,8 @@ from collections import namedtuple
 from typing import List, Callable, Dict, Literal
 
 from .strategy import Strategy, SeanStrategy, RubikStrategy
+from .constants import image_key
+
 from . import fileio as _fileio
 
 CrypterVariant = namedtuple(

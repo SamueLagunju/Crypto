@@ -128,6 +128,10 @@ class SeanStrategy(Strategy):
 #   PURPOSE       :   The RubikStrategy class implement the algorithms while following
 #                     the base strategy interface. The interface makes them interchangeable in the context.
 class RubikStrategy(Strategy):
+
+    def __init__(self):
+        self._image_key = image_key
+
     def encrypt(self, file):
         """ Call inner function. """
         return self.encrypt_image(file)
@@ -142,28 +146,17 @@ class RubikStrategy(Strategy):
         numericData = bytearray(img)
         # performing XOR operation on each value of bytearray
         for index, values in enumerate(img):
-            numericData[index] = values ^ image_key
+            numericData[index] = values ^ self._image_key
         return numericData
 
     def decrypt_image(self, img):
         numericData = bytearray(img)
         # performing XOR operation on each value of bytearray
         for index, values in enumerate(img):
-            numericData[index] = values ^ image_key
+            numericData[index] = values ^ self._image_key
         return numericData
 
-    def requestKey(self):
-        while True:
-            try:
-                key_input = int(input("Please input your key:"))
-            except ValueError:
-                print("Invalid Input! Try again.")
-                continue
-            else:
-                break
-        return key_input
-
-            #
+#
 #   NAME          :   DocStrategy
 #   PURPOSE       :   The DocStrategy class implement the algorithms while following
 #                     the base strategy interface. The interface makes them interchangeable in the context.

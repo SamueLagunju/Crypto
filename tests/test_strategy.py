@@ -1,6 +1,7 @@
 import pytest
 
 from crypto.strategy import SeanStrategy, RubikStrategy
+from crypto.constants import image_key
 
 
 class TestSeanStrategy:
