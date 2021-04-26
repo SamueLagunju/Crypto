@@ -129,9 +129,6 @@ class SeanStrategy(Strategy):
 #                     the base strategy interface. The interface makes them interchangeable in the context.
 class RubikStrategy(Strategy):
 
-    def __init__(self):
-        self._image_key = image_key
-
     def encrypt(self, file):
         """ Call inner function. """
         return self.encrypt_image(file)
@@ -144,17 +141,18 @@ class RubikStrategy(Strategy):
 
     def encrypt_image(self, img):
         numericData = bytearray(img)
-        # performing XOR operation on each value of bytearray
-        for index, values in enumerate(img):
-            numericData[index] = values ^ self._image_key
+        self.xor_operator(numericData, img)
         return numericData
 
     def decrypt_image(self, img):
         numericData = bytearray(img)
-        # performing XOR operation on each value of bytearray
-        for index, values in enumerate(img):
-            numericData[index] = values ^ self._image_key
+        self.xor_operator(numericData, img)
         return numericData
+
+    # performing XOR operation on each value of bytearray
+    def xor_operator(self, data, img_data):
+        for index, values in enumerate(img_data):
+            data[index] = values ^ image_key
 
 #
 #   NAME          :   DocStrategy
