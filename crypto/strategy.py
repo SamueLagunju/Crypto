@@ -139,18 +139,29 @@ class RubikStrategy(Strategy):
     def get_supported_types(self) -> List[ExtPair]:
         return [ExtPair(".jpg", ".cip")]
 
-    def encrypt_image(self, img):
+    # METHOD        :
+    # DESCRIPTION   :
+    # PARAMETERS    :
+    # RETURNS       :
+    def encrypt_image(self, img: bytes):
         numericData = bytearray(img)
         self.xor_operator(numericData, img)
         return numericData
 
-    def decrypt_image(self, img):
+    # METHOD        :
+    # DESCRIPTION   :
+    # PARAMETERS    :
+    # RETURNS       :
+    def decrypt_image(self, img: bytes):
         numericData = bytearray(img)
         self.xor_operator(numericData, img)
         return numericData
 
-    # performing XOR operation on each value of bytearray
-    def xor_operator(self, data, img_data):
+    # METHOD        :
+    # DESCRIPTION   :
+    # PARAMETERS    :
+    # RETURNS       :
+    def xor_operator(self, data: bytearray, img_data: bytes):
         for index, values in enumerate(img_data):
             data[index] = values ^ image_key
 
