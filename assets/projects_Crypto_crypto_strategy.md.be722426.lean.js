@@ -1,0 +1,1 @@
+import{o as n,c as a,d as s}from"./app.50dbb70a.js";const t='{"title":"","description":"","frontmatter":{},"relativePath":"projects/Crypto/crypto/strategy.md","lastUpdated":1619406284214}',p={},e=s('',68);p.render=function(s,t,p,o,c,l){return n(),a("div",null,[e])};export default p;export{t as __pageData};
