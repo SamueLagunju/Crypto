@@ -139,27 +139,31 @@ class RubikStrategy(Strategy):
     def get_supported_types(self) -> List[ExtPair]:
         return [ExtPair(".jpg", ".cip")]
 
-    # METHOD        :
-    # DESCRIPTION   :
-    # PARAMETERS    :
-    # RETURNS       :
+    # METHOD        :   encrypt_image
+    # DESCRIPTION   :   This function performs a shift cipher the byte value of the
+    #                   image value character.
+    # PARAMETERS    :   img : bytes  -   Image in binary format
+    # RETURNS       :   numericData  -   Encrypted information in bytes
     def encrypt_image(self, img: bytes):
         numericData = bytearray(img)
         self.xor_operator(numericData, img)
         return numericData
 
-    # METHOD        :
-    # DESCRIPTION   :
-    # PARAMETERS    :
-    # RETURNS       :
+    # METHOD        :   decrypt_image
+    # DESCRIPTION   :   This function performs a shift cipher the byte value of the
+    #                   image value character.
+    # PARAMETERS    :   img : bytes  -   Image in binary format
+    # RETURNS       :   numericData  -   Decrypted information in bytes
     def decrypt_image(self, img: bytes):
         numericData = bytearray(img)
         self.xor_operator(numericData, img)
         return numericData
 
-    # METHOD        :
-    # DESCRIPTION   :
-    # PARAMETERS    :
+    # METHOD        :   xor_operator
+    # DESCRIPTION   :   This function outputs a 1 whenever the inputs do not match,
+    #                   which occurs when one of the two inputs is exclusively true.
+    # PARAMETERS    :   data: bytearray -   Array of given bytes
+    #                   img_data: bytes -   Image in binary format
     # RETURNS       :
     def xor_operator(self, data: bytearray, img_data: bytes):
         for index, values in enumerate(img_data):
