@@ -5,8 +5,8 @@ An encrypting / decrypting utility (Linux/Windows). This utility will take any f
 # Table of content
 
 - [Specification](#specification)
-- [Text Scheme](## .txt)
-- [JPG  Scheme](## .jpg)
+- [Text Scheme](##txt)
+- [JPG  Scheme](##jpg)
 - [License](#License)
 - [Acknowledgments](#Acknowledgments)
 
@@ -44,7 +44,7 @@ An encrypting / decrypting utility (Linux/Windows). This utility will take any f
    - `py crypto –-decrypt SampleFile.cip` will produce a decrypted file called SampleFile.jpg<br>
      ![Decryption Demo](demo/DecryptGifB.gif)
      
-## .Txt
+## TXT
 ### Encryption scheme
 
 The encryption scheme is applied to each character in the line:
@@ -95,7 +95,7 @@ The decryption scheme is applied to each pair of characters in the input line:
       Isn't it?!? <CR\>
       ```
 
-## .JPG
+## JPG
 ### Encryption scheme
 The XOR Encryption algorithm is based on applying an XOR mask using the plaintext and a key:
   - For example
