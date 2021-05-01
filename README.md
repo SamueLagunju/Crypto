@@ -5,8 +5,8 @@ An encrypting / decrypting utility (Linux/Windows). This utility will take any f
 # Table of content
 
 - [Specification](#specification)
-- [Text Scheme](##.txt)
-- [JPG  Scheme](##.jpg)
+- [Text Scheme](## .txt)
+- [JPG  Scheme](## .jpg)
 - [License](#License)
 - [Acknowledgments](#Acknowledgments)
 
