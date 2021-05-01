@@ -5,8 +5,8 @@ An encrypting / decrypting utility (Linux/Windows). This utility will take any f
 # Table of content
 
 - [Specification](#specification)
-- [Text Scheme](##txt)
-- [JPG  Scheme](##jpg)
+- [Text Scheme](#txt)
+- [JPG  Scheme](#jpg)
 - [License](#License)
 - [Acknowledgments](#Acknowledgments)
 
@@ -44,8 +44,8 @@ An encrypting / decrypting utility (Linux/Windows). This utility will take any f
    - `py crypto –-decrypt SampleFile.cip` will produce a decrypted file called SampleFile.jpg<br>
      ![Decryption Demo](demo/DecryptGifB.gif)
      
-## TXT
-### Encryption scheme
+# TXT
+## Encryption scheme
 
 The encryption scheme is applied to each character in the line:
 
@@ -69,7 +69,7 @@ The encryption scheme is applied to each character in the line:
       3D69805E515D55805963804355515E80335C51625B558ETT39805C595B5580635F56646751625581<CR\>
       ```
 
-### Decryption scheme  
+## Decryption scheme  
 The decryption scheme is applied to each pair of characters in the input line:
 
 - If the pair of characters is the sequence **TT**
@@ -95,8 +95,8 @@ The decryption scheme is applied to each pair of characters in the input line:
       Isn't it?!? <CR\>
       ```
 
-## JPG
-### Encryption scheme
+# JPG
+## Encryption scheme
 The XOR Encryption algorithm is based on applying an XOR mask using the plaintext and a key:
   - For example
     ```
@@ -104,7 +104,7 @@ The XOR Encryption algorithm is based on applying an XOR mask using the plaintex
       Key:    01000000
       Cipher: 01110101
       ```
-### Decryption scheme  
+## Decryption scheme  
 Reapplying the same XOR mask (using the same key) to the cipher text outputs the original plain text.
 - For example
     ```
