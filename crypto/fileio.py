@@ -117,4 +117,6 @@ def read_image(input_file):
 #                   content     -   Content in the file, each line separated accordingly
 # RETURNS       :   N/A
 def write_image(output_file, content):
-    Image.save(output_file)
+    size = (400, 300)
+    outImg = Image.frombytes('RGBA', size, content, 'raw')
+    outImg.save(output_file)

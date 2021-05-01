@@ -6,7 +6,9 @@
 
 
 import abc
-
+from PIL import Image
+import random
+from .constants import image_key
 from typing import List, Tuple, Callable, Any
 from collections import namedtuple
 
@@ -126,15 +128,46 @@ class SeanStrategy(Strategy):
 #   PURPOSE       :   The RubikStrategy class implement the algorithms while following
 #                     the base strategy interface. The interface makes them interchangeable in the context.
 class RubikStrategy(Strategy):
-    def encrypt(self, file):
-        raise NotImplemented
 
-    def decrypt(self, data: bytes):
-        raise NotImplemented
+    def encrypt(self, file):
+        """ Call inner function. """
+        return self.encrypt_image(file)
+
+    def decrypt(self, file):
+        return self.decrypt_image(file)
 
     def get_supported_types(self) -> List[ExtPair]:
-        return [ExtPair(".jpeg", ".cip"), ExtPair(".JPG", ".cip")]
+        return [ExtPair(".jpg", ".cip")]
 
+    # METHOD        :   encrypt_image
+    # DESCRIPTION   :   This function performs a shift cipher the byte value of the
+    #                   image value character.
+    # PARAMETERS    :   img : bytes  -   Image in binary format
+    # RETURNS       :   numericData  -   Encrypted information in bytes
+    def encrypt_image(self, img: bytes):
+        numericData = bytearray(img)
+        self.xor_operator(numericData, img)
+        return numericData
+
+    # METHOD        :   decrypt_image
+    # DESCRIPTION   :   This function performs a shift cipher the byte value of the
+    #                   image value character.
+    # PARAMETERS    :   img : bytes  -   Image in binary format
+    # RETURNS       :   numericData  -   Decrypted information in bytes
+    def decrypt_image(self, img: bytes):
+        numericData = bytearray(img)
+        self.xor_operator(numericData, img)
+        return numericData
+
+    # METHOD        :   xor_operator
+    # DESCRIPTION   :   This function outputs a 1 whenever the inputs do not match,
+    #                   which occurs when one of the two inputs is exclusively true.
+    # PARAMETERS    :   data: bytearray -   Array of given bytes
+    #                   img_data: bytes -   Image in binary format
+    # RETURNS       :
+    def xor_operator(self, data: bytearray, img_data: bytes):
+        for index, values in enumerate(img_data):
+            data[index] = values ^ image_key
 
 #
 #   NAME          :   DocStrategy
