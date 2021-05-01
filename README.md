@@ -1,10 +1,12 @@
-# Crypto ![Version](https://img.shields.io/badge/Release-v1.0-blue)
+# Crypto ![Version](https://img.shields.io/badge/Release-v2.0-blue)
 
-An encrypting / decrypting utility (Linux/Windows). This utility will take any ASCII file or folder and encrypt it in such a way that its contents are not readable until they are decrypted by the utility.
+An encrypting / decrypting utility (Linux/Windows). This utility will take any file and encrypt it in such a way that its contents are not readable until they are decrypted by the utility.
 
 # Table of content
 
 - [Specification](#specification)
+- [Text Scheme](#txt)
+- [JPG  Scheme](#jpg)
 - [License](#License)
 - [Acknowledgments](#Acknowledgments)
 
@@ -16,39 +18,33 @@ An encrypting / decrypting utility (Linux/Windows). This utility will take any A
    - The utility has 2 command-line switches
      - `–e ` or `--encrypt`
      - `–d` or `--decrypt`
-   - If none of these switches is specified, `–-encrypt` is assumed
-   - The utility also takes the name of an **ASCII input file** to encrypt/decrypt as an argument.
+   - If none of these switches is specified, the file's extension is inferred.
+   - The utility also takes the name of an **ASCII and/or JPG input file** to encrypt/decrypt as an argument.
    - For example:
      - `py crypto –e/--encrypt myFile.txt` will encrypt the contents of the myFile.txt file
-     - `py crypto myFile.txt` will encrypt the contents of the myFile.txt file
+     - `py crypto –e/--encrypt aFile.jpg` will encrypt the contents of the myFile.jpg file
+     - `py crypto myFile.txt aFile.jpg` will encrypt the contents of the myFile.txt and aFile.jpg file
      - `py crypto –d/--decrypt myFile.crp` will decrypt the contents of the myFile.crp file
+     - `py crypto –d/--decrypt aFile.cip` will decrypt the contents of the myFile.cip file
 
-2. When the utility is asked to –encrypt an ASCII file, it will take the
-   input filename and produce the encrypted file with the same base filename
-   and an .crp file extension
 
-   - `py crypto –-encrypt SampleFile.txt` will produce an encrypted file called SampleFile.crp
+2. When the utility is asked –encrypt, it will take the input filename and produce the encrypted file 
+   with the same base filename and an encrypted file extension
+
+   - `py crypto –-encrypt SampleFile.txt` will produce an encrypted file called SampleFile.crp<br>
      ![Encryption Demo](demo/EncryptGif.gif)
+   - `py crypto –-encrypt SampleFile.jpg` will produce an encrypted file called SampleFile.cip<br>
+     ![Encryption Demo](demo/EncryptGifB.gif)
 
-3. When the utility is asked to –decrypt an encrypted file, it will take
-   the input filename and produce the decrypted file with the same base filename
-   and an .txt file extension
+3. When the utility is asked –decrypt, it will take
+   the input filename and produce the decrypted file with the same base filename, and it's corresponding  file extension
 
-   - `py crypto –-decrypt SampleFile.crp` will produce a decrypted file called SampleFile.txt
+   - `py crypto –-decrypt SampleFile.crp` will produce a decrypted file called SampleFile.txt<br>
      ![Decryption Demo](demo/DecryptGif.gif)
-
-4. It should be noted that the input file can have any file extension. When asked to encrypt,
-   it will replace the existing file extension (if any) with .CRP.
-   Similarly when asked to decrypt, it will replace the existing file extension (if any) with .TXT
-   - Encrypting always produces a file with a .CRP extension
-   - Decrypting always produces a file with a .TXT extension
-   - When asked to encrypt or decrypt a file that has no extension crypto
-     will append the .TXT (if decrypting) and .CRP (if encrypting)
-5. Each line (up to and including the carriage return (noted as <CR\> below))
-   in the unencrypted ASCII file is guaranteed of being less than 120 characters.
-   Crypto will process the input ASCII file one line at a time
-   and will continue to process the input file until you reach the end of the file.
-
+   - `py crypto –-decrypt SampleFile.cip` will produce a decrypted file called SampleFile.jpg<br>
+     ![Decryption Demo](demo/DecryptGifB.gif)
+     
+# TXT
 ## Encryption scheme
 
 The encryption scheme is applied to each character in the line:
@@ -99,9 +95,23 @@ The decryption scheme is applied to each pair of characters in the input line:
       Isn't it?!? <CR\>
       ```
 
-## .JPEG
-
-### `Coming Soon - V2`
+# JPG
+## Encryption scheme
+The XOR Encryption algorithm is based on applying an XOR mask using the plaintext and a key:
+  - For example
+    ```
+      Plain:  00110101
+      Key:    01000000
+      Cipher: 01110101
+      ```
+## Decryption scheme  
+Reapplying the same XOR mask (using the same key) to the cipher text outputs the original plain text.
+- For example
+    ```
+      Plain:  01110101
+      Key:    01000000
+      Cipher: 00110101
+      ```
 
 # Setup
 

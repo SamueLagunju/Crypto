@@ -1,5 +1,9 @@
-pytest
+pytest~=6.2.2
 pytest-mock
 flake8
 black
 flake8-black
+crypto~=1.0.0
+click~=7.1.2
+setuptools~=47.1.0
+Pillow~=8.1.2

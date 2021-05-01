@@ -14,6 +14,8 @@ import sys
 #   PARAMETERS:     N/A
 #   RETURNS:        plt         -   Name of platform that was detected
 #                   SYS_ERROR   -   Raised an error if it cannot detect an OS
+
+
 def os_checker():
     # OS Check
     print("Verifying OS...")
@@ -28,6 +30,7 @@ def os_checker():
         print("Unidentified system")
         raise SystemError
     return plt
+
 
 #
 # FUNCTION      :   arg_parser
