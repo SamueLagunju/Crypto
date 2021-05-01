@@ -1,0 +1,1 @@
+import{o as n,c as s,d as a}from"./app.50dbb70a.js";const t='{"title":"","description":"","frontmatter":{},"relativePath":"projects/Crypto/crypto/helpers.md","lastUpdated":1619853093511}',p={},o=a('',9);p.render=function(a,t,p,e,c,u){return n(),s("div",null,[o])};export default p;export{t as __pageData};
