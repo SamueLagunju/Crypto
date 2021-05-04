@@ -11,3 +11,4 @@ stopLoop = False
 
 program_directory = ""
 program_os = ""
+image_key = 23

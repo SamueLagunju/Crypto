@@ -1,7 +1,7 @@
 import pytest
 
-from crypto.crypter import Crypter
-from crypto.strategy import SeanStrategy
+from crypto.strategy import SeanStrategy, RubikStrategy
+from crypto.constants import image_key
 
 
 class TestSeanStrategy:
@@ -26,10 +26,10 @@ class TestSeanStrategy:
     )
     def test_encrypt_string(self, input, expected):
         # Arrange
-        client = Crypter("", SeanStrategy())
+        client = SeanStrategy()
 
         # Act
-        result = client.encrypt_txt(input)
+        result = client.encrypt(input)
 
         # Assert
         assert result == expected
@@ -50,10 +50,43 @@ class TestSeanStrategy:
     )
     def test_decrypt_string(self, input, expected):
         # Arrange
-        client = Crypter("", SeanStrategy())
+        client = SeanStrategy()
 
         # Act
-        result = client.decrypt_txt(input)
+        result = client.decrypt(input)
+
+        # Assert
+        assert result == expected
+
+
+    @pytest.mark.parametrize(
+        "input,expected",
+        [
+            (b'ADBCEFGH1', b'VSUTRQP_&'),
+        ],
+    )
+    def test_image_encrypt(self, input, expected):
+        # Arrange
+        client = RubikStrategy()
+
+        # Act
+        result = client.encrypt(input)
+
+        # Assert
+        assert result == expected
+
+    @pytest.mark.parametrize(
+        "input,expected",
+        [
+            (b'VSUTRQP_&', b'ADBCEFGH1'),
+        ],
+    )
+    def test_image_decrypt(self, input, expected):
+        # Arrange
+        client = RubikStrategy()
+
+        # Act
+        result = client.decrypt(input)
 
         # Assert
         assert result == expected
