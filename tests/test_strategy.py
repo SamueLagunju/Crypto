@@ -80,7 +80,7 @@ class TestSeanStrategy:
         "key,input,expected",
         [
             (23, b'VSUTRQP_&', b'ADBCEFGH1'),
-            (25, b'X][Z\\_^Q(", b"ADBCEFGH1'),
+            (25, b'X][Z\\_^Q(', b'ADBCEFGH1'),
         ],
     )
     def test_image_decrypt(self, key, input, expected):
