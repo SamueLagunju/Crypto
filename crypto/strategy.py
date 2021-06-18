@@ -8,7 +8,7 @@
 import abc
 from PIL import Image
 import random
-from .constants import image_key
+from . import constants
 from typing import List, Tuple, Callable, Any
 from collections import namedtuple
 
@@ -128,6 +128,8 @@ class SeanStrategy(Strategy):
 #   PURPOSE       :   The RubikStrategy class implement the algorithms while following
 #                     the base strategy interface. The interface makes them interchangeable in the context.
 class RubikStrategy(Strategy):
+    def __init__(self, image_key=constants.image_key):
+        self.image_key = image_key
 
     def encrypt(self, file):
         """ Call inner function. """
@@ -146,7 +148,7 @@ class RubikStrategy(Strategy):
     # RETURNS       :   numericData  -   Encrypted information in bytes
     def encrypt_image(self, img: bytes):
         numericData = bytearray(img)
-        self.xor_operator(numericData, img)
+        self.xor_operator(numericData, img, self.image_key)
         return numericData
 
     # METHOD        :   decrypt_image
@@ -156,7 +158,7 @@ class RubikStrategy(Strategy):
     # RETURNS       :   numericData  -   Decrypted information in bytes
     def decrypt_image(self, img: bytes):
         numericData = bytearray(img)
-        self.xor_operator(numericData, img)
+        self.xor_operator(numericData, img, self.image_key)
         return numericData
 
     # METHOD        :   xor_operator
@@ -164,8 +166,9 @@ class RubikStrategy(Strategy):
     #                   which occurs when one of the two inputs is exclusively true.
     # PARAMETERS    :   data: bytearray -   Array of given bytes
     #                   img_data: bytes -   Image in binary format
+    #                   image_key: int    -   Value to xor with
     # RETURNS       :
-    def xor_operator(self, data: bytearray, img_data: bytes):
+    def xor_operator(self, data: bytearray, img_data: bytes, image_key: int):
         for index, values in enumerate(img_data):
             data[index] = values ^ image_key
 

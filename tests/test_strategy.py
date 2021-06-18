@@ -60,14 +60,15 @@ class TestSeanStrategy:
 
 
     @pytest.mark.parametrize(
-        "input,expected",
+        "key,input,expected",
         [
-            (b'ADBCEFGH1', b'VSUTRQP_&'),
+            (23, b'ADBCEFGH1', b'VSUTRQP_&'),
+            (25, b'ADBCEFGH1', b'X][Z\\_^Q('),
         ],
     )
-    def test_image_encrypt(self, input, expected):
+    def test_image_encrypt(self, key, input, expected):
         # Arrange
-        client = RubikStrategy()
+        client = RubikStrategy(image_key=key)
 
         # Act
         result = client.encrypt(input)
@@ -76,14 +77,15 @@ class TestSeanStrategy:
         assert result == expected
 
     @pytest.mark.parametrize(
-        "input,expected",
+        "key,input,expected",
         [
-            (b'VSUTRQP_&', b'ADBCEFGH1'),
+            (23, b'VSUTRQP_&', b'ADBCEFGH1'),
+            (25, b'X][Z\\_^Q(", b"ADBCEFGH1'),
         ],
     )
-    def test_image_decrypt(self, input, expected):
+    def test_image_decrypt(self, key, input, expected):
         # Arrange
-        client = RubikStrategy()
+        client = RubikStrategy(image_key=key)
 
         # Act
         result = client.decrypt(input)
