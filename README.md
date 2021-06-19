@@ -107,11 +107,11 @@ The XOR Encryption algorithm is based on applying an XOR mask using the plaintex
 ## Decryption scheme  
 Reapplying the same XOR mask (using the same key) to the cipher text outputs the original plain text.
 - For example
-    ```
+```
       Plain:  01110101
       Key:    01000000
       Cipher: 00110101
-      ```
+```
 
 # Setup
 
