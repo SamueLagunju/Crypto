@@ -23,9 +23,9 @@ jobs:
       - uses: KaiPrince/AngelDocs@v0.1
         with:
           files: crypto
-          folder: dist
-          base-url: Crypto # REPLACE WITH YOUR REPO NAME
-          project-name: Crypto # REPLACE WITH YOUR PROJECT NAME
+          folder: dist # Must match folder name in action below
+          base-url: Crypto
+          project-name: Crypto
 
       # Publish to Pages
       - name: Deploy 🚀
