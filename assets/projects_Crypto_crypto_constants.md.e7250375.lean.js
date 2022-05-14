@@ -1,0 +1,1 @@
+import{o as n,c as a,a as s}from"./app.e98a0319.js";const o='{"title":"","description":"","frontmatter":{},"relativePath":"projects/Crypto/crypto/constants.md","lastUpdated":1652562036343}',t={},e=s('',2);t.render=function(s,o,t,p,r,l){return n(),a("div",null,[e])};export default t;export{o as __pageData};

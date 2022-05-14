@@ -1,0 +1,1 @@
+import{o as n,c as s,a}from"./app.e98a0319.js";const t='{"title":"","description":"","frontmatter":{},"relativePath":"projects/Crypto/crypto/crypter.md","lastUpdated":1652562036343}',p={},o=a('',17);p.render=function(a,t,p,e,c,u){return n(),s("div",null,[o])};export default p;export{t as __pageData};
