@@ -20,12 +20,12 @@ jobs:
       - uses: actions/checkout@v2
 
       # Run our action to document our code
-      - uses: KaiPrince/AngelDocs@latest
+      - uses: KaiPrince/AngelDocs@v0.1
         with:
-          files: crypto/**/*.*
-          folder: dist
-          base-url: Crypto # REPLACE WITH YOUR REPO NAME
-          project-name: Crypto # REPLACE WITH YOUR PROJECT NAME
+          files: crypto
+          folder: dist # Must match folder name in action below
+          base-url: Crypto
+          project-name: Crypto
 
       # Publish to Pages
       - name: Deploy 🚀
